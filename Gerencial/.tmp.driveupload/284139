@@ -1,0 +1,61 @@
+inherited MunicipioEditar: TMunicipioEditar
+  BorderStyle = bsNone
+  ClientHeight = 480
+  ClientWidth = 360
+  StyleElements = [seFont, seClient, seBorder]
+  ExplicitWidth = 360
+  TextHeight = 18
+  inline frameMunicipioField1: TframeMunicipioField
+    Left = 0
+    Top = 0
+    Width = 360
+    Height = 480
+    Align = alClient
+    DragKind = dkDock
+    DragMode = dmAutomatic
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Roboto'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+    ExplicitWidth = 360
+    ExplicitHeight = 480
+    inherited Panel1: TPanel
+      Width = 360
+      Height = 480
+      StyleElements = [seFont, seClient, seBorder]
+      ExplicitWidth = 360
+      ExplicitHeight = 480
+      inherited PageControl1: TPageControl
+        Width = 358
+        Height = 437
+        ExplicitWidth = 358
+        ExplicitHeight = 437
+        inherited tabCampos: TTabSheet
+          ExplicitWidth = 344
+          ExplicitHeight = 383
+          inherited Edit1: TEdit
+            StyleElements = [seFont, seClient, seBorder]
+          end
+          inherited Edit2: TEdit
+            StyleElements = [seFont, seClient, seBorder]
+          end
+          inherited Edit6: TEdit
+            StyleElements = [seFont, seClient, seBorder]
+          end
+          inherited email: TEdit
+            StyleElements = [seFont, seClient, seBorder]
+          end
+        end
+      end
+      inherited Panel2: TPanel
+        Width = 358
+        Caption = 'Editar Munic'#237'pio'
+        StyleElements = [seFont, seClient, seBorder]
+        ExplicitWidth = 358
+      end
+    end
+  end
+end

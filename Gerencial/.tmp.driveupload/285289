@@ -1,0 +1,81 @@
+inherited formUsuarioCRIS: TformUsuarioCRIS
+  Caption = ''
+  StyleElements = [seFont, seClient, seBorder]
+  TextHeight = 18
+  inherited panelFundo: TPanel
+    StyleElements = [seFont, seClient, seBorder]
+    inherited cardpanelCRIS: TCardPanel
+      StyleElements = [seFont, seClient, seBorder]
+      inherited cardPesquisa: TCard
+        StyleElements = [seFont, seClient, seBorder]
+        inherited dbgridPesquisa: TDBGrid
+          DataSource = DataSource1
+        end
+        inherited SearchBar: TframeSearchBar
+          inherited panelPesquisa: TPanel
+            StyleElements = [seFont, seClient, seBorder]
+            inherited combox: TComboBox
+              StyleElements = [seFont, seClient, seBorder]
+            end
+            inherited edit: TEdit
+              StyleElements = [seFont, seClient, seBorder]
+            end
+          end
+        end
+      end
+      inherited cardNovo: TCard
+        StyleElements = [seFont, seClient, seBorder]
+        inherited frameMunicipioField1: TframeMunicipioField
+          inherited Panel1: TPanel
+            StyleElements = [seFont, seClient, seBorder]
+            inherited PageControl1: TPageControl
+              inherited tabCampos: TTabSheet
+                inherited Edit1: TEdit
+                  StyleElements = [seFont, seClient, seBorder]
+                end
+                inherited Edit2: TEdit
+                  StyleElements = [seFont, seClient, seBorder]
+                end
+                inherited Edit6: TEdit
+                  StyleElements = [seFont, seClient, seBorder]
+                end
+                inherited email: TEdit
+                  StyleElements = [seFont, seClient, seBorder]
+                end
+              end
+            end
+            inherited Panel2: TPanel
+              StyleElements = [seFont, seClient, seBorder]
+            end
+          end
+        end
+      end
+      inherited cardEditar: TCard
+        StyleElements = [seFont, seClient, seBorder]
+      end
+    end
+    inherited operationsBar: TframeOperationsBar
+      inherited panelFooterInserir: TPanel
+        StyleElements = [seFont, seClient, seBorder]
+        inherited speedSalvar: TSpeedButton
+          ExplicitLeft = 620
+          ExplicitHeight = 57
+        end
+        inherited speedEditar: TSpeedButton
+          ExplicitLeft = 540
+          ExplicitHeight = 57
+        end
+        inherited speedCancelar: TSpeedButton
+          ExplicitHeight = 57
+        end
+      end
+    end
+    inherited panelLateral: TPanel
+      StyleElements = [seFont, seClient, seBorder]
+    end
+  end
+  object DataSource1: TDataSource
+    Left = 640
+    Top = 16
+  end
+end

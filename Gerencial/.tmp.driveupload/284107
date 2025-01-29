@@ -1,0 +1,35 @@
+program FakeCisalv;
+
+uses
+  Vcl.Forms,
+  uMasterForm in 'src\master\uMasterForm.pas' {formMaster},
+  uPrincipal in 'src\uPrincipal.pas' {formPrincipal},
+  uMasterFrame in 'src\master\uMasterFrame.pas' {frameMaster: TFrame},
+  uframeOperationsBar in 'src\CRIS\frames\uframeOperationsBar.pas' {frameOperationsBar: TFrame},
+  uframeSearchBar in 'src\CRIS\frames\uframeSearchBar.pas' {frameSearchBar: TFrame},
+  uMenuCadastro in 'src\uMenuCadastro.pas' {formMenuCadastros},
+  uMunicipioService in 'src\CRIS\municipio\uMunicipioService.pas' {moduleMunicipio: TDataModule},
+  ucMunicipio in 'src\CRIS\municipio\ucMunicipio.pas',
+  uMunicipioCRIS in 'src\CRIS\municipio\uMunicipioCRIS.pas' {formMunicipioCRIS},
+  ucBaseDados in 'src\services\ucBaseDados.pas',
+  DataService in 'src\services\DataService.pas' {moduleDatabase: TDataModule},
+  uMasterCRIS in 'src\master\uMasterCRIS.pas' {formMasterCRIS},
+  uframeMenuButton in 'src\frames\uframeMenuButton.pas' {frameMenuButton: TFrame},
+  uframeMainBar in 'src\frames\uframeMainBar.pas' {frameMainBar: TFrame},
+  uFormFactory in 'src\uFormFactory.pas',
+  malfunctioningdatacon in 'src\services\malfunctioningdatacon.pas' {DataConModule: TDataModule},
+  uUsuarioCRIS in 'src\CRIS\usuario\uUsuarioCRIS.pas' {formUsuarioCRIS},
+  uDataConService in 'uDataConService.pas',
+  uframeMunicipioFields in 'src\CRIS\municipio\uframeMunicipioFields.pas' {frameMunicipioField: TFrame},
+  uMunicipioFieldCriar in 'src\CRIS\municipio\uMunicipioFieldCriar.pas' {MunicipioCriar},
+  uMunicipioFieldEditar in 'src\CRIS\municipio\uMunicipioFieldEditar.pas' {MunicipioEditar};
+
+{$R *.res}
+
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TformPrincipal, formPrincipal);
+  Application.Run;
+end.

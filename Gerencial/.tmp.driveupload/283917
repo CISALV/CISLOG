@@ -1,0 +1,14 @@
+[CONFIG_BD]
+Protocol=Local
+Server=
+User=SYSDBA
+Password=masterkey
+Database=C:\database\CISALV-3-2-1.FDB
+
+
+[CONFIG_CEP]
+Protocol=LOCAL
+Server=
+User=SYSDBA
+Password=masterkey
+Database=C:\DServis\Itrade\data\CEP.FDB

@@ -1,0 +1,264 @@
+inherited formMasterCRIS: TformMasterCRIS
+  BorderStyle = bsNone
+  Caption = 'formMasterCRIS'
+  ClientHeight = 585
+  ClientWidth = 829
+  StyleElements = [seFont, seClient, seBorder]
+  OnCreate = FormCreate
+  ExplicitLeft = 3
+  ExplicitTop = 3
+  ExplicitWidth = 829
+  ExplicitHeight = 585
+  TextHeight = 18
+  object panelFundo: TPanel
+    Left = 0
+    Top = 0
+    Width = 829
+    Height = 585
+    Align = alClient
+    ParentBackground = False
+    TabOrder = 0
+    ExplicitWidth = 703
+    ExplicitHeight = 564
+    object cardpanelCRIS: TCardPanel
+      AlignWithMargins = True
+      Left = 4
+      Top = 4
+      Width = 461
+      Height = 518
+      Align = alClient
+      ActiveCard = cardPesquisa
+      BevelOuter = bvNone
+      Caption = 'CardPanel1'
+      DragKind = dkDock
+      DragMode = dmAutomatic
+      ParentBackground = False
+      TabOrder = 0
+      ExplicitWidth = 257
+      ExplicitHeight = 497
+      object cardPesquisa: TCard
+        Left = 0
+        Top = 0
+        Width = 461
+        Height = 518
+        Caption = 'Pesquisa'
+        CardIndex = 0
+        TabOrder = 0
+        ExplicitWidth = 257
+        ExplicitHeight = 497
+        object dbgridPesquisa: TDBGrid
+          Left = 0
+          Top = 49
+          Width = 461
+          Height = 469
+          Cursor = crHandPoint
+          Align = alClient
+          BorderStyle = bsNone
+          Ctl3D = False
+          DrawingStyle = gdsGradient
+          FixedColor = clSkyBlue
+          GradientEndColor = clBtnFace
+          GradientStartColor = clBtnFace
+          ParentCtl3D = False
+          ReadOnly = True
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -15
+          TitleFont.Name = 'Roboto'
+          TitleFont.Style = []
+          OnDblClick = dbgridPesquisaDblClick
+        end
+        inline SearchBar: TframeSearchBar
+          Left = 0
+          Top = 0
+          Width = 461
+          Height = 49
+          Align = alTop
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Roboto'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 1
+          ExplicitWidth = 257
+          ExplicitHeight = 49
+          inherited panelPesquisa: TPanel
+            Width = 461
+            Height = 49
+            StyleElements = [seFont, seClient, seBorder]
+            ExplicitWidth = 257
+            ExplicitHeight = 49
+            inherited combox: TComboBox
+              StyleElements = [seFont, seClient, seBorder]
+            end
+            inherited edit: TEdit
+              StyleElements = [seFont, seClient, seBorder]
+            end
+          end
+        end
+      end
+      object cardNovo: TCard
+        Left = 0
+        Top = 0
+        Width = 461
+        Height = 518
+        Margins.Left = 100
+        Margins.Top = 50
+        Margins.Right = 100
+        Margins.Bottom = 50
+        Caption = 'Novo'
+        CardIndex = 1
+        TabOrder = 1
+        ExplicitWidth = 257
+        ExplicitHeight = 497
+        inline frameMunicipioField1: TframeMunicipioField
+          Left = 0
+          Top = 0
+          Width = 461
+          Height = 518
+          Align = alClient
+          DragKind = dkDock
+          DragMode = dmAutomatic
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Roboto'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          ExplicitWidth = 257
+          ExplicitHeight = 497
+          inherited Panel1: TPanel
+            Width = 461
+            Height = 453
+            StyleElements = [seFont, seClient, seBorder]
+            ExplicitWidth = 257
+            ExplicitHeight = 497
+            inherited PageControl1: TPageControl
+              Width = 459
+              Height = 410
+              ExplicitWidth = 255
+              ExplicitHeight = 495
+              inherited tabCampos: TTabSheet
+                ExplicitWidth = 445
+                ExplicitHeight = 356
+                inherited Edit1: TEdit
+                  Height = 22
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitHeight = 22
+                end
+                inherited Edit2: TEdit
+                  Height = 22
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitHeight = 22
+                end
+                inherited Edit6: TEdit
+                  Height = 22
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitHeight = 22
+                end
+                inherited email: TEdit
+                  Height = 22
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitHeight = 22
+                end
+              end
+              inherited tabCampos2: TTabSheet
+                ExplicitWidth = 247
+                ExplicitHeight = 447
+              end
+            end
+            inherited Panel2: TPanel
+              Width = 459
+              StyleElements = [seFont, seClient, seBorder]
+            end
+          end
+          inherited TframeOperationsBar1: TframeOperationsBar
+            Top = 453
+            Width = 461
+            inherited panelFooterInserir: TPanel
+              StyleElements = [seFont, seClient, seBorder]
+            end
+          end
+        end
+      end
+      object cardEditar: TCard
+        Left = 0
+        Top = 0
+        Width = 461
+        Height = 518
+        Caption = 'Editar'
+        CardIndex = 2
+        TabOrder = 2
+        ExplicitWidth = 257
+        ExplicitHeight = 497
+      end
+    end
+    inline operationsBar: TframeOperationsBar
+      Left = 1
+      Top = 525
+      Width = 827
+      Height = 59
+      Align = alBottom
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Roboto'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      ExplicitLeft = 1
+      ExplicitTop = 504
+      ExplicitWidth = 701
+      ExplicitHeight = 59
+      inherited panelFooterInserir: TPanel
+        Width = 827
+        Height = 59
+        StyleElements = [seFont, seClient, seBorder]
+        ExplicitWidth = 701
+        ExplicitHeight = 59
+        inherited speedSalvar: TSpeedButton
+          Left = 746
+          Height = 57
+          ExplicitLeft = 617
+          ExplicitHeight = 36
+        end
+        inherited speedEditar: TSpeedButton
+          Left = 666
+          Height = 57
+          OnClick = operationsBarspeedEditarClick
+          ExplicitLeft = 531
+          ExplicitTop = 3
+          ExplicitHeight = 36
+        end
+        inherited speedNovo: TSpeedButton
+          Left = 586
+          Height = 57
+          OnClick = operationsBarspeedNovoClick
+          ExplicitLeft = 460
+          ExplicitHeight = 57
+        end
+        inherited speedCancelar: TSpeedButton
+          Height = 57
+          OnClick = operationsBarspeedCancelarClick
+          ExplicitHeight = 36
+        end
+      end
+    end
+    object panelLateral: TPanel
+      Left = 468
+      Top = 1
+      Width = 360
+      Height = 524
+      Align = alRight
+      Caption = 'Lateral'
+      DockSite = True
+      TabOrder = 2
+      Visible = False
+      ExplicitLeft = 471
+      ExplicitTop = -4
+    end
+  end
+end

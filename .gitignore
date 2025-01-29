@@ -1,0 +1,35 @@
+# Delphi Binary Files
+*.dcu
+*.~*
+*.ddp
+*.dsk
+*.local
+
+# Delphi Configuration Files
+__history/
+*.identcache
+*.local
+*.stat
+*.tvsconfig
+
+# Backup Files
+*.bak
+*.dproj.local
+*.groupproj.local
+
+# Binaries and Generated Files
+*.exe
+*.dll
+*.bpl
+*.dcp
+*.ocx
+*.tlb
+*.map
+*.log
+*.res
+
+# Debug and Intermediate Files
+*.drc
+*.dsm
+*.tpu
+*.cfg

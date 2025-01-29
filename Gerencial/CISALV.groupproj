@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{4B5F00F3-04C1-426F-BAF6-01F86CE22EDA}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="FakeCisalv.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Compras\Compras.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="FakeCisalv">
+        <MSBuild Projects="FakeCisalv.dproj"/>
+    </Target>
+    <Target Name="FakeCisalv:Clean">
+        <MSBuild Projects="FakeCisalv.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FakeCisalv:Make">
+        <MSBuild Projects="FakeCisalv.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Compras">
+        <MSBuild Projects="..\Compras\Compras.dproj"/>
+    </Target>
+    <Target Name="Compras:Clean">
+        <MSBuild Projects="..\Compras\Compras.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Compras:Make">
+        <MSBuild Projects="..\Compras\Compras.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="FakeCisalv;Compras"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="FakeCisalv:Clean;Compras:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="FakeCisalv:Make;Compras:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
