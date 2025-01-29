@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterCRIS, Data.DB, Vcl.ComCtrls,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterCRUDView, Data.DB, Vcl.ComCtrls,
   uframeSearchBar, Vcl.Grids, Vcl.DBGrids, Vcl.WinXPanels, uMasterFrame,
   uframeOperationsBar, Vcl.ExtCtrls, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
@@ -14,7 +14,7 @@ uses
   FireDAC.Comp.DataSet;
 
 type
-  TformUsuarioCRIS = class(TformMasterCRIS)
+  TformUsuarioCRIS = class(TformMasterCRUDView)
   private
     { Private declarations }
   public

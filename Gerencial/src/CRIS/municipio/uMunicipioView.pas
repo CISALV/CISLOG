@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterCRIS, Data.DB, Vcl.ComCtrls,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterCRUDView, Data.DB, Vcl.ComCtrls,
   uframeSearchBar, Vcl.Grids, Vcl.DBGrids, Vcl.WinXPanels, uMasterFrame,
   uframeOperationsBar, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Mask,
   Vcl.DBCtrls, FireDAC.Stan.Intf, FireDAC.Stan.Option,
@@ -16,7 +16,7 @@ uses
   uMunicipioController,uMunicipioModel;
 
 type
-  TformMunicipioView = class(TformMasterCRIS)
+  TformMunicipioView = class(TformMasterCRUDView)
     edEmail: TEdit;
     edNome: TEdit;
     edId: TEdit;
@@ -212,6 +212,7 @@ begin
   ID := StrtoInt(edId.Text);
   FController.RemoverMunicipio(ID);
   RecarregarMunicipios;
+
 end;
 end;
 

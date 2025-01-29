@@ -1,7 +1,7 @@
-object Form4: TForm4
+object formPrincipal: TformPrincipal
   Left = 0
   Top = 0
-  Caption = 'Form4'
+  Caption = 'CISALV'
   ClientHeight = 441
   ClientWidth = 624
   Color = clBtnFace
@@ -19,8 +19,8 @@ object Form4: TForm4
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitLeft = 3
-    ExplicitTop = 44
+    ExplicitWidth = 622
+    ExplicitHeight = 392
   end
   object panelTopBar: TPanel
     Left = 0
@@ -41,6 +41,7 @@ object Form4: TForm4
       Height = 35
       Align = alLeft
       Caption = 'Compra'
+      OnClick = speedCompraClick
       ExplicitLeft = 0
       ExplicitTop = 0
       ExplicitHeight = 41

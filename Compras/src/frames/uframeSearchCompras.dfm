@@ -12,17 +12,20 @@ inherited SearchCompras: TSearchCompras
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    object Edit1: TEdit
+    object edPesquisa: TEdit
       AlignWithMargins = True
-      Left = 10
-      Top = 3
+      Left = 30
+      Top = 5
       Width = 527
-      Height = 38
-      Margins.Left = 10
+      Height = 34
+      Margins.Left = 30
+      Margins.Top = 5
+      Margins.Right = 5
+      Margins.Bottom = 5
       Align = alLeft
+      BevelInner = bvNone
       TabOrder = 0
-      Text = 'Edit1'
-      ExplicitHeight = 23
+      ExplicitTop = 11
     end
   end
 end

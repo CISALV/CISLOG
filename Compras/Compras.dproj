@@ -124,7 +124,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="uPrincipal.pas">
-            <Form>Form4</Form>
+            <Form>formPrincipal</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\master\uMasterform.pas">
@@ -141,10 +141,13 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="src\compras\uAreaCompras.pas">
-            <Form>formCompras</Form>
+        <DCCReference Include="src\compras\uAreaComprasView.pas">
+            <Form>formComprasView</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\Common\uFormFactory.pas"/>
+        <DCCReference Include="src\compras\comprasDAO.pas"/>
+        <DCCReference Include="..\Common\uDataConService.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

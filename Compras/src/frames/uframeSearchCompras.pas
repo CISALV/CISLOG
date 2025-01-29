@@ -9,7 +9,7 @@ uses
 type
   TSearchCompras = class(TframeMaster)
     pnlFundo: TPanel;
-    Edit1: TEdit;
+    edPesquisa: TEdit;
   private
     { Private declarations }
   public

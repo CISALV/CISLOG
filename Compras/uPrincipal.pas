@@ -7,10 +7,11 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons,uMasterForm;
 
 type
-  TForm4 = class(TFormMaster)
+  TformPrincipal = class(TFormMaster)
     pnlFundo: TPanel;
     panelTopBar: TPanel;
     speedCompra: TSpeedButton;
+    procedure speedCompraClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -18,10 +19,18 @@ type
   end;
 
 var
-  Form4: TForm4;
+  formPrincipal: TformPrincipal;
 
 implementation
 
 {$R *.dfm}
+
+uses uFormFactory, uAreaComprasView;
+
+procedure TformPrincipal.speedCompraClick(Sender: TObject);
+begin
+  inherited;
+  TFormFactory.CreateAndShowForm(TformComprasView,pnlFundo)
+end;
 
 end.

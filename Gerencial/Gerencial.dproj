@@ -146,13 +146,8 @@
         <DCCReference Include="src\uMenuCadastro.pas">
             <Form>formMenuCadastros</Form>
         </DCCReference>
-        <DCCReference Include="src\services\ucBaseDados.pas"/>
-        <DCCReference Include="src\services\DataService.pas">
-            <Form>moduleDatabase</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="src\master\uMasterCRIS.pas">
-            <Form>formMasterCRIS</Form>
+        <DCCReference Include="src\master\uMasterCRUDView.pas">
+            <Form>formMasterCRUDView</Form>
         </DCCReference>
         <DCCReference Include="src\frames\uframeMenuButton.pas">
             <Form>frameMenuButton</Form>
@@ -162,17 +157,10 @@
             <Form>frameMainBar</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="src\uFormFactory.pas"/>
-        <DCCReference Include="src\services\malfunctioningdatacon.pas">
-            <Form>DataConModule</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="src\CRIS\usuario\uUsuarioView.pas">
             <Form>formUsuarioCRIS</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="uDataConService.pas"/>
         <DCCReference Include="src\CRIS\municipio\uMunicipioView.pas">
             <Form>formMunicipioView</Form>
             <FormType>dfm</FormType>
@@ -180,6 +168,8 @@
         <DCCReference Include="src\CRIS\municipio\uMunicipioDAO.pas"/>
         <DCCReference Include="src\CRIS\municipio\uMunicipioModel.pas"/>
         <DCCReference Include="src\CRIS\municipio\uMunicipioController.pas"/>
+        <DCCReference Include="..\Common\uFormFactory.pas"/>
+        <DCCReference Include="..\Common\uDataConService.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
