@@ -7,7 +7,7 @@ inherited formMunicipioView: TformMunicipioView
   OnShow = FormShow
   ExplicitWidth = 964
   ExplicitHeight = 589
-  TextHeight = 18
+  TextHeight = 15
   inherited panelFundo: TPanel
     Width = 964
     Height = 589
@@ -54,6 +54,7 @@ inherited formMunicipioView: TformMunicipioView
               StyleElements = [seFont, seClient, seBorder]
               OnChange = SearchBareditChange
               ExplicitWidth = 404
+              ExplicitHeight = 22
             end
           end
         end
@@ -119,9 +120,9 @@ inherited formMunicipioView: TformMunicipioView
           object edCNPJ: TMaskEdit
             AlignWithMargins = True
             Left = 10
-            Top = 104
+            Top = 101
             Width = 330
-            Height = 26
+            Height = 23
             Margins.Left = 10
             Margins.Top = 10
             Margins.Right = 10
@@ -136,9 +137,9 @@ inherited formMunicipioView: TformMunicipioView
           object edEmail: TEdit
             AlignWithMargins = True
             Left = 10
-            Top = 150
+            Top = 144
             Width = 330
-            Height = 26
+            Height = 23
             Margins.Left = 10
             Margins.Top = 10
             Margins.Right = 10
@@ -175,7 +176,7 @@ inherited formMunicipioView: TformMunicipioView
             Left = 10
             Top = 58
             Width = 330
-            Height = 26
+            Height = 23
             Margins.Left = 10
             Margins.Top = 10
             Margins.Right = 10

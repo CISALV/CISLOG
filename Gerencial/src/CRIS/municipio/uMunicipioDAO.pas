@@ -3,7 +3,7 @@ unit uMunicipioDAO;
 interface
 
 uses
-  FireDAC.Comp.Client, UMunicipioModel, System.SysUtils;
+  FireDAC.Comp.Client, uMunicipioModel, System.SysUtils;
 
 type
   TMunicipioDAO = class

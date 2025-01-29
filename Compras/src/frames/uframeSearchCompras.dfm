@@ -1,6 +1,7 @@
 inherited SearchCompras: TSearchCompras
   Width = 724
   Height = 44
+  Align = alClient
   ExplicitWidth = 724
   ExplicitHeight = 44
   object pnlFundo: TPanel
@@ -11,10 +12,6 @@ inherited SearchCompras: TSearchCompras
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitLeft = 232
-    ExplicitTop = 40
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object Edit1: TEdit
       AlignWithMargins = True
       Left = 10
@@ -25,7 +22,7 @@ inherited SearchCompras: TSearchCompras
       Align = alLeft
       TabOrder = 0
       Text = 'Edit1'
-      ExplicitHeight = 117
+      ExplicitHeight = 23
     end
   end
 end

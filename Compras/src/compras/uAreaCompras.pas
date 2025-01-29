@@ -1,14 +1,15 @@
-unit uMunicipioCriar;
+unit uAreaCompras;
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uframeMunicipioFields, Vcl.StdCtrls,
-  Vcl.ComCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterform, uMasterFrame,
+  uframeSearchCompras;
 
 type
-  TframeMunicipioField1 = class(TframeMunicipioField)
+  TformCompras = class(TFormMaster)
+    SearchCompras1: TSearchCompras;
   private
     { Private declarations }
   public
@@ -16,7 +17,7 @@ type
   end;
 
 var
-  frameMunicipioField1: TframeMunicipioField1;
+  formCompras: TformCompras;
 
 implementation
 

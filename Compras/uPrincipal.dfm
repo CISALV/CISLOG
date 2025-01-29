@@ -19,10 +19,8 @@ object Form4: TForm4
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitLeft = 216
-    ExplicitTop = 72
-    ExplicitWidth = 185
-    ExplicitHeight = 41
+    ExplicitLeft = 3
+    ExplicitTop = 44
   end
   object panelTopBar: TPanel
     Left = 0
@@ -34,7 +32,7 @@ object Form4: TForm4
     Color = clHighlight
     ParentBackground = False
     TabOrder = 1
-    ExplicitTop = -6
+    ExplicitWidth = 622
     object speedCompra: TSpeedButton
       AlignWithMargins = True
       Left = 3

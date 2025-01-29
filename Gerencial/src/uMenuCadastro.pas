@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterForm, Vcl.ComCtrls, Vcl.ToolWin,
   Vcl.ExtCtrls, Vcl.Buttons, Vcl.Menus,uMunicipioView,
-  Vcl.StdCtrls, uMasterFrame, uframeMenuButton,uFormFactory,uUsuarioView;
+  Vcl.StdCtrls, uMasterFrame,uFormFactory,uUsuarioView;
 
 type
   TformMenuCadastros = class(TformMaster)

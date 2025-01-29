@@ -1,7 +1,7 @@
 inherited frameSearchBar: TframeSearchBar
   Width = 643
   Height = 45
-  Align = alClient
+  Align = alTop
   ExplicitWidth = 643
   ExplicitHeight = 45
   object panelPesquisa: TPanel
@@ -13,13 +13,12 @@ inherited frameSearchBar: TframeSearchBar
     BevelOuter = bvNone
     ShowCaption = False
     TabOrder = 0
-    ExplicitHeight = 59
     object combox: TComboBox
       AlignWithMargins = True
       Left = 5
       Top = 10
       Width = 172
-      Height = 22
+      Height = 23
       Margins.Left = 5
       Margins.Top = 10
       Margins.Right = 5
@@ -32,7 +31,7 @@ inherited frameSearchBar: TframeSearchBar
       Left = 187
       Top = 10
       Width = 390
-      Height = 22
+      Height = 23
       Margins.Left = 5
       Margins.Top = 10
       Margins.Right = 5

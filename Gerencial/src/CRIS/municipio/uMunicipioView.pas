@@ -123,6 +123,8 @@ begin
 end;
 
 procedure TformMunicipioView.FormShow(Sender: TObject);
+var
+  Col : TColumn;
 begin
   inherited;
   FController := TMunicipioController.Create;
@@ -131,6 +133,25 @@ begin
     dsMunicipio := TDataSource.Create(nil);
     dsMunicipio.DataSet := FController.CarregarMunicipios;
     dbGridPesquisa.DataSource := dsMunicipio;
+
+     dbGridPesquisa.Columns.Clear;
+
+    Col := dbGridPesquisa.Columns.Add;
+    Col.FieldName := 'nome';
+    Col.Title.Caption := 'Municipio';
+    Col.Width := 300;
+
+    Col := dbGridPesquisa.Columns.Add;
+    Col.FieldName := 'Email';
+    Col.Title.Caption := 'E-mail';
+    Col.Width := 200;
+
+    Col := dbGridPesquisa.Columns.Add;
+    Col.FieldName := 'CNPJ';
+    Col.Title.Caption := 'CNPJ';
+    Col.Width := 200
+
+
   finally
     FController.Free;
   end;
