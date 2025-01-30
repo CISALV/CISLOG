@@ -2,7 +2,7 @@ unit uMunicipioController;
 
 interface
 
-uses uMunicipioDAO, FireDAC.Comp.Client, System.SysUtils, uMunicipioModel,Dialogs;
+uses uMunicipioDAO, FireDAC.Comp.Client, System.SysUtils, uMunicipioModel,Dialogs,uMunicipioDTO;
 
 type
   TMunicipioController = class
@@ -14,24 +14,18 @@ type
 
     function FiltrarPesquisa(FilterIndex: Integer; SearchValue: String): TFDQuery;
 
-    function PreencherDados(MunicipioID: Integer): TMunicipio;
+    function PopularView(MunicipioID: Integer): TMunicipioDTO;
 
-    function GravalterarMunicipio(AMunicipio: TMunicipio): Integer;
-    function CarregarMunicipios: TFDQuery;
+    procedure ProcessarMunicipio(AMunicipioDTO: TMunicipioDTO);
+    function CarregarDados: TFDQuery;
     procedure AtualizarMunicipio(AMunicipio: TMunicipio);
     procedure RemoverMunicipio(MunicipioID: Integer);
-
 
 
   end;
 implementation
 
 { TMunicipioController }
-
-function TMunicipioController.CarregarMunicipios: TFDQuery;
-begin
-  Result := FMunicipioDAO.GetMunicipios;
-end;
 
 constructor TMunicipioController.Create;
 begin
@@ -42,6 +36,11 @@ destructor TMunicipioController.Destroy;
 begin
   FMunicipioDAO.Free;
   inherited;
+end;
+
+function TMunicipioController.CarregarDados: TFDQuery;
+begin
+  Result := FMunicipioDAO.GetMunicipios;
 end;
 
 function TMunicipioController.FiltrarPesquisa(FilterIndex: Integer;
@@ -61,26 +60,59 @@ begin
 
 end;
 
-function TMunicipioController.PreencherDados(MunicipioID: Integer): TMunicipio;
+function TMunicipioController.PopularView(MunicipioID: Integer): TMunicipioDTO;
 var
   Municipio: TMunicipio;
+  MunicipioDTO: TMunicipioDTO;
 begin
+  Municipio := FMunicipioDAO.GetMunicipioByID(MunicipioID);
+  FillChar(MunicipioDTO, SizeOf(TMunicipioDTO), 0);
 
-  Result := FMunicipioDAO.GetMunicipioByID(MunicipioID);
+  try
+    if Municipio.Id > 0 then
+    begin
+      MunicipioDTO.Id := Municipio.Id;
+      MunicipioDTO.Nome := Municipio.Nome;
+      MunicipioDTO.CNPJ := Municipio.CNPJ;
+      MunicipioDTO.Email := Municipio.Email;
+    end;
 
+    Result := MunicipioDTO;
+  finally
+    Municipio.Free;
+  end;
 end;
+
+
 
 procedure TMunicipioController.RemoverMunicipio(MunicipioID: Integer);
 begin
   FMunicipioDAO.Excluir(MunicipioID);
 end;
 
-function TMunicipioController.GravalterarMunicipio(AMunicipio: TMunicipio): Integer;
+procedure TMunicipioController.ProcessarMunicipio(AMunicipioDTO: TMunicipioDTO);
+var
+  Municipio : TMunicipio;
 begin
-  if AMunicipio.Id = 0 then
-    Result := FMunicipioDAO.Gravar(AMunicipio)
+
+if (AMunicipioDTO.Nome = '') or (AMunicipioDTO.CNPJ = '') or (AMunicipioDTO.Email= '') then
+  begin
+    ShowMessage('Todos os campos são necessários');
+    Exit;
+  end;
+
+ Municipio.Create(AMunicipioDTO.Id,AMunicipioDTO.Nome,AMunicipioDTO.CNPJ,AMunicipioDTO.Email);
+
+try
+  if  Municipio.Id = 0 then
+    FMunicipioDAO.Gravar(Municipio)
   else
-    Result := FMunicipioDAO.Alterar(AMunicipio);
+    FMunicipioDAO.Alterar(Municipio);
+
+finally
+ Municipio.Free;
+end;
+
 end;
 
 

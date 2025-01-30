@@ -9,7 +9,7 @@ uses
   Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
   FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
-  FireDAC.VCLUI.Wait, FireDAC.Comp.Client;
+  FireDAC.VCLUI.Wait, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Mask;
 
 type
   TformMasterCRUDView = class(TformMaster)
@@ -22,12 +22,15 @@ type
     cardNovo: TCard;
     cardEditar: TCard;
     panelLateral: TPanel;
+    Edit1: TEdit;
+    MaskEdit1: TMaskEdit;
     procedure operationsBarspeedNovoClick(Sender: TObject);
     procedure operationsBarspeedCancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure dbgridPesquisaDblClick(Sender: TObject);
     procedure operationsBarspeedExcluirClick(Sender: TObject);
     procedure operationsBarspeedSalvarClick(Sender: TObject);
+    procedure LimparCampos;
 
   private
   public
@@ -55,6 +58,24 @@ begin
   inherited;
   cardpanelCRIS.ActiveCard := cardPesquisa;
 
+end;
+
+
+procedure TformMasterCRUDView.LimparCampos;
+var
+  i: Integer;
+begin
+  for i := 0 to Self.ComponentCount - 1 do
+  begin
+    if Self.Components[i] is TEdit then
+    begin
+      TEdit(Self.Components[i]).Text := '';
+    end
+    else if Self.Components[i] is TMaskEdit then
+    begin
+      TMaskEdit(Self.Components[i]).Text := '';
+    end
+  end;
 end;
 
 

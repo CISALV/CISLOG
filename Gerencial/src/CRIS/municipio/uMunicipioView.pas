@@ -13,7 +13,7 @@ uses
   FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   uDataConService,uFormFactory,
-  uMunicipioController,uMunicipioModel;
+  uMunicipioController,uMunicipioDTO;
 
 type
   TformMunicipioView = class(TformMasterCRUDView)
@@ -37,13 +37,10 @@ type
     procedure operationsBarspeedSalvarClick(Sender: TObject);
     procedure operationsBarspeedExcluirClick(Sender: TObject);
 
-    procedure ClearFields(AControl: TWinControl);
+    function MakeDTOfromFields : TMunicipioDTO;
 
-    function MakeObjectfromFields : TMunicipio;
+    procedure RecarregarDados;
 
-
-    procedure RecarregarMunicipios;
-    procedure LimparCampos;
     procedure edCNPJEnter(Sender: TObject);
     procedure edCNPJExit(Sender: TObject);
 
@@ -63,65 +60,6 @@ implementation
 
 {$R *.dfm}
 
-procedure TformMunicipioView.CarregarMunicipio(MunicipioID:Integer);
-var
-  Municipio : TMunicipio;
-begin
-  Municipio := FController.PreencherDados(MunicipioID);
-  if Assigned(Municipio) then
-  begin
-    edId.Text := IntToStr(MunicipioID);
-    edNome.Text := Municipio.Nome;
-    edCNPJ.Text := Municipio.CNPJ;
-    edEmail.Text := Municipio.Email;
-  end
-end;
-
-procedure TformMunicipioView.ClearFields(AControl: TWinControl);
-var
-  I: Integer;
-begin
-for I := 0 to AControl.ControlCount do
-  begin
-  if AControl.Controls[I] is TEdit then
-      TEdit(AControl.Controls[I]).Clear
-   else if AControl.Controls[I] is TMaskEdit then
-      TMaskEdit(AControl.Controls[I]).Text := ''
-   end;
-end;
-
-procedure TformMunicipioView.dbgridPesquisaDblClick(Sender: TObject);
-var
-  MunicipioID : Integer;
-begin
-  inherited;
-  Fields.ActivePage := Principal;
-  MunicipioID := dsMunicipio.DataSet.FieldByName('id').AsInteger;
-  CarregarMunicipio(MunicipioID);
-end;
-
-
-procedure TformMunicipioView.edCNPJEnter(Sender: TObject);
-begin
-  inherited;
-  edCNPJ.EditMask := '00.000.000/0000-00;0;_' ;
-end;
-
-procedure TformMunicipioView.edCNPJExit(Sender: TObject);
-begin
-  inherited;
-  if edCNPJ.Text = '' then
-    edCNPJ.EditMask := '' ;
-end;
-
-procedure TformMunicipioView.FormClose(Sender: TObject;
-  var Action: TCloseAction);
-begin
-  inherited;
-  Query.Close;
-
-end;
-
 procedure TformMunicipioView.FormShow(Sender: TObject);
 var
   Col : TColumn;
@@ -131,7 +69,7 @@ begin
 
   try
     dsMunicipio := TDataSource.Create(nil);
-    dsMunicipio.DataSet := FController.CarregarMunicipios;
+    dsMunicipio.DataSet := FController.CarregarDados;
     dbGridPesquisa.DataSource := dsMunicipio;
 
      dbGridPesquisa.Columns.Clear;
@@ -157,39 +95,36 @@ begin
   end;
 end;
 
-procedure TformMunicipioView.LimparCampos;
+procedure TformMunicipioView.CarregarMunicipio(MunicipioID:Integer);
 var
-  i: Integer;
+  MunicipioDTO : TMunicipioDTO;
 begin
-  for i := 0 to Self.ComponentCount - 1 do
+  MunicipioDTO := FController.PopularView(MunicipioID);
+  if MunicipioDTO.Id > 0 then
   begin
-    if Self.Components[i] is TEdit then
-    begin
-      TEdit(Self.Components[i]).Text := '';
-    end
-    else if Self.Components[i] is TMaskEdit then
-    begin
-      TMaskEdit(Self.Components[i]).Text := '';
-    end
-  end;
+    edId.Text := IntToStr(MunicipioID);
+    edNome.Text := MunicipioDTO.Nome;
+    edCNPJ.Text := MunicipioDTO.CNPJ;
+    edEmail.Text := MunicipioDTO.Email;
+  end
 end;
 
-function TformMunicipioView.MakeObjectfromFields: TMunicipio;
+procedure TformMunicipioView.dbgridPesquisaDblClick(Sender: TObject);
+var
+  MunicipioID : Integer;
 begin
-  try
- Result := TMunicipio.Create(
-      StrToIntDef(edId.Text, 0),
-      edNome.Text,
-      edCNPJ.Text,
-      edEmail.Text
-    );
-  except
-    on E: Exception do
-    begin
-      ShowMessage('Failed to create Municipio: ' + E.Message);
-      raise;
-    end;
-  end;
+  inherited;
+  Fields.ActivePage := Principal;
+  MunicipioID := dsMunicipio.DataSet.FieldByName('id').AsInteger;
+  CarregarMunicipio(MunicipioID);
+end;
+
+procedure TformMunicipioView.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  Query.Close;
+
 end;
 
 
@@ -197,9 +132,9 @@ procedure TformMunicipioView.operationsBarspeedCancelarClick(Sender: TObject);
 begin
   inherited;
   Fields.ActivePage := Principal;
-  dsMunicipio.DataSet := FController.CarregarMunicipios;
+  dsMunicipio.DataSet := FController.CarregarDados;
   LimparCampos;
-  RecarregarMunicipios;
+  RecarregarDados;
 end;
 
 procedure TformMunicipioView.operationsBarspeedExcluirClick(Sender: TObject);
@@ -211,8 +146,7 @@ begin
   inherited;
   ID := StrtoInt(edId.Text);
   FController.RemoverMunicipio(ID);
-  RecarregarMunicipios;
-
+  RecarregarDados;
 end;
 end;
 
@@ -221,56 +155,67 @@ procedure TformMunicipioView.operationsBarspeedNovoClick(Sender: TObject);
 begin
   inherited;
   Fields.ActivePage := Principal;
-
   edNome.SetFocus;
   LimparCampos;
 end;
 
-procedure TformMunicipioView.operationsBarspeedSalvarClick(Sender: TObject);
-var
- Municipio: TMunicipio;
+function TformMunicipioView.MakeDTOfromFields: TMunicipioDTO;
 begin
-  inherited;
-    try
-    Municipio := MakeObjectfromFields;
 
-      if (Municipio.Nome = '') or (Municipio.CNPJ = '') or (Municipio.Email= '') then
-        begin
-          ShowMessage('Todos os campos são necessários');
-          Exit;
-        end;
+FillChar(Result, SizeOf(TMunicipioDTO), 0);
 
-      FController.GravalterarMunicipio(Municipio);
-      RecarregarMunicipios;
-    finally
-      Municipio.Free;
-    end;
+ Result.Id := StrToIntDef(edId.Text, 0);
+ Result.Nome := edNome.Text;
+ Result.CNPJ := edCNPJ.Text;
+ Result.Email := edEmail.Text;
+
 end;
 
-procedure TformMunicipioView.RecarregarMunicipios;
+
+procedure TformMunicipioView.operationsBarspeedSalvarClick(Sender: TObject);
+var
+ MunicipioDTO: TMunicipioDTO;
 begin
-  dsMunicipio.Dataset := FController.CarregarMunicipios;
+  inherited;
+    MunicipioDTO := MakeDTOfromFields;
+    FController.ProcessarMunicipio(MunicipioDTO);
+    RecarregarDados;
+
 end;
 
 procedure TformMunicipioView.SearchBareditChange(Sender: TObject);
   var
+  // Remove THIS!!
   Controller: TMunicipioController;
 begin
   inherited;
   Controller := TMunicipioController.Create;
   try
-    if Searchbar.edit.Text <> '' then
-    begin
-      dsMunicipio.Dataset := Controller.FiltrarPesquisa(SearchBar.combox.ItemIndex, SearchBar.Edit.Text);
-    end
+    if Searchbar.edit.Text = '' then
+      RecarregarDados
     else
-    begin
-      RecarregarMunicipios;
-    end;
+      dsMunicipio.Dataset := Controller.FiltrarPesquisa(SearchBar.combox.ItemIndex, SearchBar.Edit.Text);
     finally
     Controller.Free;
   end;
-
-
 end;
+
+procedure TformMunicipioView.RecarregarDados;
+begin
+  dsMunicipio.Dataset := FController.CarregarDados;
+end;
+
+procedure TformMunicipioView.edCNPJEnter(Sender: TObject);
+begin
+  inherited;
+  edCNPJ.EditMask := '00.000.000/0000-00;0;_' ;
+end;
+
+procedure TformMunicipioView.edCNPJExit(Sender: TObject);
+begin
+  inherited;
+  if edCNPJ.Text = '' then
+    edCNPJ.EditMask := '' ;
+end;
+
 end.

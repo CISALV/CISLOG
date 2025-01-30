@@ -82,7 +82,9 @@ inherited formMasterCRUDView: TformMasterCRUDView
             ExplicitWidth = 461
             ExplicitHeight = 49
             inherited combox: TComboBox
+              Height = 22
               StyleElements = [seFont, seClient, seBorder]
+              ExplicitHeight = 22
             end
             inherited edit: TEdit
               Height = 22
@@ -181,6 +183,26 @@ inherited formMasterCRUDView: TformMasterCRUDView
       DockSite = True
       TabOrder = 2
       Visible = False
+      ExplicitLeft = 471
+      ExplicitTop = -4
+      object Edit1: TEdit
+        Left = 48
+        Top = 418
+        Width = 257
+        Height = 33
+        TabOrder = 0
+        Text = 'Edit1'
+        Visible = False
+      end
+      object MaskEdit1: TMaskEdit
+        Left = 48
+        Top = 457
+        Width = 257
+        Height = 32
+        TabOrder = 1
+        Text = 'MaskEdit1'
+        Visible = False
+      end
     end
   end
 end

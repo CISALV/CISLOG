@@ -1,5 +1,4 @@
 inherited formMunicipioView: TformMunicipioView
-  Caption = ''
   ClientHeight = 589
   ClientWidth = 964
   StyleElements = [seFont, seClient, seBorder]
@@ -54,7 +53,6 @@ inherited formMunicipioView: TformMunicipioView
               StyleElements = [seFont, seClient, seBorder]
               OnChange = SearchBareditChange
               ExplicitWidth = 404
-              ExplicitHeight = 22
             end
           end
         end
@@ -105,7 +103,7 @@ inherited formMunicipioView: TformMunicipioView
       StyleElements = [seFont, seClient, seBorder]
       ExplicitLeft = 603
       ExplicitHeight = 528
-      object Fields: TPageControl
+      object Fields: TPageControl [0]
         Left = 1
         Top = 1
         Width = 358
@@ -186,6 +184,14 @@ inherited formMunicipioView: TformMunicipioView
             TextHint = 'NOME'
           end
         end
+      end
+      inherited Edit1: TEdit
+        TabOrder = 1
+        StyleElements = [seFont, seClient, seBorder]
+      end
+      inherited MaskEdit1: TMaskEdit
+        TabOrder = 2
+        StyleElements = [seFont, seClient, seBorder]
       end
     end
   end
