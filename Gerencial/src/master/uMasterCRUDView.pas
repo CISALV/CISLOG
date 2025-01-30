@@ -29,8 +29,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure dbgridPesquisaDblClick(Sender: TObject);
     procedure operationsBarspeedExcluirClick(Sender: TObject);
-    procedure operationsBarspeedSalvarClick(Sender: TObject);
     procedure LimparCampos;
+    procedure operationsBarspeedSalvarClick(Sender: TObject);
 
   private
   public
@@ -113,7 +113,8 @@ procedure TformMasterCRUDView.operationsBarspeedSalvarClick(Sender: TObject);
 begin
   inherited;
   operationsBar.speedSalvarClick(Sender);
-  panelLateral.Visible := False;
+    panelLateral.Visible := False;
+
 end;
 
 end.

@@ -1,4 +1,4 @@
-﻿unit uMunicipioView;
+unit uMunicipioView;
 
 interface
 
@@ -184,7 +184,6 @@ begin
       panelLateral.Visible := True;
       Exit;
     end;
-
 
     FController.ProcessarMunicipio(MunicipioDTO);
     RecarregarDados;

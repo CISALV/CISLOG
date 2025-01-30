@@ -183,13 +183,11 @@ inherited formMasterCRUDView: TformMasterCRUDView
       DockSite = True
       TabOrder = 2
       Visible = False
-      ExplicitLeft = 471
-      ExplicitTop = -4
       object Edit1: TEdit
         Left = 48
         Top = 418
         Width = 257
-        Height = 33
+        Height = 23
         TabOrder = 0
         Text = 'Edit1'
         Visible = False
@@ -198,7 +196,7 @@ inherited formMasterCRUDView: TformMasterCRUDView
         Left = 48
         Top = 457
         Width = 257
-        Height = 32
+        Height = 23
         TabOrder = 1
         Text = 'MaskEdit1'
         Visible = False

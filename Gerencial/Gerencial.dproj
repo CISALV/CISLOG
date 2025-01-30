@@ -170,6 +170,7 @@
         <DCCReference Include="src\CRIS\municipio\uMunicipioController.pas"/>
         <DCCReference Include="..\Common\uFormFactory.pas"/>
         <DCCReference Include="..\Common\uDataConService.pas"/>
+        <DCCReference Include="src\CRIS\municipio\uMunicipioDTO.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
