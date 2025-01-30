@@ -101,7 +101,12 @@ if (AMunicipioDTO.Nome = '') or (AMunicipioDTO.CNPJ = '') or (AMunicipioDTO.Emai
     Exit;
   end;
 
- Municipio.Create(AMunicipioDTO.Id,AMunicipioDTO.Nome,AMunicipioDTO.CNPJ,AMunicipioDTO.Email);
+ Municipio := TMunicipio.Create(
+   AMunicipioDTO.Id,
+   AMunicipioDTO.Nome,
+   AMunicipioDTO.CNPJ,
+   AMunicipioDTO.Email
+ );
 
 try
   if  Municipio.Id = 0 then

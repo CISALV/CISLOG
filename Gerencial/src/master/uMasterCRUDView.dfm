@@ -87,34 +87,14 @@ inherited formMasterCRUDView: TformMasterCRUDView
               ExplicitHeight = 22
             end
             inherited edit: TEdit
-              Height = 22
+              Width = 245
+              Height = 19
               StyleElements = [seFont, seClient, seBorder]
+              ExplicitWidth = 245
               ExplicitHeight = 22
             end
           end
         end
-      end
-      object cardNovo: TCard
-        Left = 0
-        Top = 0
-        Width = 461
-        Height = 518
-        Margins.Left = 100
-        Margins.Top = 50
-        Margins.Right = 100
-        Margins.Bottom = 50
-        Caption = 'Novo'
-        CardIndex = 1
-        TabOrder = 1
-      end
-      object cardEditar: TCard
-        Left = 0
-        Top = 0
-        Width = 461
-        Height = 518
-        Caption = 'Editar'
-        CardIndex = 2
-        TabOrder = 2
       end
     end
     inline operationsBar: TframeOperationsBar

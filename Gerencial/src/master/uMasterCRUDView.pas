@@ -19,8 +19,6 @@ type
     operationsBar: TframeOperationsBar;
     cardpanelCRIS: TCardPanel;
     cardPesquisa: TCard;
-    cardNovo: TCard;
-    cardEditar: TCard;
     panelLateral: TPanel;
     Edit1: TEdit;
     MaskEdit1: TMaskEdit;
@@ -103,7 +101,6 @@ procedure TformMasterCRUDView.operationsBarspeedNovoClick(Sender: TObject);
 begin
   inherited;
   operationsBar.speedNovoClick(Sender);
-  //cardpanelCRIS.ActiveCard := cardNovo;
 
   panelLateral.Visible := True;
   dbgridPesquisa.ReadOnly := True;
@@ -113,7 +110,7 @@ procedure TformMasterCRUDView.operationsBarspeedSalvarClick(Sender: TObject);
 begin
   inherited;
   operationsBar.speedSalvarClick(Sender);
-    panelLateral.Visible := False;
+  panelLateral.Visible := False;
 
 end;
 

@@ -6,7 +6,6 @@ uses
   uPrincipal in 'src\uPrincipal.pas' {formPrincipal},
   uMasterFrame in 'src\master\uMasterFrame.pas' {frameMaster: TFrame},
   uframeOperationsBar in 'src\CRIS\frames\uframeOperationsBar.pas' {frameOperationsBar: TFrame},
-  uframeSearchBar in 'src\CRIS\frames\uframeSearchBar.pas' {frameSearchBar: TFrame},
   uMenuCadastro in 'src\uMenuCadastro.pas' {formMenuCadastros},
   uMasterCRUDView in 'src\master\uMasterCRUDView.pas' {formMasterCRUDView},
   uframeMenuButton in 'src\frames\uframeMenuButton.pas' {frameMenuButton: TFrame},
@@ -18,7 +17,8 @@ uses
   uMunicipioController in 'src\CRIS\municipio\uMunicipioController.pas',
   uFormFactory in '..\Common\uFormFactory.pas',
   uDataConService in '..\Common\uDataConService.pas',
-  uMunicipioDTO in 'src\CRIS\municipio\uMunicipioDTO.pas';
+  uMunicipioDTO in 'src\CRIS\municipio\uMunicipioDTO.pas',
+  uframeSearchBar in 'src\CRIS\frames\uframeSearchBar.pas' {frameSearchBar: TFrame};
 
 {$R *.res}
 

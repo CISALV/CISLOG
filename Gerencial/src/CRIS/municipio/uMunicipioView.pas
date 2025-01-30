@@ -17,12 +17,12 @@ uses
 
 type
   TformMunicipioView = class(TformMasterCRUDView)
-    edEmail: TEdit;
-    edNome: TEdit;
-    edId: TEdit;
-    edCNPJ: TMaskEdit;
     Fields: TPageControl;
     Principal: TTabSheet;
+    edNome: TEdit;
+    edId: TEdit;
+    edEmail: TEdit;
+    edCNPJ: TMaskEdit;
 
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -55,6 +55,12 @@ var
   formMunicipioView: TformMunicipioView;
   Query : TFDQuery;
   dsMunicipio: TDataSource;
+  edId: TEdit;
+  edNome: TEdit;
+  edCNPJ: TMaskEdit;
+  edEmail: TEdit;
+  Fields: TPageControl;
+
 
 implementation
 
@@ -176,6 +182,7 @@ procedure TformMunicipioView.operationsBarspeedSalvarClick(Sender: TObject);
 var
  MunicipioDTO: TMunicipioDTO;
 begin
+  inherited;
     MunicipioDTO := MakeDTOfromFields;
 
     if (MunicipioDTO.Nome = '') or (MunicipioDTO.CNPJ = '') or (MunicipioDTO.Email= '') then
@@ -184,7 +191,6 @@ begin
       panelLateral.Visible := True;
       Exit;
     end;
-
 
     FController.ProcessarMunicipio(MunicipioDTO);
     RecarregarDados;
