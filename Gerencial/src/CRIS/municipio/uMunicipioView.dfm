@@ -61,7 +61,7 @@ inherited formMunicipioView: TformMunicipioView
             Margins.Right = 10
             Margins.Bottom = 10
             Align = alTop
-            TabOrder = 0
+            TabOrder = 1
             TextHint = 'NOME'
           end
           object edId: TEdit
@@ -74,6 +74,7 @@ inherited formMunicipioView: TformMunicipioView
             Margins.Top = 10
             Margins.Right = 10
             Margins.Bottom = 10
+            TabStop = False
             Align = alTop
             Alignment = taCenter
             Color = clHighlight
@@ -84,7 +85,7 @@ inherited formMunicipioView: TformMunicipioView
             Font.Style = []
             ParentFont = False
             ReadOnly = True
-            TabOrder = 1
+            TabOrder = 0
             TextHint = 'ID'
           end
           object edEmail: TEdit
@@ -98,7 +99,7 @@ inherited formMunicipioView: TformMunicipioView
             Margins.Right = 10
             Margins.Bottom = 10
             Align = alTop
-            TabOrder = 2
+            TabOrder = 3
             TextHint = 'E-MAIL'
           end
           object edCNPJ: TMaskEdit
@@ -112,7 +113,7 @@ inherited formMunicipioView: TformMunicipioView
             Margins.Right = 10
             Margins.Bottom = 10
             Align = alTop
-            TabOrder = 3
+            TabOrder = 2
             Text = ''
             TextHint = 'CNPJ'
             OnEnter = edCNPJEnter

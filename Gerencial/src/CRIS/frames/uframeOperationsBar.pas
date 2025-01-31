@@ -31,11 +31,6 @@ implementation
 
 {$R *.dfm}
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> main
 procedure TframeOperationsBar.UpdateButtonState(State: TOperationState);
 begin
   case State of
