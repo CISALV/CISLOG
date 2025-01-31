@@ -34,8 +34,10 @@ type
 
     procedure operationsBarspeedNovoClick(Sender: TObject);
     procedure operationsBarspeedCancelarClick(Sender: TObject);
-    procedure operationsBarspeedSalvarClick(Sender: TObject);
-    procedure operationsBarspeedExcluirClick(Sender: TObject);
+    procedure Save; override;
+    procedure Delete; override;
+
+
 
     function MakeDTOfromFields : TMunicipioDTO;
 
@@ -143,9 +145,7 @@ begin
   RecarregarDados;
 end;
 
-procedure TformMunicipioView.operationsBarspeedExcluirClick(Sender: TObject);
-begin
-  inherited;
+procedure TformMunicipioView.Delete;
   var
   ID: Integer;
 begin
@@ -153,7 +153,6 @@ begin
   ID := StrtoInt(edId.Text);
   FController.RemoverMunicipio(ID);
   RecarregarDados;
-end;
 end;
 
 procedure TformMunicipioView.operationsBarspeedNovoClick(Sender: TObject);
@@ -177,12 +176,10 @@ FillChar(Result, SizeOf(TMunicipioDTO), 0);
 
 end;
 
-
-procedure TformMunicipioView.operationsBarspeedSalvarClick(Sender: TObject);
+procedure TformMunicipioView.Save;
 var
  MunicipioDTO: TMunicipioDTO;
 begin
-  inherited;
     MunicipioDTO := MakeDTOfromFields;
 
     if (MunicipioDTO.Nome = '') or (MunicipioDTO.CNPJ = '') or (MunicipioDTO.Email= '') then

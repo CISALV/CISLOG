@@ -3,7 +3,8 @@ unit uMasterCRUDView;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterForm, uMasterFrame,
   uframeSearchBar, Data.DB, Vcl.ComCtrls, Vcl.WinXPanels, uframeOperationsBar,
   Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, FireDAC.Stan.Intf,
@@ -22,13 +23,23 @@ type
     panelLateral: TPanel;
     Edit1: TEdit;
     MaskEdit1: TMaskEdit;
-    procedure operationsBarspeedNovoClick(Sender: TObject);
-    procedure operationsBarspeedCancelarClick(Sender: TObject);
+
     procedure FormCreate(Sender: TObject);
-    procedure dbgridPesquisaDblClick(Sender: TObject);
+
+    function ConfirmSave: Boolean; virtual;
+    function ConfirmDelete: Boolean; virtual;
+
+    procedure Save; virtual; abstract;
+    procedure Delete; virtual; abstract;
+
+    procedure operationsBarspeedCancelarClick(Sender: TObject);
     procedure operationsBarspeedExcluirClick(Sender: TObject);
-    procedure LimparCampos;
+    procedure operationsBarspeedNovoClick(Sender: TObject);
     procedure operationsBarspeedSalvarClick(Sender: TObject);
+
+    procedure dbgridPesquisaDblClick(Sender: TObject);
+
+    procedure LimparCampos;
 
   private
   public
@@ -42,12 +53,22 @@ implementation
 
 {$R *.dfm}
 
+function TformMasterCRUDView.ConfirmDelete: Boolean;
+begin
+  Result := MessageDlg('Você realmente deseja Deletar?', mtConfirmation, [mbYes, mbNo], 0) = mrYes;
+end;
+
+function TformMasterCRUDView.ConfirmSave: Boolean;
+begin
+  Result := MessageDlg('Você realmente deseja Salvar?', mtConfirmation, [mbYes, mbNo], 0) = mrYes;
+end;
+
 procedure TformMasterCRUDView.dbgridPesquisaDblClick(Sender: TObject);
 begin
   inherited;
   panelLateral.Visible := True;
   dbgridPesquisa.ReadOnly := True;
-  operationsBar.speedEditarClick(Sender);
+  operationsBar.SetButtonState(osEdit);
 
 end;
 
@@ -57,7 +78,6 @@ begin
   cardpanelCRIS.ActiveCard := cardPesquisa;
 
 end;
-
 
 procedure TformMasterCRUDView.LimparCampos;
 var
@@ -76,32 +96,32 @@ begin
   end;
 end;
 
-
 procedure TformMasterCRUDView.operationsBarspeedCancelarClick(Sender: TObject);
 begin
   inherited;
-  operationsBar.speedCancelarClick(Sender);
+
+  operationsbar.SetButtonState(osIdle);
   cardpanelCRIS.ActiveCard := cardPesquisa;
   panelLateral.Visible := False;
   dbgridPesquisa.DataSource.Enabled := False;
   dbgridPesquisa.DataSource.Enabled := True;
-  //Clear Fields;
+  // Clear Fields;
 end;
 
 procedure TformMasterCRUDView.operationsBarspeedExcluirClick(Sender: TObject);
 begin
   inherited;
-    MessageDlg('Deseja excluir essa entrada?', mtConfirmation, [mbYes, mbNo], 0);
-    operationsBar.speedNovoClick(Sender);
+  if ConfirmDelete then
+    operationsBar.SetButtonState(osIdle);
     panelLateral.Visible := False;
-
+    Delete;
 end;
 
 procedure TformMasterCRUDView.operationsBarspeedNovoClick(Sender: TObject);
 begin
   inherited;
-  operationsBar.speedNovoClick(Sender);
 
+  operationsBar.SetButtonState(osEdit);
   panelLateral.Visible := True;
   dbgridPesquisa.ReadOnly := True;
 end;
@@ -109,10 +129,10 @@ end;
 procedure TformMasterCRUDView.operationsBarspeedSalvarClick(Sender: TObject);
 begin
   inherited;
-  operationsBar.speedSalvarClick(Sender);
-  panelLateral.Visible := False;
-
+  if ConfirmSave then
+    operationsBar.SetButtonState(osIdle);
+    panelLateral.Visible := False;
+    Save;
 end;
 
 end.
-

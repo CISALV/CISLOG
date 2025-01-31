@@ -93,7 +93,6 @@ inherited frameOperationsBar: TframeOperationsBar
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000}
       Layout = blGlyphTop
-      OnClick = speedSalvarClick
       ExplicitLeft = 565
       ExplicitTop = 0
     end
@@ -182,7 +181,6 @@ inherited frameOperationsBar: TframeOperationsBar
         0000000000000000000000000000000000000000000000000000}
       Layout = blGlyphTop
       Visible = False
-      OnClick = speedEditarClick
       ExplicitLeft = 460
       ExplicitTop = 4
       ExplicitHeight = 21
@@ -271,7 +269,6 @@ inherited frameOperationsBar: TframeOperationsBar
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000}
       Layout = blGlyphTop
-      OnClick = speedNovoClick
       ExplicitLeft = 374
       ExplicitTop = 4
       ExplicitHeight = 21
@@ -361,7 +358,6 @@ inherited frameOperationsBar: TframeOperationsBar
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000}
       Layout = blGlyphTop
-      OnClick = speedCancelarClick
       ExplicitLeft = 288
       ExplicitTop = 4
       ExplicitHeight = 21
@@ -451,7 +447,6 @@ inherited frameOperationsBar: TframeOperationsBar
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000}
       Layout = blGlyphTop
-      OnClick = speedExcluirClick
       ExplicitLeft = 63
       ExplicitTop = 2
     end

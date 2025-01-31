@@ -87,7 +87,7 @@ end;
 
 procedure TMunicipioController.RemoverMunicipio(MunicipioID: Integer);
 begin
-  FMunicipioDAO.Excluir(MunicipioID);
+    FMunicipioDAO.Excluir(MunicipioID);
 end;
 
 procedure TMunicipioController.ProcessarMunicipio(AMunicipioDTO: TMunicipioDTO);
