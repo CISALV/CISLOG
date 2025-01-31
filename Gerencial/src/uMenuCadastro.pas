@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterForm, Vcl.ComCtrls, Vcl.ToolWin,
   Vcl.ExtCtrls, Vcl.Buttons, Vcl.Menus,uMunicipioView,
-  Vcl.StdCtrls, uMasterFrame,uFormFactory,uUsuarioView;
+  Vcl.StdCtrls, uMasterFrame,uFormFactory;
 
 type
   TformMenuCadastros = class(TformMaster)
@@ -40,7 +40,7 @@ end;
 procedure TformMenuCadastros.UsuarioClick(Sender: TObject);
 begin
   inherited;
-  TFormFactory.CreateAndShowForm(TformUsuarioCRIS,panelFundo);
+  //TFormFactory.CreateAndShowForm(TformUsuarioCRIS,panelFundo);
 end;
 
 end.

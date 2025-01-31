@@ -1,4 +1,4 @@
-﻿unit uMunicipioView;
+unit uMunicipioView;
 
 interface
 
@@ -49,6 +49,7 @@ type
 
   private
     FController : TMunicipioController;
+    FDTO: TMunicipioDTO;
   public
     { Public declarations }
   end;

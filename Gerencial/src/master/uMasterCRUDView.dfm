@@ -3,7 +3,6 @@ inherited formMasterCRUDView: TformMasterCRUDView
   ClientHeight = 585
   ClientWidth = 829
   StyleElements = [seFont, seClient, seBorder]
-  OnCreate = FormCreate
   ExplicitWidth = 829
   ExplicitHeight = 585
   TextHeight = 15
@@ -148,7 +147,6 @@ inherited formMasterCRUDView: TformMasterCRUDView
         end
         inherited speedExcluir: TSpeedButton
           Height = 57
-          OnClick = operationsBarspeedExcluirClick
           ExplicitHeight = 57
         end
       end
