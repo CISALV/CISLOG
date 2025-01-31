@@ -30,7 +30,7 @@ type
     procedure SearchBareditChange(Sender: TObject);
 
     procedure dbgridPesquisaDblClick(Sender: TObject);
-      procedure CarregarMunicipio(MunicipioID:Integer);
+    procedure CarregarMunicipio(MunicipioID:Integer);
 
     procedure operationsBarspeedNovoClick(Sender: TObject);
     procedure operationsBarspeedCancelarClick(Sender: TObject);
@@ -49,6 +49,7 @@ type
 
   private
     FController : TMunicipioController;
+    FDTO: TMunicipioDTO;
   public
     { Public declarations }
   end;

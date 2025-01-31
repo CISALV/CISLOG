@@ -101,7 +101,6 @@ inherited formMunicipioView: TformMunicipioView
             Align = alTop
             TabOrder = 2
             TextHint = 'E-MAIL'
-            ExplicitTop = 101
           end
           object edCNPJ: TMaskEdit
             AlignWithMargins = True
@@ -119,7 +118,6 @@ inherited formMunicipioView: TformMunicipioView
             TextHint = 'CNPJ'
             OnEnter = edCNPJEnter
             OnExit = edCNPJExit
-            ExplicitTop = 58
           end
         end
       end
@@ -170,7 +168,9 @@ inherited formMunicipioView: TformMunicipioView
         ExplicitWidth = 962
         inherited speedSalvar: TSpeedButton
           Left = 881
-          ExplicitLeft = 881
+          ExplicitLeft = 898
+          ExplicitTop = -7
+          ExplicitHeight = 57
         end
         inherited speedEditar: TSpeedButton
           Left = 801
@@ -181,6 +181,9 @@ inherited formMunicipioView: TformMunicipioView
         inherited speedNovo: TSpeedButton
           Left = 721
           ExplicitLeft = 721
+        end
+        inherited speedExcluir: TSpeedButton
+          OnClick = operationsBarspeedExcluirCick
         end
       end
     end
