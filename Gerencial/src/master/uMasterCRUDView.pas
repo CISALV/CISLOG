@@ -10,7 +10,7 @@ uses
   Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
   FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
-  FireDAC.VCLUI.Wait, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Mask;
+  FireDAC.VCLUI.Wait, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Mask,uInterfaces;
 
 type
 
@@ -30,20 +30,31 @@ type
     procedure operationsBarspeedCancelarClick(Sender: TObject);
     procedure operationsBarspeedNovoClick(Sender: TObject);
 
-
     procedure dbgridPesquisaDblClick(Sender: TObject);
 
+    procedure FormShow(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure SearchBareditChange(Sender: TObject);
+
   private
+
+
+  protected
+
+  FController: IController;
+  FDataSource: TDataSource;
+
+    function CreateController: IController; virtual; abstract;
+
   public
 
-    function ConfirmSave: Boolean; virtual;
-    function ConfirmDelete: Boolean; virtual;
-
     procedure Save; virtual; abstract;
+        function ConfirmSave: Boolean; virtual;
     procedure Delete; virtual; abstract;
+        function ConfirmDelete: Boolean; virtual;
 
     procedure LimparCampos;
-
+    procedure RecarregarDados;
 
   end;
 
@@ -72,6 +83,24 @@ begin
   panelLateral.Visible := True;
   dbgridPesquisa.ReadOnly := True;
   operationsBar.SetButtonState(osEdit);
+end;
+
+procedure TformMasterCRUDView.FormDestroy(Sender: TObject);
+begin
+  inherited;
+  FController := nil;
+
+end;
+
+procedure TformMasterCRUDView.FormShow(Sender: TObject);
+begin
+  inherited;
+  FController := CreateController;
+  FDataSource := TDataSource.Create(Self);
+
+  FDataSource.DataSet := FController.CarregarDados;
+  dbGridPesquisa.DataSource := FDataSource;
+
 end;
 
 procedure TformMasterCRUDView.LimparCampos;
@@ -124,6 +153,22 @@ begin
   operationsBar.SetButtonState(osIdle);
   panelLateral.Visible := False;
   Save;
+end;
+
+procedure TformMasterCRUDView.RecarregarDados;
+begin
+  if Assigned(FController) and Assigned(FDataSource) then
+    FDataSource.DataSet := FController.CarregarDados;
+end;
+
+procedure TformMasterCRUDView.SearchBareditChange(Sender: TObject);
+begin
+  inherited;
+    if Searchbar.edit.Text = '' then
+    RecarregarDados
+  else
+    FDataSource.DataSet := FController.FiltrarPesquisa
+      (Searchbar.combox.ItemIndex, Searchbar.edit.Text)
 end;
 
 end.

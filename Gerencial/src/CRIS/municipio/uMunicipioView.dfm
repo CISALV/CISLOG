@@ -3,10 +3,9 @@ inherited formMunicipioView: TformMunicipioView
   ClientWidth = 964
   StyleElements = [seFont, seClient, seBorder]
   OnClose = FormClose
-  OnShow = FormShow
   ExplicitWidth = 964
   ExplicitHeight = 589
-  TextHeight = 15
+  TextHeight = 18
   inherited panelFundo: TPanel
     Width = 964
     Height = 589
@@ -56,7 +55,7 @@ inherited formMunicipioView: TformMunicipioView
             Left = 10
             Top = 58
             Width = 330
-            Height = 23
+            Height = 26
             Margins.Left = 10
             Margins.Top = 10
             Margins.Right = 10
@@ -91,9 +90,9 @@ inherited formMunicipioView: TformMunicipioView
           object edEmail: TEdit
             AlignWithMargins = True
             Left = 10
-            Top = 144
+            Top = 150
             Width = 330
-            Height = 23
+            Height = 26
             Margins.Left = 10
             Margins.Top = 10
             Margins.Right = 10
@@ -105,9 +104,9 @@ inherited formMunicipioView: TformMunicipioView
           object edCNPJ: TMaskEdit
             AlignWithMargins = True
             Left = 10
-            Top = 101
+            Top = 104
             Width = 330
-            Height = 23
+            Height = 26
             Margins.Left = 10
             Margins.Top = 10
             Margins.Right = 10
@@ -142,7 +141,11 @@ inherited formMunicipioView: TformMunicipioView
             StyleElements = [seFont, seClient, seBorder]
             ExplicitWidth = 596
             inherited combox: TComboBox
+              Text = 'NOME'#11
               StyleElements = [seFont, seClient, seBorder]
+              Items.Strings = (
+                'CNPJ'
+                'NOME')
             end
             inherited edit: TEdit
               Width = 380

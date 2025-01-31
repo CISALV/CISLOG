@@ -17,7 +17,8 @@ uses
   uFormFactory in '..\Common\uFormFactory.pas',
   uDataConService in '..\Common\uDataConService.pas',
   uMunicipioDTO in 'src\CRIS\municipio\uMunicipioDTO.pas',
-  uframeSearchBar in 'src\CRIS\frames\uframeSearchBar.pas' {frameSearchBar: TFrame};
+  uframeSearchBar in 'src\CRIS\frames\uframeSearchBar.pas' {frameSearchBar: TFrame},
+  uInterfaces in 'src\interfaces\uInterfaces.pas';
 
 {$R *.res}
 

@@ -2,10 +2,10 @@ unit uMunicipioController;
 
 interface
 
-uses uMunicipioDAO, FireDAC.Comp.Client, System.SysUtils, uMunicipioModel,Dialogs,uMunicipioDTO;
+uses uMunicipioDAO, FireDAC.Comp.Client, System.SysUtils, uMunicipioModel,Dialogs,uMunicipioDTO,uInterfaces;
 
 type
-  TMunicipioController = class
+  TMunicipioController = class(TInterfacedObject, IController)
   private
     FMunicipioDAO: TMunicipioDAO;
   public
@@ -15,11 +15,10 @@ type
     function FiltrarPesquisa(FilterIndex: Integer; SearchValue: String): TFDQuery;
 
     function PopularView(MunicipioID: Integer): TMunicipioDTO;
-
-    procedure ProcessarMunicipio(AMunicipioDTO: TMunicipioDTO);
     function CarregarDados: TFDQuery;
-    procedure AtualizarMunicipio(AMunicipio: TMunicipio);
-    procedure RemoverMunicipio(MunicipioID: Integer);
+    procedure ProcessarEntidade(AMunicipioDTO: TMunicipioDTO);
+    procedure AtualizarEntidade(AMunicipio: TMunicipio);
+    procedure RemoverEntidade(MunicipioID: Integer);
 
 
   end;
@@ -85,12 +84,12 @@ end;
 
 
 
-procedure TMunicipioController.RemoverMunicipio(MunicipioID: Integer);
+procedure TMunicipioController.RemoverEntidade(MunicipioID: Integer);
 begin
     FMunicipioDAO.Excluir(MunicipioID);
 end;
 
-procedure TMunicipioController.ProcessarMunicipio(AMunicipioDTO: TMunicipioDTO);
+procedure TMunicipioController.ProcessarEntidade(AMunicipioDTO: TMunicipioDTO);
 var
   Municipio : TMunicipio;
 begin
@@ -121,7 +120,7 @@ end;
 end;
 
 
-procedure TMunicipioController.AtualizarMunicipio(AMunicipio: TMunicipio);
+procedure TMunicipioController.AtualizarEntidade(AMunicipio: TMunicipio);
 var
   Success: Integer;
 begin

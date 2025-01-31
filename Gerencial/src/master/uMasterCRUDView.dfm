@@ -3,9 +3,11 @@ inherited formMasterCRUDView: TformMasterCRUDView
   ClientHeight = 585
   ClientWidth = 829
   StyleElements = [seFont, seClient, seBorder]
+  OnDestroy = FormDestroy
+  OnShow = FormShow
   ExplicitWidth = 829
   ExplicitHeight = 585
-  TextHeight = 15
+  TextHeight = 18
   object panelFundo: TPanel
     Left = 0
     Top = 0
@@ -54,8 +56,8 @@ inherited formMasterCRUDView: TformMasterCRUDView
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
-          TitleFont.Height = -12
-          TitleFont.Name = 'Segoe UI'
+          TitleFont.Height = -15
+          TitleFont.Name = 'Roboto'
           TitleFont.Style = []
           OnDblClick = dbgridPesquisaDblClick
         end
@@ -81,14 +83,13 @@ inherited formMasterCRUDView: TformMasterCRUDView
             ExplicitWidth = 461
             ExplicitHeight = 49
             inherited combox: TComboBox
-              Height = 22
               StyleElements = [seFont, seClient, seBorder]
-              ExplicitHeight = 22
             end
             inherited edit: TEdit
               Width = 245
               Height = 19
               StyleElements = [seFont, seClient, seBorder]
+              OnChange = SearchBareditChange
               ExplicitWidth = 245
               ExplicitHeight = 22
             end
