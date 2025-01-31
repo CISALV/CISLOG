@@ -3,13 +3,14 @@ unit uMasterCRUDView;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterForm, uMasterFrame,
   uframeSearchBar, Data.DB, Vcl.ComCtrls, Vcl.WinXPanels, uframeOperationsBar,
   Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
   FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
-  FireDAC.VCLUI.Wait, FireDAC.Comp.Client;
+  FireDAC.VCLUI.Wait, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Mask;
 
 type
   TformMasterCRUDView = class(TformMaster)
@@ -19,17 +20,29 @@ type
     operationsBar: TframeOperationsBar;
     cardpanelCRIS: TCardPanel;
     cardPesquisa: TCard;
-    cardNovo: TCard;
-    cardEditar: TCard;
     panelLateral: TPanel;
-    procedure operationsBarspeedNovoClick(Sender: TObject);
-    procedure operationsBarspeedCancelarClick(Sender: TObject);
+    Edit1: TEdit;
+    MaskEdit1: TMaskEdit;
+
     procedure FormCreate(Sender: TObject);
-    procedure dbgridPesquisaDblClick(Sender: TObject);
+
+    function ConfirmSave: Boolean; virtual;
+    function ConfirmDelete: Boolean; virtual;
+
+    procedure Save; virtual; abstract;
+    procedure Delete; virtual; abstract;
+
+    procedure operationsBarspeedCancelarClick(Sender: TObject);
     procedure operationsBarspeedExcluirClick(Sender: TObject);
+    procedure operationsBarspeedNovoClick(Sender: TObject);
     procedure operationsBarspeedSalvarClick(Sender: TObject);
 
+    procedure dbgridPesquisaDblClick(Sender: TObject);
+
+    procedure LimparCampos;
+
   private
+
   public
 
   end;
@@ -41,12 +54,22 @@ implementation
 
 {$R *.dfm}
 
+function TformMasterCRUDView.ConfirmDelete: Boolean;
+begin
+  Result := MessageDlg('Você realmente deseja Deletar?', mtConfirmation, [mbYes, mbNo], 0) = mrYes;
+end;
+
+function TformMasterCRUDView.ConfirmSave: Boolean;
+begin
+  Result := MessageDlg('Você realmente deseja Salvar?', mtConfirmation, [mbYes, mbNo], 0) = mrYes;
+end;
+
 procedure TformMasterCRUDView.dbgridPesquisaDblClick(Sender: TObject);
 begin
   inherited;
   panelLateral.Visible := True;
   dbgridPesquisa.ReadOnly := True;
-  operationsBar.speedEditarClick(Sender);
+  operationsBar.SetButtonState(osEdit);
 
 end;
 
@@ -57,43 +80,58 @@ begin
 
 end;
 
+procedure TformMasterCRUDView.LimparCampos;
+var
+  i: Integer;
+begin
+  for i := 0 to Self.ComponentCount - 1 do
+  begin
+    if Self.Components[i] is TEdit then
+    begin
+      TEdit(Self.Components[i]).Text := '';
+    end
+    else if Self.Components[i] is TMaskEdit then
+    begin
+      TMaskEdit(Self.Components[i]).Text := '';
+    end
+  end;
+end;
 
 procedure TformMasterCRUDView.operationsBarspeedCancelarClick(Sender: TObject);
 begin
   inherited;
-  operationsBar.speedCancelarClick(Sender);
-  cardpanelCRIS.ActiveCard := cardPesquisa;
+
+  operationsbar.SetButtonState(osIdle);
   panelLateral.Visible := False;
-  dbgridPesquisa.DataSource.Enabled := False;
-  dbgridPesquisa.DataSource.Enabled := True;
-  //Clear Fields;
+  LimparCampos;
 end;
 
 procedure TformMasterCRUDView.operationsBarspeedExcluirClick(Sender: TObject);
 begin
   inherited;
-    MessageDlg('Deseja excluir essa entrada?', mtConfirmation, [mbYes, mbNo], 0);
-    operationsBar.speedNovoClick(Sender);
+  if ConfirmDelete then
+    operationsBar.SetButtonState(osIdle);
     panelLateral.Visible := False;
-
+    Delete;
 end;
 
 procedure TformMasterCRUDView.operationsBarspeedNovoClick(Sender: TObject);
 begin
   inherited;
-  operationsBar.speedNovoClick(Sender);
-  //cardpanelCRIS.ActiveCard := cardNovo;
 
+  operationsBar.SetButtonState(osEdit);
   panelLateral.Visible := True;
   dbgridPesquisa.ReadOnly := True;
+
 end;
 
 procedure TformMasterCRUDView.operationsBarspeedSalvarClick(Sender: TObject);
 begin
   inherited;
-  operationsBar.speedSalvarClick(Sender);
-  panelLateral.Visible := False;
+  if ConfirmSave then
+    operationsBar.SetButtonState(osIdle);
+    panelLateral.Visible := False;
+    Save;
 end;
 
 end.
-

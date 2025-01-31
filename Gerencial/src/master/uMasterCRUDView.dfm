@@ -82,7 +82,9 @@ inherited formMasterCRUDView: TformMasterCRUDView
             ExplicitWidth = 461
             ExplicitHeight = 49
             inherited combox: TComboBox
+              Height = 22
               StyleElements = [seFont, seClient, seBorder]
+              ExplicitHeight = 22
             end
             inherited edit: TEdit
               Height = 22
