@@ -153,10 +153,6 @@
             <Form>frameMainBar</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="src\CRIS\usuario\uUsuarioView.pas">
-            <Form>formUsuarioCRIS</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="src\CRIS\municipio\uMunicipioView.pas">
             <Form>formMunicipioView</Form>
             <FormType>dfm</FormType>

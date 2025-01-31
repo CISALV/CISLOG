@@ -10,7 +10,6 @@ uses
   uMasterCRUDView in 'src\master\uMasterCRUDView.pas' {formMasterCRUDView},
   uframeMenuButton in 'src\frames\uframeMenuButton.pas' {frameMenuButton: TFrame},
   uframeMainBar in 'src\frames\uframeMainBar.pas' {frameMainBar: TFrame},
-  uUsuarioView in 'src\CRIS\usuario\uUsuarioView.pas' {formUsuarioCRIS},
   uMunicipioView in 'src\CRIS\municipio\uMunicipioView.pas' {formMunicipioView},
   uMunicipioDAO in 'src\CRIS\municipio\uMunicipioDAO.pas',
   uMunicipioModel in 'src\CRIS\municipio\uMunicipioModel.pas',

@@ -14,7 +14,7 @@ uses
   FireDAC.Comp.DataSet;
 
 type
-  TformUsuarioCRIS = class(TformMasterCRUDView)
+  TformUsuarioCRIS = class(TformMasterCRUDView<TUsuarioController, TUsuarioDTO>)
   private
     { Private declarations }
   public

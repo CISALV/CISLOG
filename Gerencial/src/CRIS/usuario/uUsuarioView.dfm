@@ -1,7 +1,6 @@
 inherited formUsuarioCRIS: TformUsuarioCRIS
-  Caption = ''
   StyleElements = [seFont, seClient, seBorder]
-  TextHeight = 18
+  TextHeight = 15
   inherited panelFundo: TPanel
     StyleElements = [seFont, seClient, seBorder]
     inherited cardpanelCRIS: TCardPanel
@@ -19,12 +18,6 @@ inherited formUsuarioCRIS: TformUsuarioCRIS
             end
           end
         end
-      end
-      inherited cardNovo: TCard
-        StyleElements = [seFont, seClient, seBorder]
-      end
-      inherited cardEditar: TCard
-        StyleElements = [seFont, seClient, seBorder]
       end
     end
     inherited operationsBar: TframeOperationsBar
@@ -45,6 +38,12 @@ inherited formUsuarioCRIS: TformUsuarioCRIS
     end
     inherited panelLateral: TPanel
       StyleElements = [seFont, seClient, seBorder]
+      inherited Edit1: TEdit
+        StyleElements = [seFont, seClient, seBorder]
+      end
+      inherited MaskEdit1: TMaskEdit
+        StyleElements = [seFont, seClient, seBorder]
+      end
     end
   end
 end

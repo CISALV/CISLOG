@@ -13,7 +13,9 @@ uses
   FireDAC.VCLUI.Wait, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Mask;
 
 type
-  TformMasterCRUDView = class(TformMaster)
+    TController = class;
+    TDTO = class;
+    TformMasterCRUDView<TController: class; TDTO: class> = class(TformMaster)
     SearchBar: TframeSearchBar;
     panelFundo: TPanel;
     dbgridPesquisa: TDBGrid;
@@ -24,7 +26,12 @@ type
     Edit1: TEdit;
     MaskEdit1: TMaskEdit;
 
-    procedure FormCreate(Sender: TObject);
+  private
+    FController: TController;
+    FDataSource: TDataSource;
+  public
+
+    constructor Create(AOwner: TComponent); override;
 
     function ConfirmSave: Boolean; virtual;
     function ConfirmDelete: Boolean; virtual;
@@ -41,29 +48,37 @@ type
 
     procedure LimparCampos;
 
-  private
-  public
+    procedure SetController(AController: TController);
+    procedure SetDataSource(ADataSource: TDataSource);
 
   end;
 
 var
-  formMasterCRUDView: TformMasterCRUDView;
+  formMasterCRUDView: TformMasterCRUDView<TObject, TObject>;
 
 implementation
 
 {$R *.dfm}
 
-function TformMasterCRUDView.ConfirmDelete: Boolean;
+function TformMasterCRUDView<TController, TDTO>.ConfirmDelete: Boolean;
 begin
-  Result := MessageDlg('Você realmente deseja Deletar?', mtConfirmation, [mbYes, mbNo], 0) = mrYes;
+  Result := MessageDlg('Você realmente deseja Deletar?', mtConfirmation,
+    [mbYes, mbNo], 0) = mrYes;
 end;
 
-function TformMasterCRUDView.ConfirmSave: Boolean;
+function TformMasterCRUDView<TController, TDTO>.ConfirmSave: Boolean;
 begin
-  Result := MessageDlg('Você realmente deseja Salvar?', mtConfirmation, [mbYes, mbNo], 0) = mrYes;
+  Result := MessageDlg('Você realmente deseja Salvar?', mtConfirmation,
+    [mbYes, mbNo], 0) = mrYes;
 end;
 
-procedure TformMasterCRUDView.dbgridPesquisaDblClick(Sender: TObject);
+constructor TformMasterCRUDView<TController, TDTO>.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+end;
+
+procedure TformMasterCRUDView<TController, TDTO>.dbgridPesquisaDblClick
+  (Sender: TObject);
 begin
   inherited;
   panelLateral.Visible := True;
@@ -72,14 +87,8 @@ begin
 
 end;
 
-procedure TformMasterCRUDView.FormCreate(Sender: TObject);
-begin
-  inherited;
-  cardpanelCRIS.ActiveCard := cardPesquisa;
 
-end;
-
-procedure TformMasterCRUDView.LimparCampos;
+procedure TformMasterCRUDView<TController, TDTO>.LimparCampos;
 var
   i: Integer;
 begin
@@ -96,43 +105,57 @@ begin
   end;
 end;
 
-procedure TformMasterCRUDView.operationsBarspeedCancelarClick(Sender: TObject);
+procedure TformMasterCRUDView<TController, TDTO>.operationsBarspeedCancelarClick
+  (Sender: TObject);
 begin
   inherited;
 
-  operationsbar.SetButtonState(osIdle);
-  cardpanelCRIS.ActiveCard := cardPesquisa;
+  operationsBar.SetButtonState(osIdle);
   panelLateral.Visible := False;
-  dbgridPesquisa.DataSource.Enabled := False;
-  dbgridPesquisa.DataSource.Enabled := True;
-  // Clear Fields;
+  LimparCampos;
 end;
 
-procedure TformMasterCRUDView.operationsBarspeedExcluirClick(Sender: TObject);
+procedure TformMasterCRUDView<TController, TDTO>.operationsBarspeedExcluirClick
+  (Sender: TObject);
 begin
   inherited;
   if ConfirmDelete then
     operationsBar.SetButtonState(osIdle);
-    panelLateral.Visible := False;
-    Delete;
+  panelLateral.Visible := False;
+  Delete;
 end;
 
-procedure TformMasterCRUDView.operationsBarspeedNovoClick(Sender: TObject);
+procedure TformMasterCRUDView<TController, TDTO>.operationsBarspeedNovoClick
+  (Sender: TObject);
 begin
   inherited;
 
   operationsBar.SetButtonState(osEdit);
   panelLateral.Visible := True;
   dbgridPesquisa.ReadOnly := True;
+
 end;
 
-procedure TformMasterCRUDView.operationsBarspeedSalvarClick(Sender: TObject);
+procedure TformMasterCRUDView<TController, TDTO>.operationsBarspeedSalvarClick
+  (Sender: TObject);
 begin
   inherited;
   if ConfirmSave then
     operationsBar.SetButtonState(osIdle);
-    panelLateral.Visible := False;
-    Save;
+  panelLateral.Visible := False;
+  Save;
+end;
+
+procedure TformMasterCRUDView<TController, TDTO>.SetController(
+  AController: TController);
+begin
+  FController := AController;
+end;
+
+procedure TformMasterCRUDView<TController, TDTO>.SetDataSource(
+  ADataSource: TDataSource);
+begin
+  FDataSource := ADataSource;
 end;
 
 end.

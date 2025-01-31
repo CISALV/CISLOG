@@ -16,7 +16,7 @@ uses
   uMunicipioController,uMunicipioDTO;
 
 type
-  TformMunicipioView = class(TformMasterCRUDView)
+  TformMunicipioView = class(TformMasterCRUDView<TMunicipioController, TMunicipioDTO>)
     Fields: TPageControl;
     Principal: TTabSheet;
     edNome: TEdit;
@@ -141,7 +141,6 @@ begin
   inherited;
   Fields.ActivePage := Principal;
   dsMunicipio.DataSet := FController.CarregarDados;
-  LimparCampos;
   RecarregarDados;
 end;
 
@@ -195,20 +194,12 @@ begin
 end;
 
 procedure TformMunicipioView.SearchBareditChange(Sender: TObject);
-  var
-  // Remove THIS!!
-  Controller: TMunicipioController;
 begin
   inherited;
-  Controller := TMunicipioController.Create;
-  try
     if Searchbar.edit.Text = '' then
       RecarregarDados
     else
-      dsMunicipio.Dataset := Controller.FiltrarPesquisa(SearchBar.combox.ItemIndex, SearchBar.Edit.Text);
-    finally
-    Controller.Free;
-  end;
+      dsMunicipio.Dataset := FController.FiltrarPesquisa(SearchBar.combox.ItemIndex, SearchBar.Edit.Text);
 end;
 
 procedure TformMunicipioView.RecarregarDados;
