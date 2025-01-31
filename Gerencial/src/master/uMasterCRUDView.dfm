@@ -44,6 +44,7 @@ inherited formMasterCRUDView: TformMasterCRUDView
           Width = 461
           Height = 469
           Cursor = crHandPoint
+          TabStop = False
           Align = alClient
           BorderStyle = bsNone
           Ctl3D = False
@@ -83,13 +84,13 @@ inherited formMasterCRUDView: TformMasterCRUDView
             ExplicitWidth = 461
             ExplicitHeight = 49
             inherited combox: TComboBox
-              Height = 22
+              TabStop = False
               StyleElements = [seFont, seClient, seBorder]
-              ExplicitHeight = 22
             end
             inherited edit: TEdit
               Width = 245
               Height = 19
+              TabStop = False
               StyleElements = [seFont, seClient, seBorder]
               OnChange = SearchBareditChange
               ExplicitWidth = 245
@@ -168,7 +169,7 @@ inherited formMasterCRUDView: TformMasterCRUDView
         Left = 48
         Top = 418
         Width = 257
-        Height = 23
+        Height = 26
         TabOrder = 0
         Text = 'Edit1'
         Visible = False
@@ -177,7 +178,7 @@ inherited formMasterCRUDView: TformMasterCRUDView
         Left = 48
         Top = 457
         Width = 257
-        Height = 23
+        Height = 26
         TabOrder = 1
         Text = 'MaskEdit1'
         Visible = False
