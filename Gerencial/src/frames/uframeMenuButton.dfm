@@ -9,15 +9,15 @@ inherited frameMenuButton: TframeMenuButton
     Width = 196
     Height = 40
     Align = alClient
+    BevelInner = bvRaised
     Color = clWindow
     ParentBackground = False
     TabOrder = 0
-    ExplicitHeight = 188
     object speed: TSpeedButton
-      Left = 1
-      Top = 1
-      Width = 194
-      Height = 38
+      Left = 2
+      Top = 2
+      Width = 192
+      Height = 36
       Align = alClient
       Caption = 'Text'
       Font.Charset = DEFAULT_CHARSET

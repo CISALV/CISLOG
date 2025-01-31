@@ -4,8 +4,6 @@ inherited formPrincipal: TformPrincipal
   ClientWidth = 948
   Color = clWhite
   StyleElements = [seFont, seClient, seBorder]
-  ExplicitLeft = 3
-  ExplicitTop = 3
   ExplicitWidth = 964
   ExplicitHeight = 705
   TextHeight = 18
@@ -873,8 +871,8 @@ inherited formPrincipal: TformPrincipal
           5006D5D1EBF5F7038140C91F5E62BFFC4DF39E1F801CDF016AA822852C31B23B
           0000000E655849664D4D002A0000000800000000000000D25393000000004945
           4E44AE426082}
-        ExplicitLeft = 48
-        ExplicitWidth = 893
+        ExplicitLeft = 2
+        ExplicitTop = 3
       end
     end
     inline frameMainBar1: TframeMainBar
@@ -901,12 +899,10 @@ inherited formPrincipal: TformPrincipal
             StyleElements = [seFont, seClient, seBorder]
             ExplicitWidth = 145
             inherited speed: TSpeedButton
+              Width = 141
               Caption = 'Cadastro'
               Flat = True
               OnClick = CadastrospeedClick
-              ExplicitLeft = 1
-              ExplicitTop = 6
-              ExplicitWidth = 143
             end
           end
         end

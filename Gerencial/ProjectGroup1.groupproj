@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{C05363BE-6A8D-4809-A445-80A026CC4AFF}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Gerencial.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Compras\Compras.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Gerencial">
+        <MSBuild Projects="Gerencial.dproj"/>
+    </Target>
+    <Target Name="Gerencial:Clean">
+        <MSBuild Projects="Gerencial.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Gerencial:Make">
+        <MSBuild Projects="Gerencial.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Compras">
+        <MSBuild Projects="..\Compras\Compras.dproj"/>
+    </Target>
+    <Target Name="Compras:Clean">
+        <MSBuild Projects="..\Compras\Compras.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Compras:Make">
+        <MSBuild Projects="..\Compras\Compras.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Gerencial;Compras"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Gerencial:Clean;Compras:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Gerencial:Make;Compras:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

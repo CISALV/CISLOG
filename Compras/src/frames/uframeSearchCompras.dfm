@@ -1,31 +1,34 @@
 inherited SearchCompras: TSearchCompras
-  Width = 724
-  Height = 44
+  Width = 765
+  Height = 47
   Align = alClient
-  ExplicitWidth = 724
-  ExplicitHeight = 44
+  ExplicitWidth = 765
+  ExplicitHeight = 47
   object pnlFundo: TPanel
     Left = 0
     Top = 0
-    Width = 724
-    Height = 44
+    Width = 765
+    Height = 47
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 724
+    ExplicitHeight = 44
     object edPesquisa: TEdit
       AlignWithMargins = True
       Left = 30
-      Top = 5
-      Width = 527
-      Height = 34
+      Top = 10
+      Width = 705
+      Height = 27
       Margins.Left = 30
-      Margins.Top = 5
-      Margins.Right = 5
-      Margins.Bottom = 5
-      Align = alLeft
+      Margins.Top = 10
+      Margins.Right = 30
+      Margins.Bottom = 10
+      Align = alClient
       BevelInner = bvNone
       TabOrder = 0
-      ExplicitTop = 11
+      ExplicitLeft = 16
+      ExplicitWidth = 739
     end
   end
 end

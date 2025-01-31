@@ -86,15 +86,15 @@ inherited formMasterCRUDView: TformMasterCRUDView
             inherited combox: TComboBox
               TabStop = False
               StyleElements = [seFont, seClient, seBorder]
+              ExplicitTop = 14
             end
             inherited edit: TEdit
-              Width = 245
-              Height = 19
+              Width = 275
+              Height = 29
               TabStop = False
               StyleElements = [seFont, seClient, seBorder]
               OnChange = SearchBareditChange
-              ExplicitWidth = 245
-              ExplicitHeight = 22
+              ExplicitWidth = 275
             end
           end
         end
