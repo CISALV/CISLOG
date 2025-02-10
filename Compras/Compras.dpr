@@ -8,8 +8,9 @@ uses
   uframeSearchCompras in 'src\frames\uframeSearchCompras.pas' {SearchCompras: TFrame},
   uAreaComprasView in 'src\compras\uAreaComprasView.pas' {formComprasView},
   uFormFactory in '..\Common\uFormFactory.pas',
-  comprasDAO in 'src\compras\comprasDAO.pas',
-  uDataConService in '..\Common\uDataConService.pas';
+  uPedidoDAO in 'src\compras\uPedidoDAO.pas',
+  uDataConService in '..\Common\uDataConService.pas',
+  uBaseVigenciaDAO in 'src\compras\uBaseVigenciaDAO.pas';
 
 {$R *.res}
 

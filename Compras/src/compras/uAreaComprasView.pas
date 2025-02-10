@@ -14,10 +14,12 @@ type
     dbGridProdutos: TDBGrid;
     Tabs: TCardPanel;
     tabBaseVigencia: TCard;
-    Card1: TCard;
+    Carrinho: TCard;
     dbGridCarrinho: TDBGrid;
     Panel1: TPanel;
     Memo1: TMemo;
+    DataSource1: TDataSource;
+    DataSource2: TDataSource;
   private
     { Private declarations }
   public

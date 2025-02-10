@@ -9,6 +9,9 @@
         <Projects Include="Gerencial.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="..\..\..\..\Documents\Embarcadero\Studio\Projects\Teste MVC\MVC_Teste.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="Gerencial:Make">
         <MSBuild Projects="Gerencial.dproj" Targets="Make"/>
     </Target>
+    <Target Name="MVC_Teste">
+        <MSBuild Projects="..\..\..\..\Documents\Embarcadero\Studio\Projects\Teste MVC\MVC_Teste.dproj"/>
+    </Target>
+    <Target Name="MVC_Teste:Clean">
+        <MSBuild Projects="..\..\..\..\Documents\Embarcadero\Studio\Projects\Teste MVC\MVC_Teste.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MVC_Teste:Make">
+        <MSBuild Projects="..\..\..\..\Documents\Embarcadero\Studio\Projects\Teste MVC\MVC_Teste.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="Compras;Gerencial"/>
+        <CallTarget Targets="Compras;Gerencial;MVC_Teste"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Compras:Clean;Gerencial:Clean"/>
+        <CallTarget Targets="Compras:Clean;Gerencial:Clean;MVC_Teste:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Compras:Make;Gerencial:Make"/>
+        <CallTarget Targets="Compras:Make;Gerencial:Make;MVC_Teste:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

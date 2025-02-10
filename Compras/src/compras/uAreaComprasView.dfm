@@ -3,9 +3,7 @@ inherited formComprasView: TformComprasView
   ClientHeight = 480
   ClientWidth = 640
   StyleElements = [seFont, seClient, seBorder]
-  ExplicitWidth = 640
-  ExplicitHeight = 480
-  TextHeight = 18
+  TextHeight = 15
   inline SearchCompras1: TSearchCompras
     Left = 0
     Top = 0
@@ -29,8 +27,8 @@ inherited formComprasView: TformComprasView
       ExplicitHeight = 47
       inherited edPesquisa: TEdit
         Width = 580
+        Height = 27
         StyleElements = [seFont, seClient, seBorder]
-        ExplicitLeft = 30
         ExplicitWidth = 580
         ExplicitHeight = 22
       end
@@ -48,10 +46,6 @@ inherited formComprasView: TformComprasView
     Align = alClient
     ActiveCard = tabBaseVigencia
     TabOrder = 1
-    ExplicitLeft = 168
-    ExplicitTop = 144
-    ExplicitWidth = 300
-    ExplicitHeight = 200
     object tabBaseVigencia: TCard
       AlignWithMargins = True
       Left = 4
@@ -61,10 +55,6 @@ inherited formComprasView: TformComprasView
       Caption = 'Base de Vigencia'
       CardIndex = 0
       TabOrder = 0
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object dbGridProdutos: TDBGrid
         Left = 0
         Top = 0
@@ -74,23 +64,19 @@ inherited formComprasView: TformComprasView
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
-        TitleFont.Height = -15
-        TitleFont.Name = 'Roboto'
+        TitleFont.Height = -12
+        TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
       end
     end
-    object Card1: TCard
+    object Carrinho: TCard
       Left = 1
       Top = 1
       Width = 638
       Height = 357
-      Caption = 'Card1'
+      Caption = 'Carrinho'
       CardIndex = 1
       TabOrder = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object dbGridCarrinho: TDBGrid
         Left = 0
         Top = 0
@@ -100,8 +86,8 @@ inherited formComprasView: TformComprasView
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
-        TitleFont.Height = -15
-        TitleFont.Name = 'Roboto'
+        TitleFont.Height = -12
+        TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
       end
     end
@@ -124,8 +110,14 @@ inherited formComprasView: TformComprasView
       Lines.Strings = (
         'Memo1')
       TabOrder = 0
-      ExplicitTop = 2
-      ExplicitHeight = 89
     end
+  end
+  object DataSource1: TDataSource
+    Left = 584
+    Top = 424
+  end
+  object DataSource2: TDataSource
+    Left = 504
+    Top = 424
   end
 end
