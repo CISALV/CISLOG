@@ -136,19 +136,21 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="src\frames\uframeSearchCompras.pas">
-            <Form>SearchCompras</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="src\compras\uAreaComprasView.pas">
+        <DCCReference Include="..\Common\uFormFactory.pas"/>
+        <DCCReference Include="..\Common\uDataConService.pas"/>
+        <DCCReference Include="src\MVC\DAO\uBaseVigenciaDAO.pas"/>
+        <DCCReference Include="src\MVC\DAO\uPedidoDAO.pas"/>
+        <DCCReference Include="src\MVC\View\uAreaComprasView.pas">
             <Form>formComprasView</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Common\uFormFactory.pas"/>
-        <DCCReference Include="src\compras\uPedidoDAO.pas"/>
-        <DCCReference Include="..\Common\uDataConService.pas"/>
-        <DCCReference Include="src\compras\uBaseVigenciaDAO.pas"/>
+        <DCCReference Include="src\MVC\DAO\uProdutoDAO.pas"/>
+        <DCCReference Include="..\Common\uframeSearch.pas">
+            <Form>frameSearch</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="src\MVC\Controller\uControllerCompras.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

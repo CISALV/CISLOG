@@ -5,8 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterForm, Vcl.ComCtrls, Vcl.ToolWin,
-  Vcl.ExtCtrls, Vcl.Buttons, Vcl.Menus,uMunicipioView,
-  Vcl.StdCtrls, uMasterFrame,uFormFactory;
+  Vcl.ExtCtrls, Vcl.Buttons, Vcl.Menus,uMunicipioCRIS,
+  Vcl.StdCtrls, uMasterFrame, uframeMenuButton,uFunctions;
 
 type
   TformMenuCadastros = class(TformMaster)
@@ -14,9 +14,7 @@ type
     gridMenu: TGridPanel;
     speedMunicipio: TSpeedButton;
     panelGRID: TPanel;
-    Usuario: TSpeedButton;
     procedure speedMunicipioClick(Sender: TObject);
-    procedure UsuarioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -33,14 +31,7 @@ implementation
 procedure TformMenuCadastros.speedMunicipioClick(Sender: TObject);
 begin
   inherited;
-  TFormFactory.CreateAndShowForm(TformMunicipioView,panelFundo);
-
-end;
-
-procedure TformMenuCadastros.UsuarioClick(Sender: TObject);
-begin
-  inherited;
-  //TFormFactory.CreateAndShowForm(TformUsuarioCRIS,panelFundo);
+  CreateAndShowForm(TformMunicipioCRIS,panelFundo);
 end;
 
 end.

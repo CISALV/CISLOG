@@ -5,12 +5,14 @@ uses
   uPrincipal in 'uPrincipal.pas' {formPrincipal},
   uMasterform in 'src\master\uMasterform.pas' {FormMaster},
   uMasterFrame in 'src\master\uMasterFrame.pas' {frameMaster: TFrame},
-  uframeSearchCompras in 'src\frames\uframeSearchCompras.pas' {SearchCompras: TFrame},
-  uAreaComprasView in 'src\compras\uAreaComprasView.pas' {formComprasView},
   uFormFactory in '..\Common\uFormFactory.pas',
-  uPedidoDAO in 'src\compras\uPedidoDAO.pas',
   uDataConService in '..\Common\uDataConService.pas',
-  uBaseVigenciaDAO in 'src\compras\uBaseVigenciaDAO.pas';
+  uBaseVigenciaDAO in 'src\MVC\DAO\uBaseVigenciaDAO.pas',
+  uPedidoDAO in 'src\MVC\DAO\uPedidoDAO.pas',
+  uAreaComprasView in 'src\MVC\View\uAreaComprasView.pas' {formComprasView},
+  uProdutoDAO in 'src\MVC\DAO\uProdutoDAO.pas',
+  uframeSearch in '..\Common\uframeSearch.pas' {frameSearch: TFrame},
+  uControllerCompras in 'src\MVC\Controller\uControllerCompras.pas';
 
 {$R *.res}
 

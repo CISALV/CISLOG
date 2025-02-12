@@ -125,50 +125,13 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="src\master\uMasterForm.pas">
-            <Form>formMaster</Form>
-        </DCCReference>
-        <DCCReference Include="src\uPrincipal.pas">
-            <Form>formPrincipal</Form>
-        </DCCReference>
-        <DCCReference Include="src\master\uMasterFrame.pas">
-            <Form>frameMaster</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="src\CRIS\frames\uframeOperationsBar.pas">
-            <Form>frameOperationsBar</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="src\uMenuCadastro.pas">
-            <Form>formMenuCadastros</Form>
-        </DCCReference>
-        <DCCReference Include="src\master\uMasterCRUDView.pas">
-            <Form>formMasterCRUDView</Form>
-        </DCCReference>
-        <DCCReference Include="src\frames\uframeMenuButton.pas">
-            <Form>frameMenuButton</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="src\frames\uframeMainBar.pas">
-            <Form>frameMainBar</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="src\CRIS\municipio\uMunicipioView.pas">
-            <Form>formMunicipioView</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="src\CRIS\municipio\uMunicipioDAO.pas"/>
-        <DCCReference Include="src\CRIS\municipio\uMunicipioModel.pas"/>
-        <DCCReference Include="src\CRIS\municipio\uMunicipioController.pas"/>
         <DCCReference Include="..\Common\uFormFactory.pas"/>
         <DCCReference Include="..\Common\uDataConService.pas"/>
-        <DCCReference Include="src\CRIS\municipio\uMunicipioDTO.pas"/>
-        <DCCReference Include="src\CRIS\frames\uframeSearchBar.pas">
-            <Form>frameSearchBar</Form>
+        <DCCReference Include="..\Common\uframeSearch.pas">
+            <Form>frameSearch</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="src\interfaces\uInterfaces.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -198,6 +161,18 @@
                 <DeployFile LocalName="Win32\Debug\Gerencial.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>Gerencial.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win64\Debug\Gerencial.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>Gerencial.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win64\Debug\Gerencial.rsm" Configuration="Debug" Class="DebugSymbols">
+                    <Platform Name="Win64">
+                        <RemoteName>Gerencial.rsm</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
