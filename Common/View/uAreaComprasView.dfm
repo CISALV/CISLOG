@@ -1,4 +1,4 @@
-inherited formComprasView: TformComprasView
+﻿inherited formComprasView: TformComprasView
   BorderStyle = bsNone
   ClientHeight = 480
   ClientWidth = 640
@@ -34,7 +34,7 @@ inherited formComprasView: TformComprasView
         Width = 632
         Height = 360
         Align = alClient
-        DataSource = DataSource1
+        DataSource = dsBDV
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -59,7 +59,7 @@ inherited formComprasView: TformComprasView
         Width = 495
         Height = 360
         Align = alClient
-        DataSource = DataSource2
+        DataSource = dsCarrinho
         ReadOnly = True
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -143,7 +143,7 @@ inherited formComprasView: TformComprasView
       Height = 64
       Align = alLeft
       DataField = 'NOME'
-      DataSource = DataSource1
+      DataSource = dsBDV
       TabOrder = 0
     end
   end
@@ -168,15 +168,16 @@ inherited formComprasView: TformComprasView
         OnChange = SearchBaredSearchChange
       end
       inherited cbFilter: TComboBox
+        Visible = False
         StyleElements = [seFont, seClient, seBorder]
       end
     end
   end
-  object DataSource1: TDataSource
+  object dsBDV: TDataSource
     Left = 456
     Top = 424
   end
-  object FDMemTable1: TFDMemTable
+  object memCarrinho: TFDMemTable
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -184,19 +185,19 @@ inherited formComprasView: TformComprasView
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 249
+    Left = 369
     Top = 418
-    object FDMemTable1Id: TIntegerField
+    object memCarrinhoId: TIntegerField
       FieldName = 'Id'
     end
-    object FDMemTable1Nome: TStringField
+    object memCarrinhoNome: TStringField
       FieldName = 'Nome'
       Size = 50
     end
   end
-  object DataSource2: TDataSource
-    DataSet = FDMemTable1
-    Left = 200
-    Top = 416
+  object dsCarrinho: TDataSource
+    DataSet = memCarrinho
+    Left = 312
+    Top = 424
   end
 end

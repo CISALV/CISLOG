@@ -1,4 +1,4 @@
-unit uAreaComprasView;
+Ôªøunit uAreaComprasView;
 
 interface
 
@@ -20,12 +20,12 @@ type
     tabCarrinho: TCard;
     dbGridCarrinho: TDBGrid;
     Panel1: TPanel;
-    DataSource1: TDataSource;
+    dsBaseVigencia: TDataSource;
     DBMemo1: TDBMemo;
-    FDMemTable1: TFDMemTable;
-    DataSource2: TDataSource;
-    FDMemTable1Id: TIntegerField;
-    FDMemTable1Nome: TStringField;
+    memCarrinho: TFDMemTable;
+    dsCarrinho: TDataSource;
+    memCarrinhoId: TIntegerField;
+    memCarrinhoNome: TStringField;
     speedCarrinho: TSpeedButton;
     Panel2: TPanel;
     speedVoltar: TSpeedButton;
@@ -59,32 +59,32 @@ procedure TformComprasView.dbGridProdutosDblClick(Sender: TObject);
 var
   i: Integer;
   IdProduto: Integer;
-  srcField, destField: TField;
+  baseProduto, carrtProduto: TField;
 begin
   inherited;
-  IdProduto := DataSource1.Dataset.FieldByName('id').AsInteger;
+  IdProduto := dsBaseVigencia.Dataset.FieldByName('id').AsInteger;
 
-  FDMemTable1.Open;
+  memCarrinho.Open;
 
-    if FDMemTable1.Locate('Id', IdProduto, []) then
+    if memCarrinho.Locate('Id', IdProduto, []) then
   begin
-    ShowMessage('Este Produto j· est· no carrinho!');
+    ShowMessage('Este Produto j√° est√° no carrinho!');
     Exit
   end;
 
   Tabs.ActiveCard := tabCarrinho;
 
-  FDMemTable1.Append;
+  memCarrinho.Append;
 
-  for i := 0 to DataSource1.DataSet.FieldCount - 1 do
+  for i := 0 to dsBaseVigencia.DataSet.FieldCount - 1 do
   begin
-    srcField := DataSource1.Dataset.Fields[i];
-    destField := FDMemTable1.FindField(srcField.FieldName);
-    if Assigned(destField) then
-      destField.Value := srcField.Value;
+    baseProduto := dsBaseVigencia.Dataset.Fields[i];
+    carrtProduto := memCarrinho.FindField(baseProduto.FieldName);
+    if Assigned(carrtProduto) then
+      carrtProduto.Value := baseProduto.Value;
   end;
 
-  FDMemTable1.Post;
+  memCarrinho.Post;
 
 
 end;
@@ -100,11 +100,11 @@ begin
   Tabs.ActiveCard := tabCompra;
 
   SearchBar.Controller := Controller;
-  SearchBar.DataSource := DataSource1;
+  SearchBar.DataSource := dsBaseVigencia;
   SearchBar.ConfigureFilterFields(['NOME','CNPJ']);
 
 
-  DataSource1.DataSet := Controller.LoadData;
+  dsBaseVigencia.DataSet := Controller.LoadData;
 
 end;
 
