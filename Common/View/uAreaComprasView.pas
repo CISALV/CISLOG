@@ -37,6 +37,7 @@ type
     //procedure SearchCompras1edPesquisaChange(Sender: TObject);
     procedure speedCarrinhoClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
+    procedure frameSearch1edSearchChange(Sender: TObject);
     //procedure AdicionarPruduto();
   private
    FQuery : TFDQuery;
@@ -103,10 +104,17 @@ begin
 
   frameSearch.Controller := Controller;
   frameSearch.DataSource := DataSource1;
-  frameSearch.ConfigureFilterFields(['NOME','CNPJ'])
+  frameSearch.ConfigureFilterFields(['NOME','CNPJ']);
 
 
   DataSource1.DataSet := Controller.LoadData;
+
+end;
+
+procedure TformComprasView.frameSearch1edSearchChange(Sender: TObject);
+begin
+  inherited;
+  frameSearch1.edSearchChange(Sender);
 
 end;
 

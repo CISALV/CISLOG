@@ -155,6 +155,7 @@ inherited formComprasView: TformComprasView
       StyleElements = [seFont, seClient, seBorder]
       inherited edSearch: TEdit
         StyleElements = [seFont, seClient, seBorder]
+        OnChange = frameSearch1edSearchChange
       end
       inherited cbFilter: TComboBox
         StyleElements = [seFont, seClient, seBorder]

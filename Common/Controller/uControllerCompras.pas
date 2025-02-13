@@ -16,16 +16,20 @@ implementation
 { TControllerCompras }
 
 function TControllerCompras.FilterDataSet(const AFieldName, ASearchText: string): TDataset;
+var
+ DAO : TDAOMunicipio;
 begin
-
+ DAO := TDAOMunicipio.Create;
+ Result := DAO.ProcurarMunicipios(AFieldName, ASearchText);
 end;
 
 function TControllerCompras.LoadData: TDataset;
 var
   DAO : TDAOMunicipio;
 begin
-  DAO.Create;
+  DAO := TDAOMunicipio.Create;
   Result := DAO.GetMunicipios;
 end;
+
 
 end.
