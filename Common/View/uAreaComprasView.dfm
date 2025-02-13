@@ -4,14 +4,14 @@ inherited formComprasView: TformComprasView
   ClientWidth = 640
   StyleElements = [seFont, seClient, seBorder]
   OnShow = FormShow
-  ExplicitWidth = 640
-  ExplicitHeight = 480
-  TextHeight = 15
+  ExplicitLeft = 2
+  ExplicitTop = 2
+  TextHeight = 18
   object Tabs: TCardPanel
     Left = 0
-    Top = 0
+    Top = 40
     Width = 640
-    Height = 408
+    Height = 368
     Margins.Left = 5
     Margins.Top = 5
     Margins.Right = 5
@@ -19,30 +19,30 @@ inherited formComprasView: TformComprasView
     Align = alClient
     ActiveCard = tabBaseVigencia
     TabOrder = 0
-    ExplicitTop = 49
-    ExplicitHeight = 359
+    ExplicitTop = 0
+    ExplicitHeight = 408
     object tabBaseVigencia: TCard
       AlignWithMargins = True
       Left = 4
       Top = 4
       Width = 632
-      Height = 400
+      Height = 360
       Caption = 'Base de Vigencia'
       CardIndex = 0
       TabOrder = 0
-      ExplicitHeight = 351
+      ExplicitHeight = 400
       object dbGridProdutos: TDBGrid
         Left = 0
         Top = 0
         Width = 632
-        Height = 400
+        Height = 360
         Align = alClient
         DataSource = DataSource1
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
-        TitleFont.Height = -12
-        TitleFont.Name = 'Segoe UI'
+        TitleFont.Height = -15
+        TitleFont.Name = 'Roboto'
         TitleFont.Style = []
         OnDblClick = dbGridProdutosDblClick
       end
@@ -51,40 +51,40 @@ inherited formComprasView: TformComprasView
       Left = 1
       Top = 1
       Width = 638
-      Height = 406
+      Height = 366
       Caption = 'Carrinho'
       CardIndex = 1
       TabOrder = 1
-      ExplicitHeight = 357
+      ExplicitHeight = 406
       object dbGridCarrinho: TDBGrid
         AlignWithMargins = True
         Left = 3
         Top = 3
         Width = 553
-        Height = 400
+        Height = 360
         Align = alClient
         DataSource = DataSource2
         ReadOnly = True
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
-        TitleFont.Height = -12
-        TitleFont.Name = 'Segoe UI'
+        TitleFont.Height = -15
+        TitleFont.Name = 'Roboto'
         TitleFont.Style = []
       end
       object Panel2: TPanel
         Left = 559
         Top = 0
         Width = 79
-        Height = 406
+        Height = 366
         Align = alRight
         Caption = 'Panel2'
         TabOrder = 1
-        ExplicitHeight = 357
+        ExplicitHeight = 406
         object speedLimpar: TSpeedButton
           AlignWithMargins = True
           Left = 4
-          Top = 380
+          Top = 340
           Width = 71
           Height = 22
           Align = alBottom
@@ -137,35 +137,33 @@ inherited formComprasView: TformComprasView
       TabOrder = 0
     end
   end
-  inline frameMaster11: TframeSearch
+  inline frameSearch1: TframeSearch
     Left = 0
     Top = 0
     Width = 640
-    Height = 408
-    Align = alClient
+    Height = 40
+    Align = alTop
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Roboto'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 2
-    ExplicitTop = 8
-    inherited pnlPesquisa: TPanel
+    ExplicitHeight = 40
+    inherited pnlSearch: TPanel
       StyleElements = [seFont, seClient, seBorder]
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 640
-      inherited ed: TEdit
+      inherited edSearch: TEdit
         StyleElements = [seFont, seClient, seBorder]
-        ExplicitLeft = 155
-        ExplicitTop = 4
-        ExplicitWidth = 481
       end
-      inherited cb: TComboBox
+      inherited cbFilter: TComboBox
         StyleElements = [seFont, seClient, seBorder]
-        ExplicitLeft = 4
-        ExplicitTop = 4
       end
     end
   end
   object DataSource1: TDataSource
-    Left = 376
-    Top = 424
+    Left = 352
+    Top = 416
   end
   object FDMemTable1: TFDMemTable
     FetchOptions.AssignedValues = [evMode]
@@ -175,8 +173,8 @@ inherited formComprasView: TformComprasView
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 265
-    Top = 426
+    Left = 249
+    Top = 418
     object FDMemTable1Id: TIntegerField
       FieldName = 'Id'
     end
@@ -187,13 +185,14 @@ inherited formComprasView: TformComprasView
   end
   object DataSource2: TDataSource
     DataSet = FDMemTable1
-    Left = 320
+    Left = 224
     Top = 424
   end
   object Timer1: TTimer
+    Enabled = False
     Interval = 5000
     OnTimer = Timer1Timer
-    Left = 440
-    Top = 424
+    Left = 400
+    Top = 416
   end
 end

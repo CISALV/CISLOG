@@ -24,19 +24,19 @@ inherited frameMainBar: TframeMainBar
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      ExplicitWidth = 185
+      ExplicitTop = 40
+      ExplicitWidth = 145
       inherited panel: TPanel
         Width = 145
         StyleElements = [seFont, seClient, seBorder]
-        ExplicitWidth = 185
-        ExplicitHeight = 40
+        ExplicitWidth = 145
         inherited speed: TSpeedButton
-          Width = 143
+          Width = 141
           OnClick = CadastrospeedClick
-          ExplicitLeft = -32
-          ExplicitTop = -23
-          ExplicitWidth = 194
-          ExplicitHeight = 38
+          ExplicitLeft = 18
+          ExplicitTop = -14
+          ExplicitWidth = 141
+          ExplicitHeight = 36
         end
       end
     end

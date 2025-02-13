@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
   Vcl.Imaging.pngimage, Vcl.Buttons, uMenuCadastro, uMasterForm, Vcl.StdCtrls,
-  uMasterFrame, uframeMenuButton, uframeMainBar,uFormFactory,uDataConService;
+  uMasterFrame, uframeMenuButton,uFormFactory,uDataConService;
 
 type
   TformPrincipal = class(TformMaster)
@@ -14,8 +14,15 @@ type
     panelBackground: TPanel;
     panelTopBar: TPanel;
     Image1: TImage;
-    frameMainBar1: TframeMainBar;
+    panelTaskbar: TPanel;
+    Cadastro: TframeMenuButton;
     procedure CadastrospeedClick(Sender: TObject);
+
+    procedure Merda;
+    function FazerCoisa : Integer;
+    procedure frameMainBar1panelTaskbarClick(Sender: TObject);
+    procedure CadastrospeedMouseEnter(Sender: TObject);
+    procedure LixeiraspeedClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,5 +41,7 @@ begin
   inherited;
   TFormFactory.CreateAndShowForm(TformMenuCadastros,panelContainer);
 end;
+
+
 
 end.

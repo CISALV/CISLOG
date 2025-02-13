@@ -13,17 +13,6 @@ uses
   Vcl.DBCtrls, Vcl.Buttons, uframeSearch, uControllerCompras;
 
 type
-  TSearchCompras = class(TframeSearch)
-    private
-    FController: TControllerCompras;
-
-    protected
-      procedure ExecFiltering(const AFilterField, ASearchText: string); override;
-    public
-      procedure ReloadData; override;
-  end;
-
-
   TformComprasView = class(TFormMaster)
     dbGridProdutos: TDBGrid;
     Tabs: TCardPanel;
@@ -42,9 +31,10 @@ type
     speedLimpar: TSpeedButton;
     speedRemoveItem: TSpeedButton;
     Timer1: TTimer;
+    frameSearch1: TframeSearch;
     procedure FormShow(Sender: TObject);
     procedure dbGridProdutosDblClick(Sender: TObject);
-    procedure SearchCompras1edPesquisaChange(Sender: TObject);
+    //procedure SearchCompras1edPesquisaChange(Sender: TObject);
     procedure speedCarrinhoClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     //procedure AdicionarPruduto();
@@ -97,21 +87,26 @@ begin
 end;
 
 procedure TformComprasView.FormShow(Sender: TObject);
+var
+  Controller : TControllerCompras;
 begin
   inherited;
-  FQuery := TDataConService.GetInstance.GetQuery;
-  FQuery.SQL.Clear;
-  FQuery.SQL.Add('SELECT * FROM MUNICIPIO');
-  FQuery.Open;
-  DataSource1.DataSet := FQuery;
+
+  {FQuery := TDataConService.GetInstance.GetQuery;
+    FQuery.SQL.Clear;
+      FQuery.SQL.Add('SELECT * FROM MUNICIPIO');
+        FQuery.Open;}
+
+  Controller := TControllerCompras.Create;
 
   Tabs.ActiveCard := tabBaseVigencia;
-end;
 
-procedure TformComprasView.SearchCompras1edPesquisaChange(Sender: TObject);
-begin
-  inherited;
-  tabs.ActiveCard := TabBaseVigencia;
+  frameSearch.Controller := Controller;
+  frameSearch.DataSource := DataSource1;
+  frameSearch.ConfigureFilterFields(['NOME','CNPJ'])
+
+
+  DataSource1.DataSet := Controller.LoadData;
 
 end;
 
@@ -129,20 +124,6 @@ begin
   FQuery.Open;
 
   Timer1.Enabled := True;
-
-end;
-
-{ TSearchCompras }
-
-procedure TSearchCompras.ExecFiltering(const AFilterField, ASearchText: string);
-begin
-  inherited;
-  DataSource1.DataSet :=
-end;
-
-procedure TSearchCompras.ReloadData;
-begin
-  inherited;
 
 end;
 

@@ -125,13 +125,57 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\Common\uFormFactory.pas"/>
-        <DCCReference Include="..\Common\uDataConService.pas"/>
-        <DCCReference Include="..\Common\uframeSearch.pas">
+        <DCCReference Include="..\Common\uMasterForm.pas">
+            <Form>formMaster</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Common\uMasterFrame.pas">
+            <Form>frameMaster</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\Common\Utils\uDataConService.pas"/>
+        <DCCReference Include="..\Common\Utils\frames\uframeMenuButton.pas">
+            <Form>frameMenuButton</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\Common\Utils\frames\uframeOperationsBar.pas">
+            <Form>frameOperationsBar</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\Common\Utils\frames\uframeSearchBar.pas">
+            <Form>frameSearchBar</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="src\uPrincipal.pas">
+            <Form>formPrincipal</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\uMenuCadastro.pas">
+            <Form>formMenuCadastros</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Common\Utils\uFormFactory.pas"/>
+        <DCCReference Include="..\Common\uMasterCRUDView.pas">
+            <Form>formMasterCRUDView</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Common\View\uViewMunicipio.pas">
+            <Form>formMunicipioView</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Common\Controller\uControllerMunicipio.pas"/>
+        <DCCReference Include="..\Common\Interfaces\uInterfaces.pas"/>
+        <DCCReference Include="..\Common\Model\Entities\uMunicipio.pas"/>
+        <DCCReference Include="..\Common\Utils\frames\uframeSearch.pas">
             <Form>frameSearch</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
+        <None Include="Gerencial.todo"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

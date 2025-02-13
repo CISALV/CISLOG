@@ -3,29 +3,35 @@ unit uframeSearch;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterFrame, Vcl.ExtCtrls, Vcl.StdCtrls,uInterfaces;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterFrame, Vcl.ExtCtrls,
+  Vcl.StdCtrls, uInterfaces, Data.DB;
 
 type
   TframeSearch = class(TframeMaster)
-    ed: TEdit;
-    cb: TComboBox;
-    pnlPesquisa: TPanel;
+    edSearch: TEdit;
+    cbFilter: TComboBox;
+    pnlSearch: TPanel;
+    procedure edSearchChange(Sender: TObject);
+  private
+    procedure SetController(const Value: ISearchController);
+    procedure SetDataSource(const Value: TDataSource);
+    procedure SetFilterFields(const Value: TStrings);
   protected
-  FFilterFields: TStrings;
-  FConcreteCombo: TComboBox;
-  FController : IController;
-  procedure SetConcreteCombo(const Value : TComboBox);
-  procedure SetFilterFields(const Value : TStrings);
-  procedure edPesquisaChange(Sender: TObject); virtual;
-  procedure ExecFiltering(const AFilterField, ASearchText: string); virtual; abstract;
+    FController: ISearchController;
+    FDataSource: TDataSource;
+    FFilterFields: TStrings;
+
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
 
-    procedure ReloadData; virtual; abstract;
-    property ConcreteCombo: TComboBox read FConcreteCombo write SetConcreteCombo;
-    property FilterFields: TStrings read FFilterFields write SetFilterFields;
+    property Controller: ISearchController read FController write SetController;
+    property DataSource: TDataSource read FDataSource write SetDataSource;
+
+    procedure ConfigureFilterFields(const AFields: TArray<string>);
+
 
   end;
 
@@ -35,7 +41,13 @@ var
 implementation
 
 {$R *.dfm}
-
+procedure TframeSearch.ConfigureFilterFields(const AFields: TArray<string>);
+begin
+  cbFilter.Items.Clear;
+  for var Field in AFields do
+    cbFilter.Items.Add(Field);
+  cbFilter.ItemIndex := 0;
+end;
 
 { TframePesquisa }
 
@@ -51,33 +63,32 @@ begin
   inherited;
 end;
 
-procedure TframeSearch.edPesquisaChange(Sender: TObject);
+procedure TframeSearch.edSearchChange(Sender: TObject);
 var
-  Filter: string;
-  FilterField: string;
+  SelectedField: string;
 begin
   inherited;
-  if ed.Text = '' then
-  FController.CarregarDados
+  if not Assigned(FController) or not Assigned(FDataSource) then
+    Exit;
+
+  if cbFilter.ItemIndex >= 0 then
+    SelectedField := cbFilter.Items[cbFilter.ItemIndex];
+
+  if Trim(edSearch.Text) = '' then
+    FDataSource.DataSet := FController.LoadData
   else
-  begin
-    if Assigned(FConcreteCombo) then
-      FilterField := FFilterFields[FConcreteCombo.ItemIndex]
-    else
-      FilterField := FFilterFields[0];
-
-      ExecFiltering(FilterField, ed.Text);
-  end;
+    FDataSource.DataSet := FController.FilterDataSet(SelectedField, edSearch.Text);
 end;
 
-procedure TframeSearch.SetConcreteCombo(const Value: TComboBox);
+procedure TframeSearch.SetController(const Value: ISearchController);
 begin
-   FConcreteCombo := Value;
+  FController := Value;
 end;
 
-procedure TframeSearch.SetFilterFields(const Value: TStrings);
+procedure TframeSearch.SetDataSource(const Value: TDataSource);
 begin
-  FFilterFields.Assign(Value);
+  FDataSource := Value;
 end;
+
 
 end.

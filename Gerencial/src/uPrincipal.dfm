@@ -4,6 +4,8 @@ inherited formPrincipal: TformPrincipal
   ClientWidth = 948
   Color = clWhite
   StyleElements = [seFont, seClient, seBorder]
+  ExplicitLeft = 2
+  ExplicitTop = 2
   ExplicitWidth = 964
   ExplicitHeight = 705
   TextHeight = 18
@@ -19,18 +21,19 @@ inherited formPrincipal: TformPrincipal
     ExplicitHeight = 617
     object panelBackground: TPanel
       AlignWithMargins = True
-      Left = 149
+      Left = 148
       Top = 3
-      Width = 796
+      Width = 797
       Height = 619
       Align = alClient
       TabOrder = 0
+      ExplicitLeft = 149
       ExplicitWidth = 794
       ExplicitHeight = 611
       object Image1: TImage
         Left = 1
         Top = 1
-        Width = 794
+        Width = 795
         Height = 617
         Align = alClient
         Center = True
@@ -873,37 +876,48 @@ inherited formPrincipal: TformPrincipal
           4E44AE426082}
         ExplicitLeft = 2
         ExplicitTop = 3
+        ExplicitWidth = 794
       end
     end
-    inline frameMainBar1: TframeMainBar
+    object panelTaskbar: TPanel
       Left = 0
       Top = 0
-      Width = 146
+      Width = 145
       Height = 625
       Align = alLeft
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Roboto'
-      Font.Style = []
-      ParentFont = False
+      BevelOuter = bvNone
+      Color = cl3DLight
+      ParentBackground = False
       TabOrder = 1
-      ExplicitHeight = 617
-      inherited panelTaskbar: TPanel
-        Height = 625
-        StyleElements = [seFont, seClient, seBorder]
-        ExplicitHeight = 617
-        inherited Cadastro: TframeMenuButton
+      ExplicitLeft = 8
+      inline Cadastro: TframeMenuButton
+        Left = 0
+        Top = 0
+        Width = 145
+        Height = 40
+        Align = alTop
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Roboto'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        ExplicitTop = 8
+        ExplicitWidth = 145
+        inherited panel: TPanel
+          Width = 145
+          StyleElements = [seFont, seClient, seBorder]
           ExplicitWidth = 145
-          inherited panel: TPanel
-            StyleElements = [seFont, seClient, seBorder]
-            ExplicitWidth = 145
-            inherited speed: TSpeedButton
-              Width = 141
-              Caption = 'Cadastro'
-              Flat = True
-              OnClick = CadastrospeedClick
-            end
+          inherited speed: TSpeedButton
+            Width = 141
+            Caption = 'Cadastro'
+            Flat = True
+            OnClick = CadastrospeedClick
+            ExplicitLeft = 2
+            ExplicitTop = 6
+            ExplicitWidth = 141
+            ExplicitHeight = 36
           end
         end
       end

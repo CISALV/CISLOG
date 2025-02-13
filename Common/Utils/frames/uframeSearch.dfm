@@ -1,17 +1,14 @@
 inherited frameSearch: TframeSearch
   Height = 56
   ExplicitHeight = 56
-  object pnlPesquisa: TPanel
+  object pnlSearch: TPanel
     Left = 0
     Top = 0
     Width = 640
     Height = 41
     Align = alTop
     TabOrder = 0
-    ExplicitLeft = 56
-    ExplicitTop = 64
-    ExplicitWidth = 185
-    object ed: TEdit
+    object edSearch: TEdit
       AlignWithMargins = True
       Left = 155
       Top = 4
@@ -19,21 +16,17 @@ inherited frameSearch: TframeSearch
       Height = 33
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 0
-      ExplicitTop = 41
-      ExplicitWidth = 640
-      ExplicitHeight = 23
+      OnChange = edSearchChange
+      ExplicitHeight = 22
     end
-    object cb: TComboBox
+    object cbFilter: TComboBox
       AlignWithMargins = True
       Left = 4
       Top = 4
       Width = 145
-      Height = 23
+      Height = 22
       Align = alLeft
       TabOrder = 1
-      ExplicitLeft = 120
-      ExplicitTop = 18
     end
   end
 end
