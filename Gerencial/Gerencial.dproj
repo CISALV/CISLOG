@@ -134,7 +134,6 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Common\Utils\uDataConService.pas"/>
         <DCCReference Include="..\Common\Utils\frames\uframeMenuButton.pas">
             <Form>frameMenuButton</Form>
             <FormType>dfm</FormType>
@@ -175,6 +174,7 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
+        <DCCReference Include="..\Common\Utils\uDataConService.pas"/>
         <None Include="Gerencial.todo"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

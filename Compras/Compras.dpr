@@ -2,17 +2,17 @@ program Compras;
 
 uses
   Vcl.Forms,
-  uPrincipal in 'uPrincipal.pas' {formPrincipal},
-  uMasterform in 'src\master\uMasterform.pas' {FormMaster},
-  uMasterFrame in 'src\master\uMasterFrame.pas' {frameMaster: TFrame},
-  uFormFactory in '..\Common\uFormFactory.pas',
-  uDataConService in '..\Common\uDataConService.pas',
-  uBaseVigenciaDAO in 'src\MVC\DAO\uBaseVigenciaDAO.pas',
-  uPedidoDAO in 'src\MVC\DAO\uPedidoDAO.pas',
-  uAreaComprasView in 'src\MVC\View\uAreaComprasView.pas' {formComprasView},
-  uProdutoDAO in 'src\MVC\DAO\uProdutoDAO.pas',
-  uframeSearch in '..\Common\uframeSearch.pas' {frameSearch: TFrame},
-  uControllerCompras in 'src\MVC\Controller\uControllerCompras.pas';
+  uInterfaces in '..\Common\Interfaces\uInterfaces.pas',
+  uAreaComprasView in '..\Common\View\uAreaComprasView.pas' {formComprasView},
+  uframeSearch in '..\Common\Utils\frames\uframeSearch.pas' {frameSearch: TFrame},
+  uControllerCompras in '..\Common\Controller\uControllerCompras.pas',
+  uMasterForm in '..\Common\uMasterForm.pas' {formMaster},
+  uMunicipio in '..\Common\Model\Entities\uMunicipio.pas',
+  uDataConService in '..\Common\Utils\uDataConService.pas',
+  uDAOMunicipio in '..\Common\Model\DAO\uDAOMunicipio.pas',
+  uFormFactory in '..\Common\Utils\uFormFactory.pas',
+  uMasterFrame in '..\Common\uMasterFrame.pas' {frameMaster: TFrame},
+  uPrincipal in 'src\uPrincipal.pas' {formPrincipal};
 
 {$R *.res}
 

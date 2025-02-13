@@ -17,7 +17,7 @@ type
   private
     procedure SetController(const Value: ISearchController);
     procedure SetDataSource(const Value: TDataSource);
-    procedure SetFilterFields(const Value: TStrings);
+    //procedure SetFilterFields(const Value: TStrings);
   protected
     FController: ISearchController;
     FDataSource: TDataSource;
@@ -89,6 +89,5 @@ procedure TframeSearch.SetDataSource(const Value: TDataSource);
 begin
   FDataSource := Value;
 end;
-
 
 end.

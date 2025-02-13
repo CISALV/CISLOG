@@ -4,7 +4,6 @@ uses
   Vcl.Forms,
   uMasterForm in '..\Common\uMasterForm.pas' {formMaster},
   uMasterFrame in '..\Common\uMasterFrame.pas' {frameMaster: TFrame},
-  uDataConService in '..\Common\Utils\uDataConService.pas',
   uframeMenuButton in '..\Common\Utils\frames\uframeMenuButton.pas' {frameMenuButton: TFrame},
   uframeOperationsBar in '..\Common\Utils\frames\uframeOperationsBar.pas' {frameOperationsBar: TFrame},
   uframeSearchBar in '..\Common\Utils\frames\uframeSearchBar.pas' {frameSearchBar: TFrame},
@@ -16,7 +15,8 @@ uses
   uControllerMunicipio in '..\Common\Controller\uControllerMunicipio.pas',
   uInterfaces in '..\Common\Interfaces\uInterfaces.pas',
   uMunicipio in '..\Common\Model\Entities\uMunicipio.pas',
-  uframeSearch in '..\Common\Utils\frames\uframeSearch.pas' {frameSearch: TFrame};
+  uframeSearch in '..\Common\Utils\frames\uframeSearch.pas' {frameSearch: TFrame},
+  uDataConService in '..\Common\Utils\uDataConService.pas';
 
 {$R *.res}
 
