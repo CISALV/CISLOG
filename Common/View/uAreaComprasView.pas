@@ -16,8 +16,8 @@ type
   TformComprasView = class(TFormMaster)
     dbGridProdutos: TDBGrid;
     Tabs: TCardPanel;
-    tabBaseVigencia: TCard;
-    Carrinho: TCard;
+    tabCompra: TCard;
+    tabCarrinho: TCard;
     dbGridCarrinho: TDBGrid;
     Panel1: TPanel;
     DataSource1: TDataSource;
@@ -28,16 +28,16 @@ type
     FDMemTable1Nome: TStringField;
     speedCarrinho: TSpeedButton;
     Panel2: TPanel;
-    speedLimpar: TSpeedButton;
+    speedVoltar: TSpeedButton;
     speedRemoveItem: TSpeedButton;
-    Timer1: TTimer;
-    frameSearch1: TframeSearch;
-    procedure FormShow(Sender: TObject);
+    SearchBar: TframeSearch;
+    SpeedButton1: TSpeedButton;
     procedure dbGridProdutosDblClick(Sender: TObject);
     //procedure SearchCompras1edPesquisaChange(Sender: TObject);
     procedure speedCarrinhoClick(Sender: TObject);
-    procedure Timer1Timer(Sender: TObject);
-    procedure frameSearch1edSearchChange(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure SearchBaredSearchChange(Sender: TObject);
+    procedure speedVoltarClick(Sender: TObject);
     //procedure AdicionarPruduto();
   private
    FQuery : TFDQuery;
@@ -53,6 +53,7 @@ implementation
 {$R *.dfm}
 
 uses uDataConService;
+
 
 procedure TformComprasView.dbGridProdutosDblClick(Sender: TObject);
 var
@@ -71,7 +72,7 @@ begin
     Exit
   end;
 
-  Tabs.ActiveCard := Carrinho;
+  Tabs.ActiveCard := tabCarrinho;
 
   FDMemTable1.Append;
 
@@ -85,54 +86,46 @@ begin
 
   FDMemTable1.Post;
 
+
 end;
 
-procedure TformComprasView.FormShow(Sender: TObject);
+procedure TformComprasView.FormCreate(Sender: TObject);
 var
   Controller : TControllerCompras;
 begin
   inherited;
 
-  {FQuery := TDataConService.GetInstance.GetQuery;
-    FQuery.SQL.Clear;
-      FQuery.SQL.Add('SELECT * FROM MUNICIPIO');
-        FQuery.Open;}
-
   Controller := TControllerCompras.Create;
 
-  Tabs.ActiveCard := tabBaseVigencia;
+  Tabs.ActiveCard := tabCompra;
 
-  frameSearch.Controller := Controller;
-  frameSearch.DataSource := DataSource1;
-  frameSearch.ConfigureFilterFields(['NOME','CNPJ']);
+  SearchBar.Controller := Controller;
+  SearchBar.DataSource := DataSource1;
+  SearchBar.ConfigureFilterFields(['NOME','CNPJ']);
 
 
   DataSource1.DataSet := Controller.LoadData;
 
 end;
 
-procedure TformComprasView.frameSearch1edSearchChange(Sender: TObject);
+procedure TformComprasView.SearchBaredSearchChange(Sender: TObject);
 begin
   inherited;
-  frameSearch1.edSearchChange(Sender);
-
+  SearchBar.edSearchChange(Sender);
+  Tabs.ActiveCard := tabCompra;
 end;
 
 procedure TformComprasView.speedCarrinhoClick(Sender: TObject);
 begin
   inherited;
-  Tabs.ActiveCard := Carrinho;
+  Tabs.ActiveCard := tabCarrinho;
+  SearchBar.edSearch.Text := '';
+
 end;
-procedure TformComprasView.Timer1Timer(Sender: TObject);
+procedure TformComprasView.speedVoltarClick(Sender: TObject);
 begin
   inherited;
-  Timer1.Enabled := False;
-
-  FQuery.Close;
-  FQuery.Open;
-
-  Timer1.Enabled := True;
-
+ tabs.ActiveCard := tabCompra;
 end;
 
 end.

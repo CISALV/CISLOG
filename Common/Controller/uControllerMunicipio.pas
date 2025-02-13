@@ -5,7 +5,7 @@ interface
 uses uDAOMunicipio, FireDAC.Comp.Client, System.SysUtils, uMunicipio,Dialogs,uInterfaces;
 
 type
-  TMunicipioController = class(TInterfacedObject,ISearchController)
+  TMunicipioController = class
   private
     FMunicipioDAO: TDAOMunicipio;
   public

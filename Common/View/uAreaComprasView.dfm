@@ -3,7 +3,7 @@ inherited formComprasView: TformComprasView
   ClientHeight = 480
   ClientWidth = 640
   StyleElements = [seFont, seClient, seBorder]
-  OnShow = FormShow
+  OnCreate = FormCreate
   ExplicitLeft = 2
   ExplicitTop = 2
   TextHeight = 18
@@ -17,11 +17,9 @@ inherited formComprasView: TformComprasView
     Margins.Right = 5
     Margins.Bottom = 5
     Align = alClient
-    ActiveCard = tabBaseVigencia
+    ActiveCard = tabCarrinho
     TabOrder = 0
-    ExplicitTop = 0
-    ExplicitHeight = 408
-    object tabBaseVigencia: TCard
+    object tabCompra: TCard
       AlignWithMargins = True
       Left = 4
       Top = 4
@@ -30,7 +28,6 @@ inherited formComprasView: TformComprasView
       Caption = 'Base de Vigencia'
       CardIndex = 0
       TabOrder = 0
-      ExplicitHeight = 400
       object dbGridProdutos: TDBGrid
         Left = 0
         Top = 0
@@ -47,20 +44,19 @@ inherited formComprasView: TformComprasView
         OnDblClick = dbGridProdutosDblClick
       end
     end
-    object Carrinho: TCard
+    object tabCarrinho: TCard
       Left = 1
       Top = 1
       Width = 638
       Height = 366
-      Caption = 'Carrinho'
+      Caption = 'tabCarrinho'
       CardIndex = 1
       TabOrder = 1
-      ExplicitHeight = 406
       object dbGridCarrinho: TDBGrid
         AlignWithMargins = True
-        Left = 3
+        Left = 140
         Top = 3
-        Width = 553
+        Width = 495
         Height = 360
         Align = alClient
         DataSource = DataSource2
@@ -73,34 +69,46 @@ inherited formComprasView: TformComprasView
         TitleFont.Style = []
       end
       object Panel2: TPanel
-        Left = 559
+        Left = 0
         Top = 0
-        Width = 79
+        Width = 137
         Height = 366
-        Align = alRight
+        Align = alLeft
         Caption = 'Panel2'
         TabOrder = 1
-        ExplicitHeight = 406
-        object speedLimpar: TSpeedButton
+        object speedVoltar: TSpeedButton
           AlignWithMargins = True
           Left = 4
-          Top = 340
-          Width = 71
+          Top = 4
+          Width = 129
           Height = 22
-          Align = alBottom
-          Caption = 'Limpar'
-          ExplicitLeft = -12
-          ExplicitTop = 76
-          ExplicitWidth = 56
+          Align = alTop
+          Caption = 'Voltar'
+          OnClick = speedVoltarClick
+          ExplicitLeft = 19
+          ExplicitTop = 3
         end
         object speedRemoveItem: TSpeedButton
           AlignWithMargins = True
           Left = 4
-          Top = 4
-          Width = 71
+          Top = 32
+          Width = 129
           Height = 21
           Align = alTop
           Caption = 'Remover Item'
+          ExplicitTop = 4
+          ExplicitWidth = 56
+        end
+        object SpeedButton1: TSpeedButton
+          AlignWithMargins = True
+          Left = 4
+          Top = 59
+          Width = 129
+          Height = 22
+          Align = alTop
+          Caption = 'Limpar'
+          ExplicitLeft = -12
+          ExplicitTop = 76
           ExplicitWidth = 56
         end
       end
@@ -114,12 +122,14 @@ inherited formComprasView: TformComprasView
     Align = alBottom
     Caption = 'Panel1'
     TabOrder = 1
+    ExplicitLeft = 8
+    ExplicitTop = 416
     object speedCarrinho: TSpeedButton
-      Left = 560
+      Left = 188
       Top = 1
       Width = 79
       Height = 70
-      Align = alRight
+      Align = alLeft
       Caption = 'Carrinho'
       OnClick = speedCarrinhoClick
       ExplicitLeft = 464
@@ -137,7 +147,7 @@ inherited formComprasView: TformComprasView
       TabOrder = 0
     end
   end
-  inline frameSearch1: TframeSearch
+  inline SearchBar: TframeSearch
     Left = 0
     Top = 0
     Width = 640
@@ -155,7 +165,7 @@ inherited formComprasView: TformComprasView
       StyleElements = [seFont, seClient, seBorder]
       inherited edSearch: TEdit
         StyleElements = [seFont, seClient, seBorder]
-        OnChange = frameSearch1edSearchChange
+        OnChange = SearchBaredSearchChange
       end
       inherited cbFilter: TComboBox
         StyleElements = [seFont, seClient, seBorder]
@@ -163,8 +173,8 @@ inherited formComprasView: TformComprasView
     end
   end
   object DataSource1: TDataSource
-    Left = 352
-    Top = 416
+    Left = 456
+    Top = 424
   end
   object FDMemTable1: TFDMemTable
     FetchOptions.AssignedValues = [evMode]
@@ -186,14 +196,7 @@ inherited formComprasView: TformComprasView
   end
   object DataSource2: TDataSource
     DataSet = FDMemTable1
-    Left = 224
-    Top = 424
-  end
-  object Timer1: TTimer
-    Enabled = False
-    Interval = 5000
-    OnTimer = Timer1Timer
-    Left = 400
+    Left = 200
     Top = 416
   end
 end

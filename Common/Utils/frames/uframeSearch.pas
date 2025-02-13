@@ -31,8 +31,6 @@ type
     property DataSource: TDataSource read FDataSource write SetDataSource;
 
     procedure ConfigureFilterFields(const AFields: TArray<string>);
-
-
   end;
 
 var
