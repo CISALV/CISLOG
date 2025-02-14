@@ -17,7 +17,7 @@ type
   private
     procedure SetController(const Value: ISearchController);
     procedure SetDataSource(const Value: TDataSource);
-    //procedure SetFilterFields(const Value: TStrings);
+
   protected
     FController: ISearchController;
     FDataSource: TDataSource;
@@ -39,6 +39,7 @@ var
 implementation
 
 {$R *.dfm}
+
 procedure TframeSearch.ConfigureFilterFields(const AFields: TArray<string>);
 begin
   cbFilter.Items.Clear;
@@ -46,8 +47,6 @@ begin
     cbFilter.Items.Add(Field);
   cbFilter.ItemIndex := 0;
 end;
-
-{ TframePesquisa }
 
 constructor TframeSearch.Create(AOwner: TComponent);
 begin

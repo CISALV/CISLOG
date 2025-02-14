@@ -5,8 +5,6 @@ inherited formMasterCRUDView: TformMasterCRUDView
   StyleElements = [seFont, seClient, seBorder]
   OnDestroy = FormDestroy
   OnShow = FormShow
-  ExplicitLeft = 2
-  ExplicitTop = 2
   ExplicitWidth = 829
   ExplicitHeight = 585
   TextHeight = 18
@@ -96,6 +94,7 @@ inherited formMasterCRUDView: TformMasterCRUDView
               StyleElements = [seFont, seClient, seBorder]
               OnChange = SearchBareditChange
               ExplicitWidth = 275
+              ExplicitHeight = 29
             end
           end
         end

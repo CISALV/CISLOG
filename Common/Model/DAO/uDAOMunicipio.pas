@@ -13,11 +13,11 @@ type
     constructor Create;
     destructor Destroy; override;
 
-    function Gravar(AMunicipio: TMunicipio): Integer;
-    function Alterar(AMunicipio: TMunicipio): Integer;
-    function Excluir(AId: Integer): Integer;
-    function GetMunicipios: TFDQuery;
-    function ProcurarMunicipios(const FilterField, FilterValue: string): TFDQuery;
+    function Insert(AMunicipio: TMunicipio): Integer;
+    function GetAll: TFDQuery;
+    function Update(AMunicipio: TMunicipio): Integer;
+    function Delete(AId: Integer): Integer;
+    function Search(const FilterField, FilterValue: string): TFDQuery;
     function GetMunicipioByID(MunicipioID: Integer): TMunicipio;
 
   end;
@@ -62,7 +62,7 @@ begin
       Result := nil;
 end;
 
-function TDAOMunicipio.GetMunicipios: TFDQuery;
+function TDAOMunicipio.GetAll: TFDQuery;
 begin
      Result := TDataConService.GetInstance.GetQuery;
      Result.Close;
@@ -71,7 +71,7 @@ begin
      Result.Open;
 end;
 
-function TDAOMunicipio.Gravar(AMunicipio: TMunicipio): Integer;
+function TDAOMunicipio.Insert(AMunicipio: TMunicipio): Integer;
 var
   DataCon: TDataConService;
   Connection: TFDConnection;
@@ -111,7 +111,7 @@ begin
 end;
 
 
-function TDAOMunicipio.ProcurarMunicipios(const FilterField, FilterValue: string): TFDQuery;
+function TDAOMunicipio.Search(const FilterField, FilterValue: string): TFDQuery;
 begin
      Result := TDataConService.GetInstance.GetQuery;
      Result.Close;
@@ -122,7 +122,7 @@ begin
 
 end;
 
-function TDAOMunicipio.Alterar(AMunicipio: TMunicipio): Integer;
+function TDAOMunicipio.Update(AMunicipio: TMunicipio): Integer;
 var
   Connection: TFDConnection;
   StoredProc: TFDStoredProc;
@@ -157,7 +157,7 @@ begin
   end;
 end;
 
-function TDAOMunicipio.Excluir(AId: Integer): Integer;
+function TDAOMunicipio.Delete(AId: Integer): Integer;
 var
   DataCon : TDataConService;
   Connection : TFDConnection;

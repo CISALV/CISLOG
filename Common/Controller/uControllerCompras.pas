@@ -20,7 +20,7 @@ var
  DAO : TDAOMunicipio;
 begin
  DAO := TDAOMunicipio.Create;
- Result := DAO.ProcurarMunicipios(AFieldName, ASearchText);
+ Result := DAO.Search(AFieldName, ASearchText);
 end;
 
 function TControllerCompras.LoadData: TDataset;
@@ -28,7 +28,7 @@ var
   DAO : TDAOMunicipio;
 begin
   DAO := TDAOMunicipio.Create;
-  Result := DAO.GetMunicipios;
+  Result := DAO.GetAll;
 end;
 
 

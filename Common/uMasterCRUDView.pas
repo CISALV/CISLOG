@@ -99,7 +99,7 @@ begin
   FController := CreateController;
   FDataSource := TDataSource.Create(Self);
 
-  FDataSource.DataSet := FController.CarregarDados;
+  FDataSource.DataSet := FController.LoadData;
   dbGridPesquisa.DataSource := FDataSource;
 
 end;
@@ -159,7 +159,7 @@ end;
 procedure TformMasterCRUDView.RecarregarDados;
 begin
   if Assigned(FController) and Assigned(FDataSource) then
-    FDataSource.DataSet := FController.CarregarDados;
+    FDataSource.DataSet := FController.LoadData;
 end;
 
 procedure TformMasterCRUDView.SearchBareditChange(Sender: TObject);
@@ -168,7 +168,7 @@ begin
     if Searchbar.edit.Text = '' then
     RecarregarDados
   else
-    FDataSource.DataSet := FController.FiltrarPesquisa
+    FDataSource.DataSet := FController.FilterDataSet
       (Searchbar.combox.ItemIndex, Searchbar.edit.Text)
 end;
 

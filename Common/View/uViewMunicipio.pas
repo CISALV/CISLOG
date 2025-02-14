@@ -26,7 +26,6 @@ type
     edCNPJ: TMaskEdit;
 
     procedure FormShow(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
 
     procedure dbgridPesquisaDblClick(Sender: TObject);
     procedure CarregarMunicipio(MunicipioID: Integer);
@@ -182,5 +181,6 @@ begin
   if edCNPJ.Text = '' then
     edCNPJ.EditMask := '';
 end;
+
 
 end.

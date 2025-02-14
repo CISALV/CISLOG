@@ -17,7 +17,7 @@ type
     Usuario: TSpeedButton;
     SpeedButton1: TSpeedButton;
     procedure speedMunicipioClick(Sender: TObject);
-    procedure UsuarioClick(Sender: TObject);
+    //procedure UsuarioClick(Sender: TObject);
 
   private
     { Private declarations }

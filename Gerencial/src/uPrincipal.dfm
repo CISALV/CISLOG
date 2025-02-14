@@ -4,8 +4,6 @@ inherited formPrincipal: TformPrincipal
   ClientWidth = 948
   Color = clWhite
   StyleElements = [seFont, seClient, seBorder]
-  ExplicitLeft = 2
-  ExplicitTop = 2
   ExplicitWidth = 964
   ExplicitHeight = 705
   TextHeight = 18
@@ -17,8 +15,6 @@ inherited formPrincipal: TformPrincipal
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 946
-    ExplicitHeight = 617
     object panelBackground: TPanel
       AlignWithMargins = True
       Left = 148
@@ -27,9 +23,6 @@ inherited formPrincipal: TformPrincipal
       Height = 619
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 149
-      ExplicitWidth = 794
-      ExplicitHeight = 611
       object Image1: TImage
         Left = 1
         Top = 1
@@ -889,7 +882,6 @@ inherited formPrincipal: TformPrincipal
       Color = cl3DLight
       ParentBackground = False
       TabOrder = 1
-      ExplicitLeft = 8
       inline Cadastro: TframeMenuButton
         Left = 0
         Top = 0
@@ -903,7 +895,6 @@ inherited formPrincipal: TformPrincipal
         Font.Style = []
         ParentFont = False
         TabOrder = 0
-        ExplicitTop = 8
         ExplicitWidth = 145
         inherited panel: TPanel
           Width = 145
@@ -933,6 +924,5 @@ inherited formPrincipal: TformPrincipal
     Color = clHighlight
     ParentBackground = False
     TabOrder = 1
-    ExplicitWidth = 946
   end
 end

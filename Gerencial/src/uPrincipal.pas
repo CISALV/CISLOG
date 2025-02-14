@@ -17,12 +17,6 @@ type
     panelTaskbar: TPanel;
     Cadastro: TframeMenuButton;
     procedure CadastrospeedClick(Sender: TObject);
-
-    procedure Merda;
-    function FazerCoisa : Integer;
-    procedure frameMainBar1panelTaskbarClick(Sender: TObject);
-    procedure CadastrospeedMouseEnter(Sender: TObject);
-    procedure LixeiraspeedClick(Sender: TObject);
   private
     { Private declarations }
   public

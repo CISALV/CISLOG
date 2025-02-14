@@ -5,8 +5,6 @@ inherited formMenuCadastros: TformMenuCadastros
   TransparentColor = True
   TransparentColorValue = clMedGray
   StyleElements = [seFont, seClient, seBorder]
-  ExplicitLeft = 2
-  ExplicitTop = 2
   ExplicitWidth = 872
   ExplicitHeight = 643
   TextHeight = 18
@@ -1883,7 +1881,6 @@ inherited formMenuCadastros: TformMenuCadastros
           Layout = blGlyphTop
           ParentFont = False
           Transparent = False
-          OnClick = UsuarioClick
           ExplicitLeft = 328
           ExplicitTop = 208
           ExplicitWidth = 23
@@ -2777,7 +2774,6 @@ inherited formMenuCadastros: TformMenuCadastros
           Layout = blGlyphTop
           ParentFont = False
           Transparent = False
-          OnClick = UsuarioClick
           ExplicitLeft = 328
           ExplicitTop = 208
           ExplicitWidth = 23

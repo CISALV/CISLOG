@@ -8,10 +8,11 @@ uses FireDAC.Comp.Client,uMunicipio,Data.DB;
 type
   IController = interface
     ['{3322955C-5B9E-4495-ACCE-D260473497BF}']
-    function FiltrarPesquisa(FilterIndex: Integer; SearchValue: String): TFDQuery;
-    //function PopularView(MunicipioID: Integer): TMunicipioDTO;
-    function CarregarDados: TFDQuery;
-    //procedure ProcessarEntidade(AMunicipioDTO: TMunicipioDTO);
+    function FilterDataSet(FilterIndex: Integer; SearchValue: String): TFDQuery;
+    function LoadData: TFDQuery;
+
+    function PopularView(MunicipioID: Integer): TMunicipio;
+    procedure ProcessarEntidade(AMunicipio: TMunicipio);
     procedure AtualizarEntidade(AMunicipio: TMunicipio);
     procedure RemoverEntidade(MunicipioID: Integer);
   end;

@@ -25,6 +25,6 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TformMaster, formMaster);
+  Application.CreateForm(TformPrincipal, formPrincipal);
   Application.Run;
 end.
