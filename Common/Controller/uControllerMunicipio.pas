@@ -12,8 +12,14 @@ type
     constructor Create;
     destructor Destroy; override;
 
+<<<<<<< HEAD
     { FilterDataSet } function FilterDataSet(FilterIndex: Integer; SearchValue: String): TFDQuery;
     { LoadData } function LoadData: TFDQuery;
+=======
+
+    { FilterDataSet } function FiltrarPesquisa(FilterIndex: Integer; SearchValue: String): TFDQuery;
+    { LoadData } function CarregarDados: TFDQuery;
+>>>>>>> 37f22e1b6e59966511b228e11a56c52ae422ae01
 
     function PopularView(MunicipioID: Integer): TMunicipio;
     procedure ProcessarEntidade(AMunicipio: TMunicipio);
@@ -63,6 +69,10 @@ var
   Municipio: TMunicipio;
 begin
   Municipio := FDAOMunicipio.GetMunicipioByID(MunicipioID);
+<<<<<<< HEAD
+=======
+  //FillChar(Municipio, SizeOf(TMunicipio), 0);
+>>>>>>> 37f22e1b6e59966511b228e11a56c52ae422ae01
 
     if Municipio.Id > 0 then
       Result := Municipio;

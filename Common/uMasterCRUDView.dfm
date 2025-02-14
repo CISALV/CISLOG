@@ -1,5 +1,6 @@
 inherited formMasterCRUDView: TformMasterCRUDView
   BorderStyle = bsNone
+  Caption = 's'
   ClientHeight = 585
   ClientWidth = 829
   StyleElements = [seFont, seClient, seBorder]
@@ -94,7 +95,6 @@ inherited formMasterCRUDView: TformMasterCRUDView
               StyleElements = [seFont, seClient, seBorder]
               OnChange = SearchBareditChange
               ExplicitWidth = 275
-              ExplicitHeight = 29
             end
           end
         end

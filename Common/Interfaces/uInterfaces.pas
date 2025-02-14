@@ -2,7 +2,6 @@ unit uInterfaces;
 
 interface
 
-                                                     //Preciso de interfaces para DTO e Model
 uses FireDAC.Comp.Client,uMunicipio,Data.DB;
 
 type
