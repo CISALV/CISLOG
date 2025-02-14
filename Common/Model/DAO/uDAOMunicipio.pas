@@ -1,4 +1,4 @@
-﻿unit uDAOMunicipio;
+unit uDAOMunicipio;
 
 interface
 
@@ -17,11 +17,7 @@ type
     function GetAll: TFDQuery;
     function Update(AMunicipio: TMunicipio): Integer;
     function Delete(AId: Integer): Integer;
-<<<<<<< HEAD
     function Search(const FilterField, FilterValue: string): TFDQuery;
-=======
-    function ProcurarMunicipios(const FilterField, FilterValue: string): TFDQuery;
->>>>>>> 37f22e1b6e59966511b228e11a56c52ae422ae01
     function GetMunicipioByID(MunicipioID: Integer): TMunicipio;
 
   end;
