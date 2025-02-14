@@ -16,7 +16,8 @@ uses
   uInterfaces in '..\Common\Interfaces\uInterfaces.pas',
   uMunicipio in '..\Common\Model\Entities\uMunicipio.pas',
   uframeSearch in '..\Common\Utils\frames\uframeSearch.pas' {frameSearch: TFrame},
-  uDataConService in '..\Common\Utils\uDataConService.pas';
+  uDataConService in '..\Common\Utils\uDataConService.pas',
+  uDAOMunicipio in '..\Common\Model\DAO\uDAOMunicipio.pas';
 
 {$R *.res}
 

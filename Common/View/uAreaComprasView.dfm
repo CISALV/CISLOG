@@ -1,4 +1,4 @@
-﻿inherited formComprasView: TformComprasView
+inherited formComprasView: TformComprasView
   BorderStyle = bsNone
   ClientHeight = 480
   ClientWidth = 640
@@ -34,7 +34,7 @@
         Width = 632
         Height = 360
         Align = alClient
-        DataSource = dsBDV
+        DataSource = dsBaseVigencia
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -88,7 +88,7 @@
           ExplicitLeft = 19
           ExplicitTop = 3
         end
-        object speedRemoveItem: TSpeedButton
+        object speedRemoverItem: TSpeedButton
           AlignWithMargins = True
           Left = 4
           Top = 32
@@ -96,10 +96,11 @@
           Height = 21
           Align = alTop
           Caption = 'Remover Item'
+          OnClick = speedRemoverItemClick
           ExplicitTop = 4
           ExplicitWidth = 56
         end
-        object SpeedButton1: TSpeedButton
+        object speedLimpar: TSpeedButton
           AlignWithMargins = True
           Left = 4
           Top = 59
@@ -107,6 +108,7 @@
           Height = 22
           Align = alTop
           Caption = 'Limpar'
+          OnClick = speedLimparClick
           ExplicitLeft = -12
           ExplicitTop = 76
           ExplicitWidth = 56
@@ -122,8 +124,6 @@
     Align = alBottom
     Caption = 'Panel1'
     TabOrder = 1
-    ExplicitLeft = 8
-    ExplicitTop = 416
     object speedCarrinho: TSpeedButton
       Left = 188
       Top = 1
@@ -143,7 +143,7 @@
       Height = 64
       Align = alLeft
       DataField = 'NOME'
-      DataSource = dsBDV
+      DataSource = dsBaseVigencia
       TabOrder = 0
     end
   end
@@ -173,7 +173,7 @@
       end
     end
   end
-  object dsBDV: TDataSource
+  object dsBaseVigencia: TDataSource
     Left = 456
     Top = 424
   end

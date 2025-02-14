@@ -55,7 +55,7 @@ inherited formMunicipioView: TformMunicipioView
             Left = 10
             Top = 58
             Width = 330
-            Height = 23
+            Height = 26
             Margins.Left = 10
             Margins.Top = 10
             Margins.Right = 10
@@ -91,9 +91,9 @@ inherited formMunicipioView: TformMunicipioView
           object edEmail: TEdit
             AlignWithMargins = True
             Left = 10
-            Top = 144
+            Top = 150
             Width = 330
-            Height = 23
+            Height = 26
             Margins.Left = 10
             Margins.Top = 10
             Margins.Right = 10
@@ -105,9 +105,9 @@ inherited formMunicipioView: TformMunicipioView
           object edCNPJ: TMaskEdit
             AlignWithMargins = True
             Left = 10
-            Top = 101
+            Top = 104
             Width = 330
-            Height = 23
+            Height = 26
             Margins.Left = 10
             Margins.Top = 10
             Margins.Right = 10

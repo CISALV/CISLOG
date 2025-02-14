@@ -1,4 +1,4 @@
-Ôªøunit uAreaComprasView;
+unit uAreaComprasView;
 
 interface
 
@@ -29,16 +29,16 @@ type
     speedCarrinho: TSpeedButton;
     Panel2: TPanel;
     speedVoltar: TSpeedButton;
-    speedRemoveItem: TSpeedButton;
+    speedRemoverItem: TSpeedButton;
     SearchBar: TframeSearch;
-    SpeedButton1: TSpeedButton;
+    speedLimpar: TSpeedButton;
     procedure dbGridProdutosDblClick(Sender: TObject);
-    //procedure SearchCompras1edPesquisaChange(Sender: TObject);
     procedure speedCarrinhoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SearchBaredSearchChange(Sender: TObject);
     procedure speedVoltarClick(Sender: TObject);
-    //procedure AdicionarPruduto();
+    procedure speedLimparClick(Sender: TObject);
+    procedure speedRemoverItemClick(Sender: TObject);
   private
    FQuery : TFDQuery;
   public
@@ -59,34 +59,50 @@ procedure TformComprasView.dbGridProdutosDblClick(Sender: TObject);
 var
   i: Integer;
   IdProduto: Integer;
-  baseProduto, carrtProduto: TField;
+  baseProduto, cartProduto: TField;
+  QuantityStr: string;
+  Quantity: Integer;
 begin
   inherited;
   IdProduto := dsBaseVigencia.Dataset.FieldByName('id').AsInteger;
 
+  //logica de negocios ir· para o Service
   memCarrinho.Open;
 
-    if memCarrinho.Locate('Id', IdProduto, []) then
+  if memCarrinho.Locate('Id', IdProduto, []) then
   begin
-    ShowMessage('Este Produto j√° est√° no carrinho!');
-    Exit
+    ShowMessage('Este Produto j· est· no carrinho!');
+    Exit;
+  end;
+
+  QuantityStr := '';
+  if not InputQuery('Quantidade', 'Por favor, insira a quantidade:', QuantityStr) then
+    Exit;
+
+
+  if not TryStrToInt(QuantityStr, Quantity) or (Quantity <= 0) then
+  begin
+    ShowMessage('Quantidade inv·lida. Insira um n˙mero positivo.');
+    Exit;
   end;
 
   Tabs.ActiveCard := tabCarrinho;
 
   memCarrinho.Append;
 
+  //transformar isso em funÁ„o(inserirProduto?)
   for i := 0 to dsBaseVigencia.DataSet.FieldCount - 1 do
   begin
     baseProduto := dsBaseVigencia.Dataset.Fields[i];
-    carrtProduto := memCarrinho.FindField(baseProduto.FieldName);
-    if Assigned(carrtProduto) then
-      carrtProduto.Value := baseProduto.Value;
+    cartProduto := memCarrinho.FindField(baseProduto.FieldName);
+    if Assigned(cartProduto) then
+      cartProduto.Value := baseProduto.Value;
   end;
 
+  memCarrinho.FieldByName('ID').AsInteger := Quantity;
+  // trocar para quantidade.
+
   memCarrinho.Post;
-
-
 end;
 
 procedure TformComprasView.FormCreate(Sender: TObject);
@@ -115,9 +131,29 @@ begin
   Tabs.ActiveCard := tabCompra;
 end;
 
+procedure TformComprasView.speedLimparClick(Sender: TObject);
+begin
+  inherited;
+  memCarrinho.DisableControls;
+  try
+    memCarrinho.EmptyDataSet;
+  finally
+  memCarrinho.EnableControls;
+  end;
+end;
+
+procedure TformComprasView.speedRemoverItemClick(Sender: TObject);
+begin
+  inherited;
+  { Controller > Service }
+ if not memCarrinho.IsEmpty then
+ memCarrinho.Delete;
+end;
+
 procedure TformComprasView.speedCarrinhoClick(Sender: TObject);
 begin
   inherited;
+  { Controller > Service }
   Tabs.ActiveCard := tabCarrinho;
   SearchBar.edSearch.Text := '';
 

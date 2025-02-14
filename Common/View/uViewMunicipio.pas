@@ -14,7 +14,7 @@ uses
   FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   uDataConService, uFormFactory,
-  uControllerMunicipio, uInterfaces;
+  uControllerMunicipio, uInterfaces,uMunicipio;
 
 type
   TformMunicipioView = class(TformMasterCRUDView)
@@ -36,28 +36,19 @@ type
     procedure Save; override;
     procedure Delete; override;
 
-    function MakeDTOfromFields: TMunicipioDTO;
-
     procedure edCNPJEnter(Sender: TObject);
     procedure edCNPJExit(Sender: TObject);
 
   private
-
+    function MakeObjectfromFields: TMunicipio;
   protected
       function CreateController: IController; override;
-
   public
     { Public declarations }
   end;
 
 var
   formMunicipioView: TformMunicipioView;
-  Query: TFDQuery;
-  edId: TEdit;
-  edNome: TEdit;
-  edCNPJ: TMaskEdit;
-  edEmail: TEdit;
-  Fields: TPageControl;
 
 implementation
 
@@ -105,25 +96,18 @@ end;
 
 procedure TformMunicipioView.CarregarMunicipio(MunicipioID: Integer);
 var
-  MunicipioDTO: TMunicipioDTO;
+  Municipio : TMunicipio;
 begin
-  MunicipioDTO := FController.PopularView(MunicipioID);
-  if MunicipioDTO.Id > 0 then
+  Municipio := FController.PopularView(MunicipioID);
+  if Municipio.Id > 0 then
   begin
     edId.Text := IntToStr(MunicipioID);
-    edNome.Text := MunicipioDTO.Nome;
-    edCNPJ.Text := MunicipioDTO.CNPJ;
-    edEmail.Text := MunicipioDTO.Email;
+    edNome.Text := Municipio.Nome;
+    edCNPJ.Text := Municipio.CNPJ;
+    edEmail.Text := Municipio.Email;
   end
 end;
 
-procedure TformMunicipioView.FormClose(Sender: TObject;
-  var Action: TCloseAction);
-begin
-  inherited;
-  Query.Close;
-
-end;
 
 procedure TformMunicipioView.operationsBarspeedCancelarClick(Sender: TObject);
 begin
@@ -151,33 +135,37 @@ begin
   LimparCampos;
 end;
 
-function TformMunicipioView.MakeDTOfromFields: TMunicipioDTO;
+function TformMunicipioView.MakeObjectfromFields: TMunicipio;
+var
+  Municipio : TMunicipio;
 begin
+  FillChar(Result, SizeOf(TMunicipio), 0);
+  Municipio := TMunicipio.Create(
+      StrToIntDef(edId.Text,0),
+      edNome.Text,
+      edCNPJ.Text,
+      edEmail.Text
+  );
 
-  FillChar(Result, SizeOf(TMunicipioDTO), 0);
-
-  Result.Id := StrToIntDef(edId.Text, 0);
-  Result.Nome := edNome.Text;
-  Result.CNPJ := edCNPJ.Text;
-  Result.Email := edEmail.Text;
+  Result := Municipio;
 
 end;
 
 procedure TformMunicipioView.Save;
 var
-  MunicipioDTO: TMunicipioDTO;
+  Municipio: TMunicipio;
 begin
-  MunicipioDTO := MakeDTOfromFields;
+  Municipio := MakeObjectfromFields;
 
-  if (MunicipioDTO.Nome = '') or (MunicipioDTO.CNPJ = '') or
-    (MunicipioDTO.Email = '') then
+  if (Municipio.Nome = '') or (Municipio.CNPJ = '') or
+    (Municipio.Email = '') then
   begin
     ShowMessage('Todos os campos são necessários');
     panelLateral.Visible := True;
     Exit;
   end;
 
-  FController.ProcessarEntidade(MunicipioDTO);
+  FController.ProcessarEntidade(Municipio);
   RecarregarDados;
 
 end;

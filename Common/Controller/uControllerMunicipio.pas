@@ -14,9 +14,9 @@ type
 
     function FiltrarPesquisa(FilterIndex: Integer; SearchValue: String): TFDQuery;
 
-    function PopularView(MunicipioID: Integer): TMunicipioDTO;
+    function PopularView(MunicipioID: Integer): TMunicipio;
     function CarregarDados: TFDQuery;
-    procedure ProcessarEntidade(AMunicipioDTO: TMunicipioDTO);
+    procedure ProcessarEntidade(AMunicipioDTO: TMunicipio);
     procedure AtualizarEntidade(AMunicipio: TMunicipio);
     procedure RemoverEntidade(MunicipioID: Integer);
 

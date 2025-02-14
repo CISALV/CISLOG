@@ -175,6 +175,7 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Common\Utils\uDataConService.pas"/>
+        <DCCReference Include="..\Common\Model\DAO\uDAOMunicipio.pas"/>
         <None Include="Gerencial.todo"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
