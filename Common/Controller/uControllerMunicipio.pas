@@ -2,24 +2,18 @@ unit uControllerMunicipio;
 
 interface
 
-uses uDAOMunicipio, FireDAC.Comp.Client, System.SysUtils, uMunicipio,Dialogs,uInterfaces;
+uses uDAOMunicipio, FireDAC.Comp.Client, System.SysUtils, uMunicipio,Dialogs,uInterfaces, Data.DB;
 
 type
-  TMunicipioController = class(TInterfacedObject, IController)
+  TMunicipioController = class(TInterfacedObject, IController,ISearchController)
   private
     FDAOMunicipio: TDAOMunicipio;
   public
     constructor Create;
     destructor Destroy; override;
 
-<<<<<<< HEAD
-    { FilterDataSet } function FilterDataSet(FilterIndex: Integer; SearchValue: String): TFDQuery;
-    { LoadData } function LoadData: TFDQuery;
-=======
-
-    { FilterDataSet } function FiltrarPesquisa(FilterIndex: Integer; SearchValue: String): TFDQuery;
-    { LoadData } function CarregarDados: TFDQuery;
->>>>>>> 37f22e1b6e59966511b228e11a56c52ae422ae01
+    { FilterDataSet } function FilterDataSet(const AFieldName, ASearchText: String): TDataSet;
+    { LoadData } function LoadData: TDataSet;
 
     function PopularView(MunicipioID: Integer): TMunicipio;
     procedure ProcessarEntidade(AMunicipio: TMunicipio);
@@ -42,11 +36,18 @@ begin
   inherited;
 end;
 
-function TMunicipioController.LoadData: TFDQuery;
+function TMunicipioController.FilterDataSet(const AFieldName,
+  ASearchText: String): TDataSet;
+begin
+ Result := FDAOMunicipio.Search(AFieldName, ASearchText);
+end;
+
+function TMunicipioController.LoadData: TDataSet;
 begin
   Result := FDAOMunicipio.GetAll;
 end;
 
+{
 function TMunicipioController.FilterDataSet(FilterIndex: Integer;
   SearchValue: String): TFDQuery;
 var
@@ -63,16 +64,13 @@ begin
   Result := FDAOMunicipio.Search(FilterField, SearchValue);
 
 end;
+}
 
 function TMunicipioController.PopularView(MunicipioID: Integer): TMunicipio;
 var
   Municipio: TMunicipio;
 begin
   Municipio := FDAOMunicipio.GetMunicipioByID(MunicipioID);
-<<<<<<< HEAD
-=======
-  //FillChar(Municipio, SizeOf(TMunicipio), 0);
->>>>>>> 37f22e1b6e59966511b228e11a56c52ae422ae01
 
     if Municipio.Id > 0 then
       Result := Municipio;

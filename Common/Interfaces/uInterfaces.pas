@@ -7,9 +7,8 @@ uses FireDAC.Comp.Client,uMunicipio,Data.DB;
 type
   IController = interface
     ['{3322955C-5B9E-4495-ACCE-D260473497BF}']
-    function FilterDataSet(FilterIndex: Integer; SearchValue: String): TFDQuery;
-    function LoadData: TFDQuery;
-
+    function FilterDataSet(const AFieldName, ASearchText: String): TDataSet;
+    function LoadData: TDataSet;
     function PopularView(MunicipioID: Integer): TMunicipio;
     procedure ProcessarEntidade(AMunicipio: TMunicipio);
     procedure AtualizarEntidade(AMunicipio: TMunicipio);

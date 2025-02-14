@@ -14,7 +14,7 @@ uses
   FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   uDataConService, uFormFactory,
-  uControllerMunicipio, uInterfaces,uMunicipio;
+  uControllerMunicipio, uInterfaces,uMunicipio, uframeSearch;
 
 type
   TformMunicipioView = class(TformMasterCRUDView)
@@ -58,6 +58,9 @@ var
   Col: TColumn;
 begin
   inherited;
+
+  SearchBar.Controller := FController;
+
 
   dbGridPesquisa.Columns.Clear;
 

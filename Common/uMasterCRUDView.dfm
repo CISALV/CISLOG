@@ -41,9 +41,9 @@ inherited formMasterCRUDView: TformMasterCRUDView
         TabOrder = 0
         object dbgridPesquisa: TDBGrid
           Left = 0
-          Top = 49
+          Top = 105
           Width = 461
-          Height = 469
+          Height = 413
           Cursor = crHandPoint
           TabStop = False
           Align = alClient
@@ -63,9 +63,9 @@ inherited formMasterCRUDView: TformMasterCRUDView
           TitleFont.Style = []
           OnDblClick = dbgridPesquisaDblClick
         end
-        inline SearchBar: TframeSearchBar
+        inline SearchBarold: TframeSearchBar
           Left = 0
-          Top = 0
+          Top = 56
           Width = 461
           Height = 49
           Align = alTop
@@ -95,6 +95,32 @@ inherited formMasterCRUDView: TformMasterCRUDView
               StyleElements = [seFont, seClient, seBorder]
               OnChange = SearchBareditChange
               ExplicitWidth = 275
+            end
+          end
+        end
+        inline SearchBar: TframeSearch
+          Left = 0
+          Top = 0
+          Width = 461
+          Height = 56
+          Align = alTop
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Roboto'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 2
+          ExplicitLeft = -179
+          inherited pnlSearch: TPanel
+            Width = 461
+            StyleElements = [seFont, seClient, seBorder]
+            inherited edSearch: TEdit
+              Width = 302
+              StyleElements = [seFont, seClient, seBorder]
+            end
+            inherited cbFilter: TComboBox
+              StyleElements = [seFont, seClient, seBorder]
             end
           end
         end

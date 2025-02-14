@@ -11,12 +11,13 @@ uses
 
   FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
   FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
-  FireDAC.VCLUI.Wait, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Mask,uInterfaces;
+  FireDAC.VCLUI.Wait, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Mask,uInterfaces,
+  uframeSearch;
 
 type
 
     TformMasterCRUDView = class(TformMaster)
-    SearchBar: TframeSearchBar;
+    SearchBarold: TframeSearchBar;
     panelFundo: TPanel;
     dbgridPesquisa: TDBGrid;
     operationsBar: TframeOperationsBar;
@@ -25,6 +26,7 @@ type
     panelLateral: TPanel;
     Edit1: TEdit;
     MaskEdit1: TMaskEdit;
+    SearchBar: TframeSearch;
 
     procedure operationsBarspeedSalvarClick(Sender: TObject);
     procedure operationsBarspeedExcluirCick(Sender: TObject);

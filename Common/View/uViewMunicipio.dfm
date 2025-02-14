@@ -133,7 +133,7 @@ inherited formMunicipioView: TformMunicipioView
         StyleElements = [seFont, seClient, seBorder]
         ExplicitWidth = 596
         ExplicitHeight = 522
-        inherited SearchBar: TframeSearchBar [0]
+        inherited SearchBarold: TframeSearchBar [0]
           Width = 596
           ExplicitWidth = 596
           inherited panelPesquisa: TPanel
@@ -151,13 +151,24 @@ inherited formMunicipioView: TformMunicipioView
               Width = 410
               StyleElements = [seFont, seClient, seBorder]
               ExplicitWidth = 410
-              ExplicitHeight = 22
             end
           end
         end
         inherited dbgridPesquisa: TDBGrid [1]
           Width = 596
-          Height = 473
+          Height = 417
+        end
+        inherited SearchBar: TframeSearch
+          Width = 596
+          inherited pnlSearch: TPanel
+            StyleElements = [seFont, seClient, seBorder]
+            inherited edSearch: TEdit
+              StyleElements = [seFont, seClient, seBorder]
+            end
+            inherited cbFilter: TComboBox
+              StyleElements = [seFont, seClient, seBorder]
+            end
+          end
         end
       end
     end
