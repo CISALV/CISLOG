@@ -2,7 +2,6 @@ inherited formMunicipioView: TformMunicipioView
   ClientHeight = 589
   ClientWidth = 964
   StyleElements = [seFont, seClient, seBorder]
-  OnClose = FormClose
   ExplicitWidth = 964
   ExplicitHeight = 589
   TextHeight = 18
@@ -152,6 +151,7 @@ inherited formMunicipioView: TformMunicipioView
               Width = 410
               StyleElements = [seFont, seClient, seBorder]
               ExplicitWidth = 410
+              ExplicitHeight = 22
             end
           end
         end
