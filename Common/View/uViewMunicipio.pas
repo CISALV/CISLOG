@@ -59,8 +59,7 @@ var
 begin
   inherited;
 
-  SearchBar.Controller := FController;
-
+  SearchBar.ConfigureFilterFields(['NOME','CNPJ']);
 
   dbGridPesquisa.Columns.Clear;
 
@@ -115,7 +114,7 @@ procedure TformMunicipioView.operationsBarspeedCancelarClick(Sender: TObject);
 begin
   inherited;
   Fields.ActivePage := Principal;
-  RecarregarDados;
+  FController.LoadData;
 end;
 
 procedure TformMunicipioView.Delete;
@@ -125,7 +124,7 @@ begin
   inherited;
   Id := StrtoInt(edId.Text);
   FController.RemoverEntidade(Id);
-  RecarregarDados;
+  FController.LoadData;
 end;
 
 procedure TformMunicipioView.operationsBarspeedNovoClick(Sender: TObject);
@@ -158,19 +157,11 @@ var
   Municipio: TMunicipio;
 begin
   Municipio := MakeObjectfromFields;
-
-  if (Municipio.Nome = '') or (Municipio.CNPJ = '') or
-    (Municipio.Email = '') then
-  begin
-    ShowMessage('Todos os campos são necessários');
-    panelLateral.Visible := True;
-    Exit;
-  end;
-
   FController.ProcessarEntidade(Municipio);
-  RecarregarDados;
+  FController.LoadData;
 
 end;
+
 
 procedure TformMunicipioView.edCNPJEnter(Sender: TObject);
 begin

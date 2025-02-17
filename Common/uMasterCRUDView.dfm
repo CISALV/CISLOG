@@ -41,9 +41,9 @@ inherited formMasterCRUDView: TformMasterCRUDView
         TabOrder = 0
         object dbgridPesquisa: TDBGrid
           Left = 0
-          Top = 105
+          Top = 56
           Width = 461
-          Height = 413
+          Height = 462
           Cursor = crHandPoint
           TabStop = False
           Align = alClient
@@ -63,41 +63,6 @@ inherited formMasterCRUDView: TformMasterCRUDView
           TitleFont.Style = []
           OnDblClick = dbgridPesquisaDblClick
         end
-        inline SearchBarold: TframeSearchBar
-          Left = 0
-          Top = 56
-          Width = 461
-          Height = 49
-          Align = alTop
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = 'Roboto'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 1
-          ExplicitWidth = 461
-          ExplicitHeight = 49
-          inherited panelPesquisa: TPanel
-            Width = 461
-            Height = 49
-            StyleElements = [seFont, seClient, seBorder]
-            ExplicitWidth = 461
-            ExplicitHeight = 49
-            inherited combox: TComboBox
-              TabStop = False
-              StyleElements = [seFont, seClient, seBorder]
-            end
-            inherited edit: TEdit
-              Width = 275
-              Height = 29
-              TabStop = False
-              StyleElements = [seFont, seClient, seBorder]
-              OnChange = SearchBareditChange
-              ExplicitWidth = 275
-            end
-          end
-        end
         inline SearchBar: TframeSearch
           Left = 0
           Top = 0
@@ -110,14 +75,18 @@ inherited formMasterCRUDView: TformMasterCRUDView
           Font.Name = 'Roboto'
           Font.Style = []
           ParentFont = False
-          TabOrder = 2
-          ExplicitLeft = -179
+          TabOrder = 1
+          ExplicitWidth = 461
           inherited pnlSearch: TPanel
             Width = 461
             StyleElements = [seFont, seClient, seBorder]
+            ExplicitWidth = 461
             inherited edSearch: TEdit
               Width = 302
               StyleElements = [seFont, seClient, seBorder]
+              ExplicitLeft = 156
+              ExplicitWidth = 302
+              ExplicitHeight = 33
             end
             inherited cbFilter: TComboBox
               StyleElements = [seFont, seClient, seBorder]

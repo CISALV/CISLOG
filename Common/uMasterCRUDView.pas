@@ -11,13 +11,12 @@ uses
 
   FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
   FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
-  FireDAC.VCLUI.Wait, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Mask,uInterfaces,
+  FireDAC.VCLUI.Wait, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Mask, uInterfaces,
   uframeSearch;
 
 type
 
-    TformMasterCRUDView = class(TformMaster)
-    SearchBarold: TframeSearchBar;
+  TformMasterCRUDView = class(TformMaster)
     panelFundo: TPanel;
     dbgridPesquisa: TDBGrid;
     operationsBar: TframeOperationsBar;
@@ -37,27 +36,24 @@ type
 
     procedure FormShow(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure SearchBareditChange(Sender: TObject);
+    procedure SearchChange(Sender: TObject);
 
   private
 
-
   protected
 
-  FController: IController;
-  FDataSource: TDataSource;
+    FController: IController;
+    FDataSource: TDataSource;
 
     function CreateController: IController; virtual; abstract;
 
   public
 
     procedure Save; virtual; abstract;
-        function ConfirmSave: Boolean; virtual;
+    function ConfirmSave: Boolean; virtual;
     procedure Delete; virtual; abstract;
-        function ConfirmDelete: Boolean; virtual;
-
+    function ConfirmDelete: Boolean; virtual;
     procedure LimparCampos;
-    procedure RecarregarDados;
 
   end;
 
@@ -102,7 +98,10 @@ begin
   FDataSource := TDataSource.Create(Self);
 
   FDataSource.DataSet := FController.LoadData;
-  dbGridPesquisa.DataSource := FDataSource;
+  dbgridPesquisa.DataSource := FDataSource;
+
+  SearchBar.Controller := FController as ISearchController;
+  SearchBar.DataSource := FDataSource;
 
 end;
 
@@ -129,6 +128,7 @@ begin
   operationsBar.SetButtonState(osIdle);
   panelLateral.Visible := False;
   LimparCampos;
+
 end;
 
 procedure TformMasterCRUDView.operationsBarspeedExcluirCick(Sender: TObject);
@@ -148,31 +148,26 @@ begin
   dbgridPesquisa.ReadOnly := True;
 end;
 
-
 procedure TformMasterCRUDView.operationsBarspeedSalvarClick(Sender: TObject);
 begin
   inherited;
-   if ConfirmSave then
-  operationsBar.SetButtonState(osIdle);
+  if ConfirmSave then
+    operationsBar.SetButtonState(osIdle);
   panelLateral.Visible := False;
   Save;
 end;
 
-procedure TformMasterCRUDView.RecarregarDados;
-begin
-  if Assigned(FController) and Assigned(FDataSource) then
-    FDataSource.DataSet := FController.LoadData;
-end;
 
-procedure TformMasterCRUDView.SearchBareditChange(Sender: TObject);
+procedure TformMasterCRUDView.SearchChange(Sender: TObject);
 begin
-  inherited;
-    if Searchbar.edit.Text = '' then
-    RecarregarDados
+  inherited;  SearchBar.edSearchChange(Sender);
+
+  if SearchBar.edSearch.Text = '' then
+    FController.LoadData
   else
-    FDataSource.DataSet := FController.FilterDataSet
-      (Searchbar.combox.ItemIndex, Searchbar.edit.Text)
+     FDataSource.DataSet := FController.FilterDataSet
+     (Searchbar.cbFilter.Items.Text, Searchbar.edSearch.Text)
+
 end;
 
 end.
-

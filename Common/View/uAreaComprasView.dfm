@@ -4,8 +4,8 @@ inherited formComprasView: TformComprasView
   ClientWidth = 640
   StyleElements = [seFont, seClient, seBorder]
   OnCreate = FormCreate
-  ExplicitLeft = 2
-  ExplicitTop = 2
+  ExplicitWidth = 640
+  ExplicitHeight = 480
   TextHeight = 18
   object Tabs: TCardPanel
     Left = 0
