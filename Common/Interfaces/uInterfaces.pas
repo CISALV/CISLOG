@@ -21,6 +21,19 @@ type
     function LoadData: TDataSet;
   end;
 
+  type
+  IDAO<T: class> = interface
+    ['{DA7CA435-8F5C-4143-806A-2D4F0D301D21}']
+
+    function Insert(AEntity: T): Integer;
+    function Update(AEntity: T): Integer;
+    function Delete(AID: Integer): Integer;
+    function GetByID(AID: Integer): T;
+    function GetAll: TDataSet;
+    function GetWhere(const FilterField, FilterValue: string): TDataSet;
+  end;
+
+
 implementation
 
 end.

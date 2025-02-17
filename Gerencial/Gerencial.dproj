@@ -178,6 +178,17 @@
         </DCCReference>
         <DCCReference Include="..\Common\Utils\uDataConService.pas"/>
         <DCCReference Include="..\Common\Model\DAO\uDAOMunicipio.pas"/>
+        <DCCReference Include="..\Common\View\uProdutosView.pas">
+            <Form>formProdutosView</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Common\Utils\frames\uframePages.pas">
+            <Form>framePages</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\Common\Controller\uControllerProdutos.pas"/>
+        <DCCReference Include="..\Common\uMasterDAO.pas"/>
         <None Include="Gerencial.todo"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

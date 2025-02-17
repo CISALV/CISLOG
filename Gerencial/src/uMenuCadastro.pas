@@ -15,8 +15,9 @@ type
     speedMunicipio: TSpeedButton;
     panelGRID: TPanel;
     Usuario: TSpeedButton;
-    SpeedButton1: TSpeedButton;
+    speedProdutos: TSpeedButton;
     procedure speedMunicipioClick(Sender: TObject);
+    procedure speedProdutosClick(Sender: TObject);
     //procedure UsuarioClick(Sender: TObject);
 
   private
@@ -32,11 +33,18 @@ implementation
 
 {$R *.dfm}
 
+uses uProdutosView;
+
 procedure TformMenuCadastros.speedMunicipioClick(Sender: TObject);
 begin
   inherited;
   TFormFactory.CreateAndShowForm(TformMunicipioView,panelFundo);
+end;
 
+procedure TformMenuCadastros.speedProdutosClick(Sender: TObject);
+begin
+  inherited;
+ TFormFactory.CreateAndShowForm(TFormProdutosView,panelFundo);
 end;
 
 end.

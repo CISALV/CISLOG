@@ -17,7 +17,11 @@ uses
   uMunicipio in '..\Common\Model\Entities\uMunicipio.pas',
   uframeSearch in '..\Common\Utils\frames\uframeSearch.pas' {frameSearch: TFrame},
   uDataConService in '..\Common\Utils\uDataConService.pas',
-  uDAOMunicipio in '..\Common\Model\DAO\uDAOMunicipio.pas';
+  uDAOMunicipio in '..\Common\Model\DAO\uDAOMunicipio.pas',
+  uProdutosView in '..\Common\View\uProdutosView.pas' {formProdutosView},
+  uframePages in '..\Common\Utils\frames\uframePages.pas' {framePages: TFrame},
+  uControllerProdutos in '..\Common\Controller\uControllerProdutos.pas',
+  uMasterDAO in '..\Common\uMasterDAO.pas';
 
 {$R *.res}
 

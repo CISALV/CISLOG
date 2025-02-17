@@ -3,10 +3,10 @@ unit uDAOMunicipio;
 interface
 
 uses
-  FireDAC.Comp.Client, uMunicipio, System.SysUtils;
+  FireDAC.Comp.Client, uMunicipio, System.SysUtils,uMasterDAO;
 
 type
-  TDAOMunicipio = class
+  TDAOMunicipio = class //(TDAOMaster<TMunicipio>)
   private
     FQuery: TFDStoredProc;
   public
@@ -14,11 +14,13 @@ type
     destructor Destroy; override;
 
     function Insert(AMunicipio: TMunicipio): Integer;
-    function GetAll: TFDQuery;
     function Update(AMunicipio: TMunicipio): Integer;
     function Delete(AId: Integer): Integer;
-    function Search(const FilterField, FilterValue: string): TFDQuery;
-    function GetMunicipioByID(MunicipioID: Integer): TMunicipio;
+
+    function GetAll: TFDQuery;
+    function GetWhere(const FilterField, FilterValue: string): TFDQuery;
+
+    function GetByID(MunicipioID: Integer): TMunicipio;  // precisa do tipo
 
   end;
 
@@ -39,7 +41,7 @@ begin
   inherited;
 end;
 
-function TDAOMunicipio.GetMunicipioByID(MunicipioID: Integer): TMunicipio;
+function TDAOMunicipio.GetByID(MunicipioID: Integer): TMunicipio;
 var
   Query: TFDQuery;
 begin
@@ -111,7 +113,7 @@ begin
 end;
 
 
-function TDAOMunicipio.Search(const FilterField, FilterValue: string): TFDQuery;
+function TDAOMunicipio.GetWhere(const FilterField, FilterValue: string): TFDQuery;
 begin
      Result := TDataConService.GetInstance.GetQuery;
      Result.Close;

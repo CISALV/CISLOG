@@ -86,6 +86,8 @@ inherited formMunicipioView: TformMunicipioView
             ReadOnly = True
             TabOrder = 0
             TextHint = 'ID'
+            ExplicitLeft = 5
+            ExplicitTop = 8
           end
           object edEmail: TEdit
             AlignWithMargins = True

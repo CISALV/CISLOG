@@ -8,12 +8,13 @@ type
   TMunicipioController = class(TInterfacedObject, IController,ISearchController)
   private
     FDAOMunicipio: TDAOMunicipio;
+    FMunicipio: TMunicipio;
   public
     constructor Create;
     destructor Destroy; override;
 
-    { FilterDataSet } function FilterDataSet(const AFieldName, ASearchText: String): TDataSet;
-    { LoadData } function LoadData: TDataSet;
+    function FilterDataSet(const AFieldName, ASearchText: String): TDataSet;
+    function LoadData: TDataSet;
 
     function PopularView(MunicipioID: Integer): TMunicipio;
     procedure ProcessarEntidade(AMunicipio: TMunicipio);
@@ -39,7 +40,7 @@ end;
 function TMunicipioController.FilterDataSet(const AFieldName,
   ASearchText: String): TDataSet;
 begin
- Result := FDAOMunicipio.Search(AFieldName, ASearchText);
+ Result := FDAOMunicipio.GetWhere(AFieldName, ASearchText);
 end;
 
 function TMunicipioController.LoadData: TDataSet;
@@ -47,30 +48,11 @@ begin
   Result := FDAOMunicipio.GetAll;
 end;
 
-{
-function TMunicipioController.FilterDataSet(FilterIndex: Integer;
-  SearchValue: String): TFDQuery;
-var
-  FilterField: string;
-begin
-  case FilterIndex of
-
-    0: FilterField := 'NOME';
-    1: FilterField := 'CNPJ';
-  else
-    FilterField := 'NOME';
-  end;
-
-  Result := FDAOMunicipio.Search(FilterField, SearchValue);
-
-end;
-}
-
 function TMunicipioController.PopularView(MunicipioID: Integer): TMunicipio;
 var
   Municipio: TMunicipio;
 begin
-  Municipio := FDAOMunicipio.GetMunicipioByID(MunicipioID);
+  Municipio := FDAOMunicipio.GetByID(MunicipioID);
 
     if Municipio.Id > 0 then
       Result := Municipio;
