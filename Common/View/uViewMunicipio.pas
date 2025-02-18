@@ -82,7 +82,7 @@ end;
 
 function TformMunicipioView.CreateController: ISearchController;
 begin
-  Result := TMunicipioController.Create;
+  Result := TControllerMunicipio.Create;
 end;
 
 procedure TformMunicipioView.dbgridPesquisaDblClick(Sender: TObject);
@@ -123,7 +123,7 @@ var
 begin
   inherited;
   Id := StrtoInt(edId.Text);
-  (FController as IController<TMunicipio>).RemoverEntidade(Id);
+  (FController as IController<TMunicipio>).RemoverEntidade(Id);   //this is ugly
   FController.LoadData;
 end;
 

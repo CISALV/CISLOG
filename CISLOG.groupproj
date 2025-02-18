@@ -9,6 +9,9 @@
         <Projects Include="Compras\Compras.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Gerencial\Test\GerencialTests.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="Compras:Make">
         <MSBuild Projects="Compras\Compras.dproj" Targets="Make"/>
     </Target>
+    <Target Name="GerencialTests">
+        <MSBuild Projects="Gerencial\Test\GerencialTests.dproj"/>
+    </Target>
+    <Target Name="GerencialTests:Clean">
+        <MSBuild Projects="Gerencial\Test\GerencialTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="GerencialTests:Make">
+        <MSBuild Projects="Gerencial\Test\GerencialTests.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="Gerencial;Compras"/>
+        <CallTarget Targets="Gerencial;Compras;GerencialTests"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Gerencial:Clean;Compras:Clean"/>
+        <CallTarget Targets="Gerencial:Clean;Compras:Clean;GerencialTests:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Gerencial:Make;Compras:Make"/>
+        <CallTarget Targets="Gerencial:Make;Compras:Make;GerencialTests:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

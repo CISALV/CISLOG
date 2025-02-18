@@ -3,67 +3,189 @@ unit uDAOProduto;
 interface
 
 uses
-  uMasterDAO, uProduto,uInterfaces, FireDAC.Comp.Client, FireDAC.Stan.Param;
+  FireDAC.Comp.Client, uProduto, System.SysUtils;
 
 type
-  TDAOProduto = class(TDAOMaster<TProduto>)
-  protected
-    procedure SetupInsertParams(StoredProc: TFDStoredProc; AEntity: TProduto); override;
-    procedure SetupUpdateParams(StoredProc: TFDStoredProc; AEntity: TProduto); override;
-    procedure SetupDeleteParams(StoredProc: TFDStoredProc; AID: Integer); override;
-    function CreateEntityFromQuery(Query: TFDQuery): TProduto; override;
-
+  TDAOProduto = class
+  private
+    FStoredProc: TFDStoredProc;
   public
     constructor Create;
+    destructor Destroy; override;
+
+    function Insert(AProduto: TProduto): Integer;
+    function Update(AProduto: TProduto): Integer;
+    function Delete(AID: Integer): Integer;
+
+    function GetAll: TFDQuery;
+    function GetWhere(const FilterField, FilterValue: string): TFDQuery;
+    function GetByID(ProdutoID: Integer): TProduto;
   end;
 
 implementation
 
-{ TDAOProduto }
+uses
+  uDataConService;
 
 constructor TDAOProduto.Create;
 begin
-  inherited Create;
-  FStoredProcName := 'PROC_PRODUTO';
-  FTableName := 'PRODUTO';
+  FStoredProc := TFDStoredProc.Create(nil);
+  if TDataConService.GetInstance.GetQuery.Active then
+    TDataConService.GetInstance.GetQuery.Close;
 end;
 
-procedure TDAOProduto.SetupInsertParams(StoredProc: TFDStoredProc; AEntity: TProduto);
+destructor TDAOProduto.Destroy;
 begin
-  StoredProc.ParamByName('descricao_e').AsString := AEntity.Descricao;
-  StoredProc.ParamByName('apresentacao_e').AsString := AEntity.Apresentacao;
-  StoredProc.ParamByName('catmat_e').AsInteger := AEntity.CATMAT;
-  StoredProc.ParamByName('ggrem_e').AsInteger := AEntity.GGREM;
+  FStoredProc.Free;
+  inherited;
 end;
 
-procedure TDAOProduto.SetupUpdateParams(StoredProc: TFDStoredProc; AEntity: TProduto);
+function TDAOProduto.GetByID(ProdutoID: Integer): TProduto;
+var
+  Query: TFDQuery;
 begin
+  Query := TDataConService.GetInstance.GetQuery;
+  Query.Close;
+  Query.SQL.Clear;
+  Query.SQL.Add('SELECT * FROM PRODUTO WHERE ID = :ID');
+  Query.ParamByName('ID').AsInteger := ProdutoID;
+  Query.Open;
 
-  StoredProc.ParamByName('id_e').AsInteger := AEntity.Id;
-  StoredProc.ParamByName('descricao_e').AsString := AEntity.Descricao;
-  StoredProc.ParamByName('apresentacao_e').AsString := AEntity.Apresentacao;
-  StoredProc.ParamByName('catmat_e').AsInteger := AEntity.CATMAT;
-  StoredProc.ParamByName('ggrem_e').AsInteger := AEntity.GGREM;
+  if not Query.IsEmpty then
+  begin
+    Result := TProduto.Create(
+    Query.FieldByName('id').AsInteger,
+    Query.FieldByName('ggrem').AsInteger,
+    Query.FieldByName('catmat').AsInteger,
+    Query.FieldByName('apresentacao').AsString //,
+    //Query.FieldByName('descricao').AsString)
+    )
+
+  end
+  else
+    Result := nil;
 end;
 
-procedure TDAOProduto.SetupDeleteParams(StoredProc: TFDStoredProc; AID: Integer);
+function TDAOProduto.GetAll: TFDQuery;
 begin
-  StoredProc.ParamByName('id_e').AsInteger := AID;
+  Result := TDataConService.GetInstance.GetQuery;
+  Result.Close;
+  Result.SQL.Clear;
+  Result.SQL.Add('SELECT * FROM PRODUTO');
+  Result.Open;
 end;
 
-function TDAOProduto.CreateEntityFromQuery(Query: TFDQuery): TProduto;
+function TDAOProduto.GetWhere(const FilterField, FilterValue: string): TFDQuery;
 begin
-  Result := TProduto.Create;
+  Result := TDataConService.GetInstance.GetQuery;
+  Result.Close;
+  Result.SQL.Clear;
+  Result.SQL.Add('SELECT id, descricao, apresentacao FROM PRODUTO WHERE ' +
+    FilterField + ' containing :parametro');
+  Result.ParamByName('parametro').AsString := FilterValue;
+  Result.Open;
+end;
+
+function TDAOProduto.Insert(AProduto: TProduto): Integer;
+var
+  Connection: TFDConnection;
+  StoredProc: TFDStoredProc;
+begin
+  Connection := TDataConService.GetInstance.GetConnection;
+  StoredProc := TFDStoredProc.Create(nil);
   try
-    Result.Id := Query.FieldByName('id').AsInteger;
-    Result.Descricao := Query.FieldByName('descricao').AsString;
-    Result.Apresentacao := Query.FieldByName('apresentacao').AsString;
-    Result.CATMAT := Query.FieldByName('catmat').AsInteger;
-    Result.GGREM := Query.FieldByName('ggrem').AsInteger;
-  except
-    Result.Free;
-    raise;
+    StoredProc.Connection     := Connection;
+    StoredProc.StoredProcName := 'PROC_PRODUTO';
+
+    Connection.TxOptions.AutoCommit := False;
+    Connection.StartTransaction;
+    try
+      StoredProc.Prepare;
+
+      StoredProc.ParamByName('modo').AsString         := 'I';
+      //StoredProc.ParamByName('descricao_e').AsString    := AProduto.Descricao;
+      StoredProc.ParamByName('apresentacao_e').AsString := AProduto.Apresentacao;
+      StoredProc.ParamByName('catmat_e').AsInteger      := AProduto.CATMAT;
+      StoredProc.ParamByName('ggrem_e').AsInteger       := AProduto.GGREM;
+
+      StoredProc.ExecProc;
+
+      AProduto.Id := StoredProc.ParamByName('id_s').AsInteger;
+
+      Connection.Commit;
+      Result := 1;
+    except
+      Connection.Rollback;
+      Result := 0;
+    end;
+  finally
+    StoredProc.Free;
+  end;
+end;
+
+function TDAOProduto.Update(AProduto: TProduto): Integer;
+var
+  Connection: TFDConnection;
+  StoredProc: TFDStoredProc;
+begin
+  Connection := TDataConService.GetInstance.GetConnection;
+  StoredProc := TFDStoredProc.Create(nil);
+  try
+    StoredProc.Connection     := Connection;
+    StoredProc.StoredProcName := 'PROC_PRODUTO';
+
+    Connection.StartTransaction;
+    try
+      StoredProc.Prepare;
+      StoredProc.ParamByName('modo').AsString         := 'U';
+      StoredProc.ParamByName('id_e').AsInteger          := AProduto.Id;
+      //StoredProc.ParamByName('descricao_e').AsString    := AProduto.Descricao;
+      StoredProc.ParamByName('apresentacao_e').AsString := AProduto.Apresentacao;
+      StoredProc.ParamByName('catmat_e').AsInteger      := AProduto.CATMAT;
+      StoredProc.ParamByName('ggrem_e').AsInteger       := AProduto.GGREM;
+
+      StoredProc.ExecProc;
+
+      Connection.Commit;
+      Result := 1;
+    except
+      Connection.Rollback;
+      Result := 0;
+    end;
+  finally
+    StoredProc.Free;
+  end;
+end;
+
+function TDAOProduto.Delete(AID: Integer): Integer;
+var
+  Connection: TFDConnection;
+  StoredProc: TFDStoredProc;
+begin
+  Connection := TDataConService.GetInstance.GetConnection;
+  StoredProc := TFDStoredProc.Create(nil);
+  try
+    StoredProc.Connection     := Connection;
+    StoredProc.StoredProcName := 'PROC_PRODUTO';
+
+    Connection.StartTransaction;
+    try
+      StoredProc.Prepare;
+      StoredProc.ParamByName('modo').AsString := 'D';
+      StoredProc.ParamByName('id_e').AsInteger  := AID;
+
+      StoredProc.ExecProc;
+
+      Connection.Commit;
+      Result := 1;
+    except
+      Connection.Rollback;
+      Result := 0;
+    end;
+  finally
+    StoredProc.Free;
   end;
 end;
 
 end.
+

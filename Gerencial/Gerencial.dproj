@@ -1192,6 +1192,9 @@
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">True</Platform>
             </Platforms>
+            <UnitTesting>
+                <TestProjectName>C:\dst\projects\sistema_compras\delphi_project\CISLOG\Gerencial\Test\GerencialTests.dproj</TestProjectName>
+            </UnitTesting>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>

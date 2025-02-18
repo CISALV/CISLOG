@@ -6,7 +6,7 @@ uses
   FireDAC.Comp.Client, uMunicipio, System.SysUtils,uMasterDAO;
 
 type
-  TDAOMunicipio = class //(TDAOMaster<TMunicipio>)
+  TDAOMunicipio = class(TDAOMaster<TMunicipio>)
   private
     FQuery: TFDStoredProc;
   public
@@ -20,7 +20,7 @@ type
     function GetAll: TFDQuery;
     function GetWhere(const FilterField, FilterValue: string): TFDQuery;
 
-    function GetByID(MunicipioID: Integer): TMunicipio;  // precisa do tipo
+    function GetByID(MunicipioID: Integer): TMunicipio;
 
   end;
 

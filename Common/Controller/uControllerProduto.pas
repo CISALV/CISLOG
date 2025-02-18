@@ -2,58 +2,92 @@ unit uControllerProduto;
 
 interface
 
-uses uMasterController, uProduto, uDAOProduto,uInterfaces,System.SysUtils,Dialogs;
+uses
+  uDAOProduto, System.SysUtils, uProduto, Dialogs, uInterfaces, Data.DB;
 
 type
-TControllerProduto = class(TMasterController<TProduto>)
-private
- FDAO: IDAO<TProduto>;
- public
- constructor Create; override;
- destructor Destroy; override;
+  TControllerProduto = class(TInterfacedObject, IController<TProduto>, ISearchController)
+  private
+    FDAOProduto: TDAOProduto;
+    FProduto: TProduto;
+  public
+    constructor Create;
+    destructor Destroy; override;
 
-    function PopularView(EntityID: Integer): TProduto; override;
-    procedure ProcessarEntidade(AEntity: TProduto); override;
+    function FilterDataSet(const AFieldName, ASearchText: String): TDataSet;
+    function LoadData: TDataSet;
+    function PopularView(ProdutoID: Integer): TProduto;
 
-end;
+    procedure ProcessarEntidade(AProduto: TProduto);
+    procedure AtualizarEntidade(AProduto: TProduto);
+    procedure RemoverEntidade(ProdutoID: Integer);
+  end;
+
 implementation
 
-{ TControllerProdutos }
+{ TControllerProduto }
 
 constructor TControllerProduto.Create;
 begin
-  inherited;
-  FDAO := TDAOProduto.Create;
+  FDAOProduto := TDAOProduto.Create;
 end;
 
 destructor TControllerProduto.Destroy;
 begin
+  FDAOProduto.Free;
   inherited;
 end;
 
-function TControllerProduto.PopularView(EntityID: Integer): TProduto;
+function TControllerProduto.FilterDataSet(const AFieldName, ASearchText: String): TDataSet;
+begin
+  Result := FDAOProduto.GetWhere(AFieldName, ASearchText);
+end;
+
+function TControllerProduto.LoadData: TDataSet;
+begin
+  Result := FDAOProduto.GetAll;
+end;
+
+function TControllerProduto.PopularView(ProdutoID: Integer): TProduto;
 var
- Produto : TProduto;
+  Produto: TProduto;
 begin
-  Produto := FDAO.GetByID(EntityID);
-  if EntityID > 0 then
-    Result := Produto;
+  Produto := FDAOProduto.GetByID(ProdutoID);
+  if (Produto <> nil) and (Produto.Id > 0) then
+    Result := Produto
+  else
+    Result := nil;
 end;
 
-procedure TControllerProduto.ProcessarEntidade(AEntity: TProduto);
+procedure TControllerProduto.ProcessarEntidade(AProduto: TProduto);
 begin
-  inherited;
-  if (AEntity.apresentacao = '') or (AEntity.CATMAT <= 0) then
+  if (AProduto.apresentacao = '') or (AProduto.CATMAT <= 0) then
   begin
     ShowMessage('Todos os campos são necessários');
     Exit;
   end;
 
-  if  AEntity.id = 0 then
-    FDAO.Insert(AEntity)
+  if AProduto.Id = 0 then
+    FDAOProduto.Insert(AProduto)
   else
-    FDAO.Update(AEntity);
+    FDAOProduto.Update(AProduto);
+end;
 
+procedure TControllerProduto.AtualizarEntidade(AProduto: TProduto);
+var
+  Success: Integer;
+begin
+  Success := FDAOProduto.Update(AProduto);
+  if Success = 1 then
+    ShowMessage('Produto atualizado com sucesso!')
+  else
+    ShowMessage('Falha ao atualizar o produto.');
+end;
+
+procedure TControllerProduto.RemoverEntidade(ProdutoID: Integer);
+begin
+  FDAOProduto.Delete(ProdutoID);
 end;
 
 end.
+

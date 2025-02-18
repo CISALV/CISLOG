@@ -100,7 +100,7 @@ begin
   FDataSource.DataSet := FController.LoadData;
   dbgridPesquisa.DataSource := FDataSource;
 
-  SearchBar.Controller := FController as ISearchController;
+  SearchBar.Controller := FController;
   SearchBar.DataSource := FDataSource;
 
 end;

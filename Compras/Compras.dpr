@@ -12,7 +12,8 @@ uses
   uFormFactory in '..\Common\Utils\uFormFactory.pas',
   uMasterFrame in '..\Common\uMasterFrame.pas' {frameMaster: TFrame},
   uPrincipal in 'src\uPrincipal.pas' {formPrincipal},
-  uframeSearch in '..\Common\Utils\frames\uframeSearch.pas' {frameSearch: TFrame};
+  uframeSearch in '..\Common\Utils\frames\uframeSearch.pas' {frameSearch: TFrame},
+  uMasterDAO in '..\Common\uMasterDAO.pas';
 
 {$R *.res}
 

@@ -1,16 +1,23 @@
 inherited formProdutosView: TformProdutosView
   Caption = ''
   StyleElements = [seFont, seClient, seBorder]
+  ExplicitTop = -41
   TextHeight = 18
   inherited panelFundo: TPanel
     StyleElements = [seFont, seClient, seBorder]
     inherited cardpanelCRIS: TCardPanel
       StyleElements = [seFont, seClient, seBorder]
+      ExplicitWidth = 461
+      ExplicitHeight = 518
       inherited cardPesquisa: TCard
         StyleElements = [seFont, seClient, seBorder]
+        ExplicitWidth = 461
+        ExplicitHeight = 518
         inherited SearchBar: TframeSearch
+          ExplicitWidth = 461
           inherited pnlSearch: TPanel
             StyleElements = [seFont, seClient, seBorder]
+            ExplicitWidth = 461
             inherited edSearch: TEdit
               StyleElements = [seFont, seClient, seBorder]
               ExplicitLeft = 155
@@ -46,8 +53,6 @@ inherited formProdutosView: TformProdutosView
         TabHeight = 40
         TabOrder = 2
         TabPosition = tpBottom
-        ExplicitLeft = 3
-        ExplicitTop = -3
         object tabPrincipal: TTabSheet
           Caption = 'Principal'
           object edId: TEdit
@@ -87,7 +92,6 @@ inherited formProdutosView: TformProdutosView
             Align = alTop
             TabOrder = 3
             TextHint = 'DESCRI'#199#195'O'
-            ExplicitTop = 58
           end
           object edApresentacao: TEdit
             AlignWithMargins = True
@@ -102,8 +106,6 @@ inherited formProdutosView: TformProdutosView
             Align = alTop
             TabOrder = 0
             TextHint = 'APRESENTA'#199#195'O'
-            ExplicitLeft = 5
-            ExplicitTop = 38
           end
           object edGGREM: TEdit
             AlignWithMargins = True
@@ -118,7 +120,6 @@ inherited formProdutosView: TformProdutosView
             Align = alTop
             TabOrder = 1
             TextHint = 'GGREM'
-            ExplicitTop = 58
           end
           object edCATMAT: TEdit
             AlignWithMargins = True
@@ -133,7 +134,6 @@ inherited formProdutosView: TformProdutosView
             Align = alTop
             TabOrder = 2
             TextHint = 'CATMAT'
-            ExplicitTop = 168
           end
         end
       end

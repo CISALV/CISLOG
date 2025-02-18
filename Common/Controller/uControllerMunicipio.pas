@@ -5,7 +5,7 @@ interface
 uses uDAOMunicipio, FireDAC.Comp.Client, System.SysUtils, uMunicipio,Dialogs,uInterfaces, Data.DB;
 
 type
-  TMunicipioController = class(TInterfacedObject, IController<TMunicipio>,ISearchController)
+  TControllerMunicipio = class(TInterfacedObject, IController<TMunicipio>,ISearchController)
   private
     FDAOMunicipio: TDAOMunicipio;
     FMunicipio: TMunicipio;
@@ -26,29 +26,29 @@ implementation
 
 { TMunicipioController }
 
-constructor TMunicipioController.Create;
+constructor TControllerMunicipio.Create;
 begin
   FDAOMunicipio := TDAOMunicipio.Create;
 end;
 
-destructor TMunicipioController.Destroy;
+destructor TControllerMunicipio.Destroy;
 begin
   FDAOMunicipio.Free;
   inherited;
 end;
 
-function TMunicipioController.FilterDataSet(const AFieldName,
+function TControllerMunicipio.FilterDataSet(const AFieldName,
   ASearchText: String): TDataSet;
 begin
  Result := FDAOMunicipio.GetWhere(AFieldName, ASearchText);
 end;
 
-function TMunicipioController.LoadData: TDataSet;
+function TControllerMunicipio.LoadData: TDataSet;
 begin
   Result := FDAOMunicipio.GetAll;
 end;
 
-function TMunicipioController.PopularView(MunicipioID: Integer): TMunicipio;
+function TControllerMunicipio.PopularView(MunicipioID: Integer): TMunicipio;
 var
   Municipio: TMunicipio;
 begin
@@ -58,12 +58,12 @@ begin
       Result := Municipio;
 end;
 
-procedure TMunicipioController.RemoverEntidade(MunicipioID: Integer);
+procedure TControllerMunicipio.RemoverEntidade(MunicipioID: Integer);
 begin
     FDAOMunicipio.Delete(MunicipioID);
 end;
 
-procedure TMunicipioController.ProcessarEntidade(AMunicipio: TMunicipio);
+procedure TControllerMunicipio.ProcessarEntidade(AMunicipio: TMunicipio);
 var
   Municipio : TMunicipio;
 begin
@@ -81,7 +81,7 @@ if (AMunicipio.Nome = '') or (AMunicipio.CNPJ = '') or (AMunicipio.Email= '') th
 
 end;
 
-procedure TMunicipioController.AtualizarEntidade(AMunicipio: TMunicipio);
+procedure TControllerMunicipio.AtualizarEntidade(AMunicipio: TMunicipio);
 var
   Success: Integer;
 begin
