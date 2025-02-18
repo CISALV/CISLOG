@@ -19,11 +19,12 @@ uses
 type
   TformMunicipioView = class(TformMasterCRUDView)
     Fields: TPageControl;
-    Principal: TTabSheet;
+    tabPrincipal: TTabSheet;
     edNome: TEdit;
     edId: TEdit;
     edEmail: TEdit;
     edCNPJ: TMaskEdit;
+    TabSheet1: TTabSheet;
 
     procedure FormShow(Sender: TObject);
 
@@ -90,7 +91,7 @@ var
   MunicipioID: Integer;
 begin
   inherited;
-  Fields.ActivePage := Principal;
+  Fields.ActivePage := tabPrincipal;
   MunicipioID := FDataSource.DataSet.FieldByName('id').AsInteger;
   CarregarMunicipio(MunicipioID);
 end;

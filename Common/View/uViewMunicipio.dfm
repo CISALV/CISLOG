@@ -41,12 +41,12 @@ inherited formMunicipioView: TformMunicipioView
         Top = 1
         Width = 358
         Height = 526
-        ActivePage = Principal
+        ActivePage = tabPrincipal
         Align = alClient
         TabHeight = 40
         TabOrder = 2
         TabPosition = tpBottom
-        object Principal: TTabSheet
+        object tabPrincipal: TTabSheet
           Caption = 'Principal'
           ImageIndex = 1
           object edNome: TEdit
@@ -119,6 +119,10 @@ inherited formMunicipioView: TformMunicipioView
             OnExit = edCNPJExit
           end
         end
+        object TabSheet1: TTabSheet
+          Caption = 'TabSheet1'
+          ImageIndex = 1
+        end
       end
     end
     inherited cardpanelCRIS: TCardPanel [1]
@@ -147,7 +151,9 @@ inherited formMunicipioView: TformMunicipioView
             inherited edSearch: TEdit
               Width = 437
               StyleElements = [seFont, seClient, seBorder]
+              ExplicitLeft = 155
               ExplicitWidth = 437
+              ExplicitHeight = 22
             end
             inherited cbFilter: TComboBox
               StyleElements = [seFont, seClient, seBorder]
