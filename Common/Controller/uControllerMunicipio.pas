@@ -5,7 +5,7 @@ interface
 uses uDAOMunicipio, FireDAC.Comp.Client, System.SysUtils, uMunicipio,Dialogs,uInterfaces, Data.DB;
 
 type
-  TMunicipioController = class(TInterfacedObject, IController,ISearchController)
+  TMunicipioController = class(TInterfacedObject, IController<TMunicipio>,ISearchController)
   private
     FDAOMunicipio: TDAOMunicipio;
     FMunicipio: TMunicipio;
@@ -80,7 +80,6 @@ if (AMunicipio.Nome = '') or (AMunicipio.CNPJ = '') or (AMunicipio.Email= '') th
     FDAOMunicipio.Update(AMunicipio);
 
 end;
-
 
 procedure TMunicipioController.AtualizarEntidade(AMunicipio: TMunicipio);
 var

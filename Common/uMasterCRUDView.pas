@@ -42,10 +42,10 @@ type
 
   protected
 
-    FController: IController;
+    FController: ISearchController;
     FDataSource: TDataSource;
 
-    function CreateController: IController; virtual; abstract;
+    function CreateController: ISearchController; virtual; abstract;
 
   public
 

@@ -14,16 +14,16 @@ type
     function CreateEntityFromQuery(Query: TFDQuery): TProduto; override;
 
   public
-    constructor Create(AConnection: TFDConnection);
+    constructor Create;
   end;
 
 implementation
 
 { TDAOProduto }
 
-constructor TDAOProduto.Create(AConnection: TFDConnection);
+constructor TDAOProduto.Create;
 begin
-  inherited Create(AConnection);
+  inherited Create;
   FStoredProcName := 'PROC_PRODUTO';
   FTableName := 'PRODUTO';
 end;

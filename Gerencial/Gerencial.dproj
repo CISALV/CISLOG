@@ -187,8 +187,11 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Common\Controller\uControllerProdutos.pas"/>
         <DCCReference Include="..\Common\uMasterDAO.pas"/>
+        <DCCReference Include="..\Common\Model\Entities\uProduto.pas"/>
+        <DCCReference Include="..\Common\Model\DAO\uDAOProduto.pas"/>
+        <DCCReference Include="..\Common\uMasterController.pas"/>
+        <DCCReference Include="..\Common\Controller\uControllerProduto.pas"/>
         <None Include="Gerencial.todo"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

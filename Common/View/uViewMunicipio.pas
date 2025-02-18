@@ -41,7 +41,7 @@ type
   private
     function MakeObjectfromFields: TMunicipio;
   protected
-      function CreateController: IController; override;
+    function CreateController: ISearchController; override;
   public
     { Public declarations }
   end;
@@ -80,7 +80,7 @@ begin
 
 end;
 
-function TformMunicipioView.CreateController: IController;
+function TformMunicipioView.CreateController: ISearchController;
 begin
   Result := TMunicipioController.Create;
 end;
@@ -99,7 +99,7 @@ procedure TformMunicipioView.CarregarMunicipio(MunicipioID: Integer);
 var
   Municipio : TMunicipio;
 begin
-  Municipio := FController.PopularView(MunicipioID);
+  Municipio := (FController as IController<TMunicipio>).PopularView(MunicipioID);
   if Municipio.Id > 0 then
   begin
     edId.Text := IntToStr(MunicipioID);
@@ -123,7 +123,7 @@ var
 begin
   inherited;
   Id := StrtoInt(edId.Text);
-  FController.RemoverEntidade(Id);
+  (FController as IController<TMunicipio>).RemoverEntidade(Id);
   FController.LoadData;
 end;
 
@@ -157,7 +157,7 @@ var
   Municipio: TMunicipio;
 begin
   Municipio := MakeObjectfromFields;
-  FController.ProcessarEntidade(Municipio);
+  (FController as IController<TMunicipio>).ProcessarEntidade(Municipio);
   FController.LoadData;
 
 end;

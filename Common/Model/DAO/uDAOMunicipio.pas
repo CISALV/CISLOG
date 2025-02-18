@@ -75,13 +75,11 @@ end;
 
 function TDAOMunicipio.Insert(AMunicipio: TMunicipio): Integer;
 var
-  DataCon: TDataConService;
   Connection: TFDConnection;
   StoredProc: TFDStoredProc;
 
 begin
-  DataCon := TDataConService.GetInstance;
-  Connection := DataCon.GetConnection;
+  Connection := TDataConService.GetInstance.GetConnection;
   StoredProc := TFDStoredProc.Create(nil);
   try
     StoredProc.Connection := Connection;

@@ -20,8 +20,11 @@ uses
   uDAOMunicipio in '..\Common\Model\DAO\uDAOMunicipio.pas',
   uProdutosView in '..\Common\View\uProdutosView.pas' {formProdutosView},
   uframePages in '..\Common\Utils\frames\uframePages.pas' {framePages: TFrame},
-  uControllerProdutos in '..\Common\Controller\uControllerProdutos.pas',
-  uMasterDAO in '..\Common\uMasterDAO.pas';
+  uMasterDAO in '..\Common\uMasterDAO.pas',
+  uProduto in '..\Common\Model\Entities\uProduto.pas',
+  uDAOProduto in '..\Common\Model\DAO\uDAOProduto.pas',
+  uMasterController in '..\Common\uMasterController.pas',
+  uControllerProduto in '..\Common\Controller\uControllerProduto.pas';
 
 {$R *.res}
 

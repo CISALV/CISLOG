@@ -3,12 +3,13 @@ unit uMasterDAO;
 interface
 
 uses
-  System.SysUtils,uInterfaces, FireDAC.Comp.Client, Data.DB;
+  System.SysUtils,uInterfaces, FireDAC.Comp.Client, Data.DB, uDataConService;
 
 type
   TDAOMaster<T: class> = class abstract(TInterfacedObject,IDAO<T>)
   protected
     FConnection: TFDConnection;
+    FQuery: TFDQuery;
     FStoredProcName: string;
     FTableName: string;
 
@@ -18,7 +19,7 @@ type
     function CreateEntityFromQuery(Query: TFDQuery): T; virtual; abstract;
 
   public
-    constructor Create(AConnection: TFDConnection);
+    constructor Create;
     destructor Destroy; override;
 
     function Insert(AEntity: T): Integer;
@@ -34,14 +35,16 @@ implementation
 
 { TBaseDAO<T> }
 
-constructor TDAOMaster<T>.Create(AConnection: TFDConnection);
+constructor TDAOMaster<T>.Create;
 begin
-  FConnection := AConnection;
+  FConnection := TDataConService.GetInstance.GetConnection;
+  FQuery := TDataConService.GetInstance.GetQuery;
 end;
 
 destructor TDAOMaster<T>.Destroy;
 begin
-  // limpar
+  FConnection.Free;
+  FQuery.Free;
   inherited;
 end;
 
@@ -121,49 +124,39 @@ begin
 end;
 
 function TDAOMaster<T>.GetByID(AID: Integer): T;
-var
-  Query: TFDQuery;
 begin
-  Query := TFDQuery.Create(nil);
   try
-    Query.Connection := FConnection;
-    Query.SQL.Text := Format('SELECT * FROM %s WHERE ID = :ID', [FTableName]);
-    Query.ParamByName('ID').AsInteger := AID;
-    Query.Open;
+    FQuery.SQL.Text := Format('SELECT * FROM %s WHERE ID = :ID', [FTableName]);
+    FQuery.ParamByName('ID').AsInteger := AID;
+    FQuery.Open;
 
-    if not Query.IsEmpty then
-      Result := CreateEntityFromQuery(Query)
+    if not FQuery.IsEmpty then
+      Result := CreateEntityFromQuery(FQuery)
     else
       Result := nil;
   finally
-    Query.Free;
+    FQuery.Free;
   end;
 end;
 
-function TDAOMaster<T>.GetAll: TFDQuery;
-var
-  Query: TFDQuery;
+function TDAOMaster<T>.GetAll: TDataSet;
+
 begin
-  Query := TFDQuery.Create(nil);
-  Query.Connection := FConnection;
-  Query.SQL.Text := Format('SELECT * FROM %s', [FTableName]);
-  Query.Open;
-  Result := Query;
+  FQuery := TDataConService.GetInstance.GetQuery;
+  FQuery.SQL.Text := Format('SELECT * FROM %s', [FTableName]);
+  FQuery.Open;
+  Result := FQuery;
 end;
 
-function TDAOMaster<T>.GetWhere(const FilterField, FilterValue: string): TFDQuery;
-var
-  Query: TFDQuery;
+function TDAOMaster<T>.GetWhere(const FilterField, FilterValue: string): TDataSet;
 begin
-  Query := TFDQuery.Create(nil);
-  Query.Connection := FConnection;
-  Query.SQL.Text := Format(
+  FQuery.SQL.Text := Format(
     'SELECT id, nome, CNPJ FROM %s WHERE %s CONTAINING :parametro',
     [FTableName, FilterField]
   );
-  Query.ParamByName('parametro').AsString := FilterValue;
-  Query.Open;
-  Result := Query;
+  FQuery.ParamByName('parametro').AsString := FilterValue;
+  FQuery.Open;
+  Result := FQuery;
 end;
 
 end.

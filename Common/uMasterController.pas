@@ -1,95 +1,54 @@
-unit uControllerMunicipio;
+unit uMasterController;
 
 interface
 
-uses uDAOMunicipio, FireDAC.Comp.Client, System.SysUtils, uMunicipio,Dialogs,uInterfaces, Data.DB;
+uses Dialogs,uInterfaces, Data.DB;
 
 type
-  TMunicipioController = class(TInterfacedObject, IController,ISearchController)
+  TMasterController<T: class> = class abstract(TInterfacedObject, IController<T>,ISearchController)
   private
-    FDAOMunicipio: TDAOMunicipio;
-    FMunicipio: TMunicipio;
+    FDAO: IDAO<T>;
   public
-    constructor Create;
-    destructor Destroy; override;
+    constructor Create; virtual; abstract;
+    destructor Destroy; virtual; abstract;
 
-    function FilterDataSet(const AFieldName, ASearchText: String): TDataSet;
+    function FilterDataSet(const AFieldName, ASearchText: string): TDataSet;
     function LoadData: TDataSet;
-
-    function PopularView(MunicipioID: Integer): TMunicipio;
-    procedure ProcessarEntidade(AMunicipio: TMunicipio);
-    procedure AtualizarEntidade(AMunicipio: TMunicipio);
-    procedure RemoverEntidade(MunicipioID: Integer);
+    function PopularView(EntityID: Integer): T; virtual; abstract; { Pupulate Fields }
+    procedure ProcessarEntidade(AEntity: T); virtual; abstract;
+    procedure AtualizarEntidade(AEntity: T); virtual;
+    procedure RemoverEntidade(EntityID: Integer); virtual;
 
   end;
 implementation
 
-{ TMunicipioController }
+{ TMasterController<T> }
 
-constructor TMunicipioController.Create;
-begin
-  FDAOMunicipio := TDAOMunicipio.Create;
-end;
-
-destructor TMunicipioController.Destroy;
-begin
-  FDAOMunicipio.Free;
-  inherited;
-end;
-
-function TMunicipioController.FilterDataSet(const AFieldName,
-  ASearchText: String): TDataSet;
-begin
- Result := FDAOMunicipio.GetWhere(AFieldName, ASearchText);
-end;
-
-function TMunicipioController.LoadData: TDataSet;
-begin
-  Result := FDAOMunicipio.GetAll;
-end;
-
-function TMunicipioController.PopularView(MunicipioID: Integer): TMunicipio;
-var
-  Municipio: TMunicipio;
-begin
-  Municipio := FDAOMunicipio.GetByID(MunicipioID);
-
-    if Municipio.Id > 0 then
-      Result := Municipio;
-end;
-
-procedure TMunicipioController.RemoverEntidade(MunicipioID: Integer);
-begin
-    FDAOMunicipio.Delete(MunicipioID);
-end;
-
-procedure TMunicipioController.ProcessarEntidade(AMunicipio: TMunicipio);
-var
-  Municipio : TMunicipio;
-begin
-
-if (AMunicipio.Nome = '') or (AMunicipio.CNPJ = '') or (AMunicipio.Email= '') then
-  begin
-    ShowMessage('Todos os campos são necessários');
-    Exit;
-  end;
-
-  if  AMunicipio.Id = 0 then
-    FDAOMunicipio.Insert(AMunicipio)
-  else
-    FDAOMunicipio.Update(AMunicipio);
-
-end;
-
-
-procedure TMunicipioController.AtualizarEntidade(AMunicipio: TMunicipio);
+procedure TMasterController<T>.AtualizarEntidade(AEntity: T);
 var
   Success: Integer;
 begin
-  Success := FDAOMunicipio.Update(AMunicipio);
+  Success := FDAO.Update(AEntity);
   if Success = 1 then
-   ShowMessage('Município atualizado com sucesso!')
+   ShowMessage('Dados atualizados com sucesso!')
   else
-    ShowMessage('Falha ao atualizar município.')
+    ShowMessage('Falha ao atualizar os dados.')
 end;
+
+function TMasterController<T>.FilterDataSet(const AFieldName,
+  ASearchText: string): TDataSet;
+begin
+  FDAO.GetWhere(AFieldName,ASearchText);
+end;
+
+function TMasterController<T>.LoadData: TDataSet;
+begin
+ FDAO.GetAll;
+end;
+
+procedure TMasterController<T>.RemoverEntidade(EntityID: Integer);
+begin
+ FDAO.Delete(EntityID);
+end;
+
 end.

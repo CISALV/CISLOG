@@ -5,14 +5,14 @@ interface
 uses FireDAC.Comp.Client,uMunicipio,Data.DB;
 
 type
-  IController = interface
+  IController<T> = interface
     ['{3322955C-5B9E-4495-ACCE-D260473497BF}']
-    function FilterDataSet(const AFieldName, ASearchText: String): TDataSet;
+    function FilterDataSet(const AFieldName, ASearchText: string): TDataSet;
     function LoadData: TDataSet;
-    function PopularView(MunicipioID: Integer): TMunicipio;
-    procedure ProcessarEntidade(AMunicipio: TMunicipio);
-    procedure AtualizarEntidade(AMunicipio: TMunicipio);
-    procedure RemoverEntidade(MunicipioID: Integer);
+    function PopularView(EntityID: Integer): T;
+    procedure ProcessarEntidade(AEntity: T);
+    procedure AtualizarEntidade(AEntity: T);
+    procedure RemoverEntidade(EntityID: Integer);
   end;
 
   ISearchController = interface

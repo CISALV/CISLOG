@@ -86,8 +86,6 @@ inherited formMunicipioView: TformMunicipioView
             ReadOnly = True
             TabOrder = 0
             TextHint = 'ID'
-            ExplicitLeft = 5
-            ExplicitTop = 8
           end
           object edEmail: TEdit
             AlignWithMargins = True
@@ -149,6 +147,7 @@ inherited formMunicipioView: TformMunicipioView
             inherited edSearch: TEdit
               Width = 437
               StyleElements = [seFont, seClient, seBorder]
+              ExplicitWidth = 437
             end
             inherited cbFilter: TComboBox
               StyleElements = [seFont, seClient, seBorder]

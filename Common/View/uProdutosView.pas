@@ -20,7 +20,7 @@ type
     procedure FormShow(Sender: TObject);
   private
   protected
-   function CreateController : IController; override;
+   function CreateController : ISearchController; override;
   public
     { Public declarations }
   end;
@@ -32,14 +32,18 @@ implementation
 
 {$R *.dfm}
 
-function TformProdutosView.CreateController: IController;
+uses uControllerProduto;
+
+function TformProdutosView.CreateController: ISearchController;
 begin
-  Result := TProdutosController.Create;
+Result := TControllerProduto.Create;
 end;
 
 procedure TformProdutosView.FormShow(Sender: TObject);
 begin
   inherited;
+  SearchBar.Controller := FController;
+  SearchBar.DataSource := FDataSource;
   SearchBar.ConfigureFilterFields(['APRESENTACAO','GGREM']);
   dbGridPesquisa.Columns.Clear;
 end;
