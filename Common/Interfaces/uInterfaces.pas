@@ -9,10 +9,11 @@ type
     ['{3322955C-5B9E-4495-ACCE-D260473497BF}']
     function FilterDataSet(const AFieldName, ASearchText: string): TDataSet;
     function LoadData: TDataSet;
-    function PopularView(EntityID: Integer): T;
-    procedure ProcessarEntidade(AEntity: T);
-    procedure AtualizarEntidade(AEntity: T);
-    procedure RemoverEntidade(EntityID: Integer);
+
+    function ReturnEntity(EntityID: Integer): T;
+    procedure PersistEntity(AEntity: T);
+    procedure UpdateEntity(AEntity: T);
+    procedure RemoveEntity(EntityID: Integer);
   end;
 
   ISearchController = interface

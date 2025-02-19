@@ -17,7 +17,7 @@ uses
   uControllerMunicipio, uInterfaces,uMunicipio, uframeSearch;
 
 type
-  TformMunicipioView = class(TformMasterCRUDView)
+  TformViewMunicipio = class(TformMasterCRUDView)
     Fields: TPageControl;
     tabPrincipal: TTabSheet;
     edNome: TEdit;
@@ -48,13 +48,13 @@ type
   end;
 
 var
-  formMunicipioView: TformMunicipioView;
+  formViewMunicipio: TformViewMunicipio;
 
 implementation
 
 {$R *.dfm}
 
-procedure TformMunicipioView.FormShow(Sender: TObject);
+procedure TformViewMunicipio.FormShow(Sender: TObject);
 var
   Col: TColumn;
 begin
@@ -81,12 +81,12 @@ begin
 
 end;
 
-function TformMunicipioView.CreateController: ISearchController;
+function TformViewMunicipio.CreateController: ISearchController;
 begin
   Result := TControllerMunicipio.Create;
 end;
 
-procedure TformMunicipioView.dbgridPesquisaDblClick(Sender: TObject);
+procedure TformViewMunicipio.dbgridPesquisaDblClick(Sender: TObject);
 var
   MunicipioID: Integer;
 begin
@@ -96,11 +96,11 @@ begin
   CarregarMunicipio(MunicipioID);
 end;
 
-procedure TformMunicipioView.CarregarMunicipio(MunicipioID: Integer);
+procedure TformViewMunicipio.CarregarMunicipio(MunicipioID: Integer);
 var
   Municipio : TMunicipio;
 begin
-  Municipio := (FController as IController<TMunicipio>).PopularView(MunicipioID);
+  Municipio := (FController as IController<TMunicipio>).ReturnEntity(MunicipioID);
   if Municipio.Id > 0 then
   begin
     edId.Text := IntToStr(MunicipioID);
@@ -111,33 +111,33 @@ begin
 end;
 
 
-procedure TformMunicipioView.operationsBarspeedCancelarClick(Sender: TObject);
+procedure TformViewMunicipio.operationsBarspeedCancelarClick(Sender: TObject);
 begin
   inherited;
-  Fields.ActivePage := Principal;
+  Fields.ActivePage := tabPrincipal;
   FController.LoadData;
 end;
 
-procedure TformMunicipioView.Delete;
+procedure TformViewMunicipio.Delete;
 var
   Id: Integer;
 begin
   inherited;
   Id := StrtoInt(edId.Text);
-  (FController as IController<TMunicipio>).RemoverEntidade(Id);   //this is ugly
+  (FController as IController<TMunicipio>).RemoveEntity(Id);   //this is ugly
   FController.LoadData;
 end;
 
-procedure TformMunicipioView.operationsBarspeedNovoClick(Sender: TObject);
+procedure TformViewMunicipio.operationsBarspeedNovoClick(Sender: TObject);
 
 begin
   inherited;
-  Fields.ActivePage := Principal;
+  Fields.ActivePage := tabPrincipal;
   edNome.SetFocus;
   LimparCampos;
 end;
 
-function TformMunicipioView.MakeObjectfromFields: TMunicipio;
+function TformViewMunicipio.MakeObjectfromFields: TMunicipio;
 var
   Municipio : TMunicipio;
 begin
@@ -153,24 +153,24 @@ begin
 
 end;
 
-procedure TformMunicipioView.Save;
+procedure TformViewMunicipio.Save;
 var
   Municipio: TMunicipio;
 begin
   Municipio := MakeObjectfromFields;
-  (FController as IController<TMunicipio>).ProcessarEntidade(Municipio);
+  (FController as IController<TMunicipio>).PersistEntity(Municipio);
   FController.LoadData;
 
 end;
 
 
-procedure TformMunicipioView.edCNPJEnter(Sender: TObject);
+procedure TformViewMunicipio.edCNPJEnter(Sender: TObject);
 begin
   inherited;
   edCNPJ.EditMask := '00.000.000/0000-00;0;_';
 end;
 
-procedure TformMunicipioView.edCNPJExit(Sender: TObject);
+procedure TformViewMunicipio.edCNPJExit(Sender: TObject);
 begin
   inherited;
   if edCNPJ.Text = '' then

@@ -3,19 +3,23 @@ unit uMasterDAO;
 interface
 
 uses
-  System.SysUtils,uInterfaces, FireDAC.Comp.Client, Data.DB, uDataConService;
+  System.SysUtils, uInterfaces, FireDAC.Comp.Client, Data.DB, Dialogs,
+  uDataConService;
 
 type
-  TDAOMaster<T: class> = class abstract(TInterfacedObject,IDAO<T>)
+  TDAOMaster<T: class> = class abstract(TInterfacedObject, IDAO<T>)
   protected
     FConnection: TFDConnection;
     FQuery: TFDQuery;
     FStoredProcName: string;
     FTableName: string;
 
-    procedure SetupInsertParams(StoredProc: TFDStoredProc; AEntity: T); virtual; abstract;
-    procedure SetupUpdateParams(StoredProc: TFDStoredProc; AEntity: T); virtual; abstract;
-    procedure SetupDeleteParams(StoredProc: TFDStoredProc; AID: Integer); virtual; abstract;
+    procedure SetupInsertParams(StoredProc: TFDStoredProc; AEntity: T);
+      virtual; abstract;
+    procedure SetupUpdateParams(StoredProc: TFDStoredProc; AEntity: T);
+      virtual; abstract;
+    procedure SetupDeleteParams(StoredProc: TFDStoredProc; AID: Integer);
+      virtual; abstract;
     function CreateEntityFromQuery(Query: TFDQuery): T; virtual; abstract;
 
   public
@@ -57,16 +61,24 @@ begin
     StoredProc.Connection := FConnection;
     StoredProc.StoredProcName := FStoredProcName;
 
+    FConnection.TxOptions.AutoCommit := False;
     FConnection.StartTransaction;
     try
+      StoredProc.Prepare;
       StoredProc.ParamByName('modo').AsString := 'I';
       SetupInsertParams(StoredProc, AEntity);
       StoredProc.ExecProc;
       FConnection.Commit;
       Result := 1;
     except
-      FConnection.Rollback;
-      Result := 0;
+      on E: Exception do
+      begin
+
+        ShowMessage('Error: ' + E.Message);
+
+        FConnection.Rollback;
+        Result := 0;
+      end;
     end;
   finally
     StoredProc.Free;
@@ -125,7 +137,7 @@ end;
 
 function TDAOMaster<T>.GetByID(AID: Integer): T;
 begin
-  try
+
     FQuery.SQL.Text := Format('SELECT * FROM %s WHERE ID = :ID', [FTableName]);
     FQuery.ParamByName('ID').AsInteger := AID;
     FQuery.Open;
@@ -134,9 +146,7 @@ begin
       Result := CreateEntityFromQuery(FQuery)
     else
       Result := nil;
-  finally
-    FQuery.Free;
-  end;
+
 end;
 
 function TDAOMaster<T>.GetAll: TDataSet;
@@ -148,12 +158,12 @@ begin
   Result := FQuery;
 end;
 
-function TDAOMaster<T>.GetWhere(const FilterField, FilterValue: string): TDataSet;
+function TDAOMaster<T>.GetWhere(const FilterField, FilterValue: string)
+  : TDataSet;
 begin
-  FQuery.SQL.Text := Format(
-    'SELECT id, nome, CNPJ FROM %s WHERE %s CONTAINING :parametro',
-    [FTableName, FilterField]
-  );
+  FQuery.SQL.Text :=
+    Format('SELECT id, nome, CNPJ FROM %s WHERE %s CONTAINING :parametro',
+    [FTableName, FilterField]);
   FQuery.ParamByName('parametro').AsString := FilterValue;
   FQuery.Open;
   Result := FQuery;

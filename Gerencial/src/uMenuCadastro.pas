@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterForm, Vcl.ComCtrls, Vcl.ToolWin,
   Vcl.ExtCtrls, Vcl.Buttons, Vcl.Menus,uViewMunicipio,
-  Vcl.StdCtrls, uMasterFrame,uFormFactory, Data.DB, Vcl.Grids, Vcl.DBGrids;
+  Vcl.StdCtrls, uMasterFrame,uFormFactory, Data.DB, Vcl.Grids, Vcl.DBGrids,uViewMockProduto;
 
 type
   TformMenuCadastros = class(TformMaster)
@@ -16,8 +16,10 @@ type
     panelGRID: TPanel;
     Usuario: TSpeedButton;
     speedProdutos: TSpeedButton;
+    speedMockProduto: TSpeedButton;
     procedure speedMunicipioClick(Sender: TObject);
     procedure speedProdutosClick(Sender: TObject);
+    procedure speedMockProdutoClick(Sender: TObject);
     //procedure UsuarioClick(Sender: TObject);
 
   private
@@ -33,18 +35,24 @@ implementation
 
 {$R *.dfm}
 
-uses uProdutosView;
+uses uViewProduto;
+
+procedure TformMenuCadastros.speedMockProdutoClick(Sender: TObject);
+begin
+  inherited;
+  TFormFactory.CreateAndShowForm(TformViewMockProduto,panelFundo);
+end;
 
 procedure TformMenuCadastros.speedMunicipioClick(Sender: TObject);
 begin
   inherited;
-  TFormFactory.CreateAndShowForm(TformMunicipioView,panelFundo);
+  TFormFactory.CreateAndShowForm(TformViewMunicipio,panelFundo);
 end;
 
 procedure TformMenuCadastros.speedProdutosClick(Sender: TObject);
 begin
   inherited;
- TFormFactory.CreateAndShowForm(TFormProdutosView,panelFundo);
+ TFormFactory.CreateAndShowForm(TFormViewProduto,panelFundo);
 end;
 
 end.

@@ -8,7 +8,7 @@ uses
   Vcl.Imaging.pngimage;
 
 type
-  TformPrincipal = class(TFormMaster)
+  TformPrincipal = class(TformMaster)
     pnlFundo: TPanel;
     panelTopBar: TPanel;
     speedCompra: TSpeedButton;

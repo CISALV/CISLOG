@@ -25,9 +25,6 @@ type
 
 var
   formPrincipal: TformPrincipal;
-  {
-    this is a teste to add git lines lets see
-  }
 
 implementation
 

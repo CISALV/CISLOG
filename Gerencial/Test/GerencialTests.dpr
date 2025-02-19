@@ -16,7 +16,6 @@ program GerencialTests;
 
 uses
   DUnitTestRunner,
-  TestuControllerMunicipio in 'TestuControllerMunicipio.pas',
   uControllerMunicipio in '..\..\Common\Controller\uControllerMunicipio.pas';
 
 {$R *.RES}

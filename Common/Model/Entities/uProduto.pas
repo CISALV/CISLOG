@@ -36,7 +36,7 @@ begin
   Self.GGREM := AGGREM;
   Self.CATMAT := ACATMAT;
   Self.Apresentacao := AApresentacao;
-  //Self.Descricao := ADescricao;
+  Self.Descricao := ADescricao;
 end;
 
 procedure TProduto.SetApresentacao(const Value: string);

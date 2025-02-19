@@ -1,4 +1,4 @@
-inherited formMunicipioView: TformMunicipioView
+inherited formViewMunicipio: TformViewMunicipio
   ClientHeight = 589
   ClientWidth = 964
   StyleElements = [seFont, seClient, seBorder]
@@ -151,9 +151,7 @@ inherited formMunicipioView: TformMunicipioView
             inherited edSearch: TEdit
               Width = 437
               StyleElements = [seFont, seClient, seBorder]
-              ExplicitLeft = 155
               ExplicitWidth = 437
-              ExplicitHeight = 22
             end
             inherited cbFilter: TComboBox
               StyleElements = [seFont, seClient, seBorder]

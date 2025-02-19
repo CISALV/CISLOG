@@ -16,11 +16,11 @@ type
 
     function FilterDataSet(const AFieldName, ASearchText: String): TDataSet;
     function LoadData: TDataSet;
-    function PopularView(ProdutoID: Integer): TProduto;
+    function ReturnEntity(ProdutoID: Integer): TProduto;
 
-    procedure ProcessarEntidade(AProduto: TProduto);
-    procedure AtualizarEntidade(AProduto: TProduto);
-    procedure RemoverEntidade(ProdutoID: Integer);
+    procedure PersistEntity(AProduto: TProduto);
+    procedure UpdateEntity(AProduto: TProduto);
+    procedure RemoveEntity(ProdutoID: Integer);
   end;
 
 implementation
@@ -48,7 +48,7 @@ begin
   Result := FDAOProduto.GetAll;
 end;
 
-function TControllerProduto.PopularView(ProdutoID: Integer): TProduto;
+function TControllerProduto.ReturnEntity(ProdutoID: Integer): TProduto;
 var
   Produto: TProduto;
 begin
@@ -59,9 +59,9 @@ begin
     Result := nil;
 end;
 
-procedure TControllerProduto.ProcessarEntidade(AProduto: TProduto);
+procedure TControllerProduto.PersistEntity(AProduto: TProduto);
 begin
-  if (AProduto.apresentacao = '') or (AProduto.CATMAT <= 0) then
+  if (AProduto.apresentacao = '') then
   begin
     ShowMessage('Todos os campos são necessários');
     Exit;
@@ -73,7 +73,7 @@ begin
     FDAOProduto.Update(AProduto);
 end;
 
-procedure TControllerProduto.AtualizarEntidade(AProduto: TProduto);
+procedure TControllerProduto.UpdateEntity(AProduto: TProduto);
 var
   Success: Integer;
 begin
@@ -84,7 +84,7 @@ begin
     ShowMessage('Falha ao atualizar o produto.');
 end;
 
-procedure TControllerProduto.RemoverEntidade(ProdutoID: Integer);
+procedure TControllerProduto.RemoveEntity(ProdutoID: Integer);
 begin
   FDAOProduto.Delete(ProdutoID);
 end;

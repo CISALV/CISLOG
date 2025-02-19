@@ -16,10 +16,11 @@ type
     function FilterDataSet(const AFieldName, ASearchText: String): TDataSet;
     function LoadData: TDataSet;
 
-    function PopularView(MunicipioID: Integer): TMunicipio;
-    procedure ProcessarEntidade(AMunicipio: TMunicipio);
-    procedure AtualizarEntidade(AMunicipio: TMunicipio);
-    procedure RemoverEntidade(MunicipioID: Integer);
+    function ReturnEntity(MunicipioID: Integer): TMunicipio;
+
+    procedure PersistEntity(AMunicipio: TMunicipio);
+    procedure UpdateEntity(AMunicipio: TMunicipio);
+    procedure RemoveEntity(MunicipioID: Integer);
 
   end;
 implementation
@@ -48,7 +49,7 @@ begin
   Result := FDAOMunicipio.GetAll;
 end;
 
-function TControllerMunicipio.PopularView(MunicipioID: Integer): TMunicipio;
+function TControllerMunicipio.ReturnEntity(MunicipioID: Integer): TMunicipio;
 var
   Municipio: TMunicipio;
 begin
@@ -58,12 +59,12 @@ begin
       Result := Municipio;
 end;
 
-procedure TControllerMunicipio.RemoverEntidade(MunicipioID: Integer);
+procedure TControllerMunicipio.RemoveEntity(MunicipioID: Integer);
 begin
     FDAOMunicipio.Delete(MunicipioID);
 end;
 
-procedure TControllerMunicipio.ProcessarEntidade(AMunicipio: TMunicipio);
+procedure TControllerMunicipio.PersistEntity(AMunicipio: TMunicipio);
 var
   Municipio : TMunicipio;
 begin
@@ -81,7 +82,7 @@ if (AMunicipio.Nome = '') or (AMunicipio.CNPJ = '') or (AMunicipio.Email= '') th
 
 end;
 
-procedure TControllerMunicipio.AtualizarEntidade(AMunicipio: TMunicipio);
+procedure TControllerMunicipio.UpdateEntity(AMunicipio: TMunicipio);
 var
   Success: Integer;
 begin

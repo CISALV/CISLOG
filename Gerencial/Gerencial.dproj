@@ -5,7 +5,7 @@
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <ProjectName Condition="'$(ProjectName)'==''">Gerencial</ProjectName>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -165,7 +165,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Common\View\uViewMunicipio.pas">
-            <Form>formMunicipioView</Form>
+            <Form>formViewMunicipio</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Common\Controller\uControllerMunicipio.pas"/>
@@ -178,8 +178,8 @@
         </DCCReference>
         <DCCReference Include="..\Common\Utils\uDataConService.pas"/>
         <DCCReference Include="..\Common\Model\DAO\uDAOMunicipio.pas"/>
-        <DCCReference Include="..\Common\View\uProdutosView.pas">
-            <Form>formProdutosView</Form>
+        <DCCReference Include="..\Common\View\uViewProduto.pas">
+            <Form>formViewProduto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Common\Utils\frames\uframePages.pas">
@@ -192,6 +192,12 @@
         <DCCReference Include="..\Common\Model\DAO\uDAOProduto.pas"/>
         <DCCReference Include="..\Common\uMasterController.pas"/>
         <DCCReference Include="..\Common\Controller\uControllerProduto.pas"/>
+        <DCCReference Include="..\Common\Model\Entities\uMockProduto.pas"/>
+        <DCCReference Include="..\Common\Model\DAO\uDAOMockProduto.pas"/>
+        <DCCReference Include="..\Common\View\uViewMockProduto.pas">
+            <Form>formViewMockProduto</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="Gerencial.todo"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
@@ -228,12 +234,6 @@
                 <DeployFile LocalName="Win64\Debug\Gerencial.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win64">
                         <RemoteName>Gerencial.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Win64\Debug\Gerencial.rsm" Configuration="Debug" Class="DebugSymbols">
-                    <Platform Name="Win64">
-                        <RemoteName>Gerencial.rsm</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

@@ -27,6 +27,8 @@ __history/
 *.map
 *.log
 *.res
+*.rsm
+
 
 # Debug and Intermediate Files
 *.drc

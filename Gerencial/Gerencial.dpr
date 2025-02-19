@@ -11,20 +11,23 @@ uses
   uMenuCadastro in 'src\uMenuCadastro.pas' {formMenuCadastros},
   uFormFactory in '..\Common\Utils\uFormFactory.pas',
   uMasterCRUDView in '..\Common\uMasterCRUDView.pas' {formMasterCRUDView},
-  uViewMunicipio in '..\Common\View\uViewMunicipio.pas' {formMunicipioView},
+  uViewMunicipio in '..\Common\View\uViewMunicipio.pas' {formViewMunicipio},
   uControllerMunicipio in '..\Common\Controller\uControllerMunicipio.pas',
   uInterfaces in '..\Common\Interfaces\uInterfaces.pas',
   uMunicipio in '..\Common\Model\Entities\uMunicipio.pas',
   uframeSearch in '..\Common\Utils\frames\uframeSearch.pas' {frameSearch: TFrame},
   uDataConService in '..\Common\Utils\uDataConService.pas',
   uDAOMunicipio in '..\Common\Model\DAO\uDAOMunicipio.pas',
-  uProdutosView in '..\Common\View\uProdutosView.pas' {formProdutosView},
+  uViewProduto in '..\Common\View\uViewProduto.pas' {formViewProduto},
   uframePages in '..\Common\Utils\frames\uframePages.pas' {framePages: TFrame},
   uMasterDAO in '..\Common\uMasterDAO.pas',
   uProduto in '..\Common\Model\Entities\uProduto.pas',
   uDAOProduto in '..\Common\Model\DAO\uDAOProduto.pas',
   uMasterController in '..\Common\uMasterController.pas',
-  uControllerProduto in '..\Common\Controller\uControllerProduto.pas';
+  uControllerProduto in '..\Common\Controller\uControllerProduto.pas',
+  uMockProduto in '..\Common\Model\Entities\uMockProduto.pas',
+  uDAOMockProduto in '..\Common\Model\DAO\uDAOMockProduto.pas',
+  uViewMockProduto in '..\Common\View\uViewMockProduto.pas' {formViewMockProduto};
 
 {$R *.res}
 

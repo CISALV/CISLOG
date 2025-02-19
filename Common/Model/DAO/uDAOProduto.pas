@@ -57,9 +57,8 @@ begin
     Query.FieldByName('id').AsInteger,
     Query.FieldByName('ggrem').AsInteger,
     Query.FieldByName('catmat').AsInteger,
-    Query.FieldByName('apresentacao').AsString //,
-    //Query.FieldByName('descricao').AsString)
-    )
+    Query.FieldByName('apresentacao').AsString,
+    Query.FieldByName('descricao').AsString)
 
   end
   else
@@ -103,7 +102,7 @@ begin
       StoredProc.Prepare;
 
       StoredProc.ParamByName('modo').AsString         := 'I';
-      //StoredProc.ParamByName('descricao_e').AsString    := AProduto.Descricao;
+      StoredProc.ParamByName('descricao_e').AsString    := AProduto.Descricao;
       StoredProc.ParamByName('apresentacao_e').AsString := AProduto.Apresentacao;
       StoredProc.ParamByName('catmat_e').AsInteger      := AProduto.CATMAT;
       StoredProc.ParamByName('ggrem_e').AsInteger       := AProduto.GGREM;
@@ -139,7 +138,7 @@ begin
       StoredProc.Prepare;
       StoredProc.ParamByName('modo').AsString         := 'U';
       StoredProc.ParamByName('id_e').AsInteger          := AProduto.Id;
-      //StoredProc.ParamByName('descricao_e').AsString    := AProduto.Descricao;
+      StoredProc.ParamByName('descricao_e').AsString    := AProduto.Descricao;
       StoredProc.ParamByName('apresentacao_e').AsString := AProduto.Apresentacao;
       StoredProc.ParamByName('catmat_e').AsInteger      := AProduto.CATMAT;
       StoredProc.ParamByName('ggrem_e').AsInteger       := AProduto.GGREM;
