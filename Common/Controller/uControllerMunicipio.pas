@@ -5,7 +5,7 @@ interface
 uses uDAOMunicipio, FireDAC.Comp.Client, System.SysUtils, uMunicipio,Dialogs,uInterfaces, Data.DB;
 
 type
-  TControllerMunicipio = class(TInterfacedObject, IController<TMunicipio>,ISearchController)
+  TControllerMunicipio = class(TInterfacedObject, ICRUDController<TMunicipio>,ISearchController)
   private
     FDAOMunicipio: TDAOMunicipio;
     FMunicipio: TMunicipio;
@@ -13,14 +13,14 @@ type
     constructor Create;
     destructor Destroy; override;
 
+    ////////
     function FilterDataSet(const AFieldName, ASearchText: String): TDataSet;
     function LoadData: TDataSet;
+    procedure RemoveEntity(MunicipioID: Integer);
+    ////////
 
     function ReturnEntity(MunicipioID: Integer): TMunicipio;
-
     procedure PersistEntity(AMunicipio: TMunicipio);
-    procedure UpdateEntity(AMunicipio: TMunicipio);
-    procedure RemoveEntity(MunicipioID: Integer);
 
   end;
 implementation
@@ -82,14 +82,3 @@ if (AMunicipio.Nome = '') or (AMunicipio.CNPJ = '') or (AMunicipio.Email= '') th
 
 end;
 
-procedure TControllerMunicipio.UpdateEntity(AMunicipio: TMunicipio);
-var
-  Success: Integer;
-begin
-  Success := FDAOMunicipio.Update(AMunicipio);
-  if Success = 1 then
-   ShowMessage('Município atualizado com sucesso!')
-  else
-    ShowMessage('Falha ao atualizar município.')
-end;
-end.

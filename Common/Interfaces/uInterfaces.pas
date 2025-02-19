@@ -5,14 +5,13 @@ interface
 uses FireDAC.Comp.Client,uMunicipio,Data.DB;
 
 type
-  IController<T> = interface
+  ICRUDController<T> = interface
     ['{3322955C-5B9E-4495-ACCE-D260473497BF}']
-    function FilterDataSet(const AFieldName, ASearchText: string): TDataSet;
-    function LoadData: TDataSet;
+    //function FilterDataSet(const AFieldName, ASearchText: string): TDataSet;
+    //function LoadData: TDataSet;
 
     function ReturnEntity(EntityID: Integer): T;
     procedure PersistEntity(AEntity: T);
-    //procedure UpdateEntity(AEntity: T);
     procedure RemoveEntity(EntityID: Integer);
   end;
 
@@ -29,6 +28,7 @@ type
     function Insert(AEntity: T): Integer;
     function Update(AEntity: T): Integer;
     function Delete(AID: Integer): Integer;
+
     function GetByID(AID: Integer): T;
     function GetAll: TDataSet;
     function GetWhere(const FilterField, FilterValue: string): TDataSet;

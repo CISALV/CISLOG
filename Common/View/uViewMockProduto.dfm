@@ -8,9 +8,6 @@ inherited formViewMockProduto: TformViewMockProduto
       StyleElements = [seFont, seClient, seBorder]
       inherited cardPesquisa: TCard
         StyleElements = [seFont, seClient, seBorder]
-        inherited dbgridPesquisa: TDBGrid
-          DataSource = DataSource1
-        end
         inherited SearchBar: TframeSearch
           inherited pnlSearch: TPanel
             StyleElements = [seFont, seClient, seBorder]
@@ -208,28 +205,5 @@ inherited formViewMockProduto: TformViewMockProduto
         ExplicitTop = 484
       end
     end
-  end
-  object DataSource1: TDataSource
-    DataSet = FDQuery1
-    Left = 400
-    Top = 280
-  end
-  object FDQuery1: TFDQuery
-    Active = True
-    Connection = FDConnection1
-    SQL.Strings = (
-      'SELECT * FROM MOCK_PRODUTO')
-    Left = 388
-    Top = 212
-  end
-  object FDConnection1: TFDConnection
-    Params.Strings = (
-      'Database=C:\database\CISALV-3-2-1.FDB'
-      'User_Name=SYSDBA'
-      'Password=masterkey'
-      'DriverID=FB')
-    Connected = True
-    Left = 380
-    Top = 140
   end
 end

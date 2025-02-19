@@ -5,7 +5,7 @@ interface
 uses Dialogs,uInterfaces, Data.DB;
 
 type
-  TMasterController<T: class> = class abstract(TInterfacedObject, IController<T>,ISearchController)
+  TMasterCRUDController<T: class> = class abstract(TInterfacedObject, ICRUDController<T>,ISearchController)
   protected
   FDAO: IDAO<T>;
   public
@@ -20,19 +20,18 @@ type
   end;
 implementation
 
-
-function TMasterController<T>.FilterDataSet(const AFieldName,
+function TMasterCRUDController<T>.FilterDataSet(const AFieldName,
   ASearchText: string): TDataSet;
 begin
  Result := FDAO.GetWhere(AFieldName,ASearchText);
 end;
 
-function TMasterController<T>.LoadData: TDataSet;
+function TMasterCRUDController<T>.LoadData: TDataSet;
 begin
  Result := FDAO.GetAll;
 end;
 
-procedure TMasterController<T>.RemoveEntity(EntityID: Integer);
+procedure TMasterCRUDController<T>.RemoveEntity(EntityID: Integer);
 begin
  FDAO.Delete(EntityID);
 end;

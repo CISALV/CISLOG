@@ -6,13 +6,12 @@ uses uMockProduto, uMasterController, uDAOMockProduto, Dialogs, uInterfaces,
   Data.DB;
 
 type
-  TControllerMockProduto = class(TMasterController<TMockProduto>)
+  TControllerMockProduto = class(TMasterCRUDController<TMockProduto>)
 
   public
     function ReturnEntity(EntityID: Integer): TMockProduto;
     procedure PersistEntity(AEntity: TMockProduto);
     constructor Create;
-    destructor Destroy;
 
   end;
 
@@ -24,18 +23,14 @@ constructor TControllerMockProduto.Create;
 begin
   inherited;
   FDAO := TDAOMockProduto.Create;
-  Searchbar.ConfigureFilterFields(['APRESENTACAO','GGREM']);
-end;
-
-destructor TControllerMockProduto.Destroy;
-begin
-  //
-  inherited;
 end;
 
 procedure TControllerMockProduto.PersistEntity(AEntity: TMockProduto);
 begin
-  FDAO.Insert(AEntity);
+    if  AEntity.GGREM = 0 then
+    FDAO.Insert(AEntity)
+  else
+    FDAO.Update(AEntity);
 end;
 
 function TControllerMockProduto.ReturnEntity(EntityID: Integer): TMockProduto;

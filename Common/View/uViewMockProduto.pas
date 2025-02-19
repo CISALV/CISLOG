@@ -28,9 +28,6 @@ type
     edQuantidadeRestante: TEdit;
     TabSheet2: TTabSheet;
     edQuantidadeMinima: TEdit;
-    DataSource1: TDataSource;
-    FDQuery1: TFDQuery;
-    FDConnection1: TFDConnection;
     procedure FormShow(Sender: TObject);
   private
     function CreateController: ISearchController; override;

@@ -14,7 +14,7 @@ type
     gridMenu: TGridPanel;
     speedMunicipio: TSpeedButton;
     panelGRID: TPanel;
-    Usuario: TSpeedButton;
+    speedUsuario: TSpeedButton;
     speedProdutos: TSpeedButton;
     speedMockProduto: TSpeedButton;
     procedure speedMunicipioClick(Sender: TObject);

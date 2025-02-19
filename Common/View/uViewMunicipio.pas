@@ -42,7 +42,7 @@ type
   private
     function MakeObjectfromFields: TMunicipio;
   protected
-    function CreateController: ISearchController; override;
+    //function CreateController: ISearchController; override;
   public
     { Public declarations }
   end;
@@ -61,6 +61,9 @@ begin
   inherited;
 
   SearchBar.ConfigureFilterFields(['NOME','CNPJ']);
+
+  {Teste se isso funciona, será necessario implementar em todos os cruds}
+  FController := TControllerMunicipio.Create;
 
   dbGridPesquisa.Columns.Clear;
 
@@ -81,10 +84,12 @@ begin
 
 end;
 
+{
 function TformViewMunicipio.CreateController: ISearchController;
 begin
-  Result := TControllerMunicipio.Create;
+  //Result := TControllerMunicipio.Create;
 end;
+}
 
 procedure TformViewMunicipio.dbgridPesquisaDblClick(Sender: TObject);
 var
@@ -100,7 +105,7 @@ procedure TformViewMunicipio.PopView(MunicipioID: Integer);
 var
   Municipio : TMunicipio;
 begin
-  Municipio := (FController as IController<TMunicipio>).ReturnEntity(MunicipioID);
+  Municipio := (FController as ICRUDController<TMunicipio>).ReturnEntity(MunicipioID);
   if Municipio.Id > 0 then
   begin
     edId.Text := IntToStr(MunicipioID);
@@ -124,7 +129,7 @@ var
 begin
   inherited;
   Id := StrtoInt(edId.Text);
-  (FController as IController<TMunicipio>).RemoveEntity(Id);   //this is ugly
+  (FController as ICRUDController<TMunicipio>).RemoveEntity(Id);   //this is ugly
   FController.LoadData;
 end;
 
@@ -158,7 +163,7 @@ var
   Municipio: TMunicipio;
 begin
   Municipio := MakeObjectfromFields;
-  (FController as IController<TMunicipio>).PersistEntity(Municipio);
+  (FController as ICRUDController<TMunicipio>).PersistEntity(Municipio);
   FController.LoadData;
 
 end;

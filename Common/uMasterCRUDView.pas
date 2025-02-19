@@ -45,7 +45,7 @@ type
     FController: ISearchController;
     FDataSource: TDataSource;
 
-    function CreateController: ISearchController; virtual; abstract;
+    //function CreateController: ISearchController; virtual; abstract;
 
   public
 
@@ -97,7 +97,6 @@ begin
   FController := CreateController;
 
   FDataSource := TDataSource.Create(Self);
-  ShowMessage('ALERT');
   try
     FDataSource.DataSet := FController.LoadData;
   except
@@ -106,9 +105,8 @@ begin
       ShowMessage('Error: ' + E.Message);
     end;
   end;
-  ShowMessage('ALERT2');
-  dbgridPesquisa.DataSource := FDataSource;
 
+  dbgridPesquisa.DataSource := FDataSource;
   SearchBar.Controller := FController;
   SearchBar.DataSource := FDataSource;
 

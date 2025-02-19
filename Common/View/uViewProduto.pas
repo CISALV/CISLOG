@@ -25,7 +25,7 @@ type
   private
     function MakeObjectfromFields: TProduto;
   protected
-   function CreateController : ISearchController; override;
+   //function CreateController : ISearchController; override;
    procedure CarregarProduto(ProdutoId: Integer);
 
   public
@@ -45,7 +45,7 @@ procedure TformViewProduto.CarregarProduto(ProdutoId: Integer);
 var
   Produto : TProduto;
 begin
-  Produto := (FController as IController<TProduto>).ReturnEntity(ProdutoID);
+  Produto := (FController as ICRUDController<TProduto>).ReturnEntity(ProdutoID);
   if Produto.Id > 0 then
   begin
     edId.Text := IntToStr(ProdutoID);
@@ -57,10 +57,12 @@ begin
   end
 end;
 
+{
 function TformViewProduto.CreateController: ISearchController;
 begin
 Result := TControllerProduto.Create;
 end;
+}
 
 procedure TformViewProduto.dbgridPesquisaDblClick(Sender: TObject);
 var
@@ -77,17 +79,19 @@ var
 begin
   inherited;
   Id := StrtoInt(edId.Text);
-  (FController as IController<TProduto>).RemoveEntity(Id);   //this is ugly
+  (FController as ICRUDController<TProduto>).RemoveEntity(Id);
   FController.LoadData;
 end;
 
 procedure TformViewProduto.FormShow(Sender: TObject);
 begin
   inherited;
-  SearchBar.Controller := FController;
-  SearchBar.DataSource := FDataSource;
+  //SearchBar.Controller := FController;
+  //SearchBar.DataSource := FDataSource;
   SearchBar.ConfigureFilterFields(['APRESENTACAO','GGREM']);
+  FController := TControllerProduto.Create;
   dbGridPesquisa.Columns.Clear;
+
 end;
 
 function TformViewProduto.MakeObjectfromFields: TProduto;
@@ -119,7 +123,7 @@ var
 begin
     inherited;
   Produto := MakeObjectfromFields;
-  (FController as IController<TProduto>).PersistEntity(Produto);
+  (FController as ICRUDController<TProduto>).PersistEntity(Produto);
   FController.LoadData;
 
 end;

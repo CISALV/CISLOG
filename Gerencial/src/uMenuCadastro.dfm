@@ -76,7 +76,7 @@ inherited formMenuCadastros: TformMenuCadastros
           end
           item
             Column = 1
-            Control = Usuario
+            Control = speedUsuario
             Row = 0
           end
           item
@@ -998,7 +998,7 @@ inherited formMenuCadastros: TformMenuCadastros
           ExplicitWidth = 23
           ExplicitHeight = 22
         end
-        object Usuario: TSpeedButton
+        object speedUsuario: TSpeedButton
           AlignWithMargins = True
           Left = 168
           Top = 10
@@ -2796,7 +2796,7 @@ inherited formMenuCadastros: TformMenuCadastros
           Margins.Right = 10
           Margins.Bottom = 10
           Align = alClient
-          Caption = 'Usuario'
+          Caption = 'Mock Produto'
           Flat = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = 13059884

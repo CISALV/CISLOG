@@ -3,10 +3,10 @@ unit uControllerProduto;
 interface
 
 uses
-  uDAOProduto, System.SysUtils, uProduto, Dialogs, uInterfaces, Data.DB;
+  uDAOProduto, System.SysUtils, uProduto, Dialogs, uInterfaces,uMasterController, Data.DB;
 
 type
-  TControllerProduto = class(TInterfacedObject, IController<TProduto>, ISearchController)
+  TControllerProduto = class(TMasterCRUDController<TProduto>)
   private
     FDAOProduto: TDAOProduto;
     FProduto: TProduto;
@@ -14,12 +14,8 @@ type
     constructor Create;
     destructor Destroy; override;
 
-    function FilterDataSet(const AFieldName, ASearchText: String): TDataSet;
-    function LoadData: TDataSet;
-
     function ReturnEntity(ProdutoID: Integer): TProduto;
     procedure PersistEntity(AProduto: TProduto);
-    procedure RemoveEntity(ProdutoID: Integer);
   end;
 
 implementation
@@ -28,23 +24,13 @@ implementation
 
 constructor TControllerProduto.Create;
 begin
-  //FDAO := TDAOProduto.Create;
+  FDAO := TDAOProduto.Create;
 end;
 
 destructor TControllerProduto.Destroy;
 begin
   //FDAO.Free;
   inherited;
-end;
-
-function TControllerProduto.FilterDataSet(const AFieldName, ASearchText: String): TDataSet;
-begin
-  Result := FDAOProduto.GetWhere(AFieldName, ASearchText);
-end;
-
-function TControllerProduto.LoadData: TDataSet;
-begin
-  Result := FDAOProduto.GetAll;
 end;
 
 function TControllerProduto.ReturnEntity(ProdutoID: Integer): TProduto;
@@ -70,11 +56,6 @@ begin
     FDAOProduto.Insert(AProduto)
   else
     FDAOProduto.Update(AProduto);
-end;
-
-procedure TControllerProduto.RemoveEntity(ProdutoID: Integer);
-begin
-  FDAOProduto.Delete(ProdutoID);
 end;
 
 end.
