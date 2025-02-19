@@ -153,16 +153,19 @@ function TDAOMaster<T>.GetAll: TDataSet;
 
 begin
   FQuery := TDataConService.GetInstance.GetQuery;
+  FQuery.Close;
+  FQuery.SQL.Clear;
   FQuery.SQL.Text := Format('SELECT * FROM %s', [FTableName]);
   FQuery.Open;
   Result := FQuery;
+
 end;
 
 function TDAOMaster<T>.GetWhere(const FilterField, FilterValue: string)
   : TDataSet;
 begin
   FQuery.SQL.Text :=
-    Format('SELECT id, nome, CNPJ FROM %s WHERE %s CONTAINING :parametro',
+    Format('SELECT * FROM %s WHERE %s CONTAINING :parametro',
     [FTableName, FilterField]);
   FQuery.ParamByName('parametro').AsString := FilterValue;
   FQuery.Open;

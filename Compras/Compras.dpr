@@ -13,7 +13,9 @@ uses
   uMasterFrame in '..\Common\uMasterFrame.pas' {frameMaster: TFrame},
   uPrincipal in 'src\uPrincipal.pas' {formPrincipal},
   uframeSearch in '..\Common\Utils\frames\uframeSearch.pas' {frameSearch: TFrame},
-  uMasterDAO in '..\Common\uMasterDAO.pas';
+  uMasterDAO in '..\Common\uMasterDAO.pas',
+  uDAOMockProduto in '..\Common\Model\DAO\uDAOMockProduto.pas',
+  uMockProduto in '..\Common\Model\Entities\uMockProduto.pas';
 
 {$R *.res}
 

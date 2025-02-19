@@ -16,10 +16,9 @@ type
 
     function FilterDataSet(const AFieldName, ASearchText: String): TDataSet;
     function LoadData: TDataSet;
-    function ReturnEntity(ProdutoID: Integer): TProduto;
 
+    function ReturnEntity(ProdutoID: Integer): TProduto;
     procedure PersistEntity(AProduto: TProduto);
-    procedure UpdateEntity(AProduto: TProduto);
     procedure RemoveEntity(ProdutoID: Integer);
   end;
 
@@ -29,12 +28,12 @@ implementation
 
 constructor TControllerProduto.Create;
 begin
-  FDAOProduto := TDAOProduto.Create;
+  //FDAO := TDAOProduto.Create;
 end;
 
 destructor TControllerProduto.Destroy;
 begin
-  FDAOProduto.Free;
+  //FDAO.Free;
   inherited;
 end;
 
@@ -71,17 +70,6 @@ begin
     FDAOProduto.Insert(AProduto)
   else
     FDAOProduto.Update(AProduto);
-end;
-
-procedure TControllerProduto.UpdateEntity(AProduto: TProduto);
-var
-  Success: Integer;
-begin
-  Success := FDAOProduto.Update(AProduto);
-  if Success = 1 then
-    ShowMessage('Produto atualizado com sucesso!')
-  else
-    ShowMessage('Falha ao atualizar o produto.');
 end;
 
 procedure TControllerProduto.RemoveEntity(ProdutoID: Integer);

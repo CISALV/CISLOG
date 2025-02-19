@@ -12,7 +12,7 @@ uses
   FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
   FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
   FireDAC.VCLUI.Wait, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Mask, uInterfaces,
-  uframeSearch;
+  uframeSearch, Data.FMTBcd, Data.SqlExpr;
 
 type
 
@@ -95,9 +95,18 @@ procedure TformMasterCRUDView.FormShow(Sender: TObject);
 begin
   inherited;
   FController := CreateController;
-  FDataSource := TDataSource.Create(Self);
 
-  FDataSource.DataSet := FController.LoadData;
+  FDataSource := TDataSource.Create(Self);
+  ShowMessage('ALERT');
+  try
+    FDataSource.DataSet := FController.LoadData;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Error: ' + E.Message);
+    end;
+  end;
+  ShowMessage('ALERT2');
   dbgridPesquisa.DataSource := FDataSource;
 
   SearchBar.Controller := FController;
@@ -157,16 +166,16 @@ begin
   Save;
 end;
 
-
 procedure TformMasterCRUDView.SearchChange(Sender: TObject);
 begin
-  inherited;  SearchBar.edSearchChange(Sender);
+  inherited;
+  SearchBar.edSearchChange(Sender);
 
   if SearchBar.edSearch.Text = '' then
     FController.LoadData
   else
-     FDataSource.DataSet := FController.FilterDataSet
-     (Searchbar.cbFilter.Items.Text, Searchbar.edSearch.Text)
+    FDataSource.DataSet := FController.FilterDataSet
+      (SearchBar.cbFilter.Items.Text, SearchBar.edSearch.Text)
 
 end;
 

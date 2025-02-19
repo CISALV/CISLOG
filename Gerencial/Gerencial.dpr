@@ -27,7 +27,8 @@ uses
   uControllerProduto in '..\Common\Controller\uControllerProduto.pas',
   uMockProduto in '..\Common\Model\Entities\uMockProduto.pas',
   uDAOMockProduto in '..\Common\Model\DAO\uDAOMockProduto.pas',
-  uViewMockProduto in '..\Common\View\uViewMockProduto.pas' {formViewMockProduto};
+  uViewMockProduto in '..\Common\View\uViewMockProduto.pas' {formViewMockProduto},
+  uControllerMockProduto in '..\Common\Controller\uControllerMockProduto.pas';
 
 {$R *.res}
 

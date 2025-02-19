@@ -24,14 +24,15 @@ type
     DBMemo1: TDBMemo;
     memCarrinho: TFDMemTable;
     dsCarrinho: TDataSource;
-    memCarrinhoId: TIntegerField;
-    memCarrinhoNome: TStringField;
     speedCarrinho: TSpeedButton;
     Panel2: TPanel;
     speedVoltar: TSpeedButton;
     speedRemoverItem: TSpeedButton;
     SearchBar: TframeSearch;
     speedLimpar: TSpeedButton;
+    memCarrinhoquantidade: TIntegerField;
+    memCarrinhoApresentacao: TStringField;
+    memCarrinhoid: TIntegerField;
     procedure dbGridProdutosDblClick(Sender: TObject);
     procedure speedCarrinhoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -99,9 +100,7 @@ begin
       cartProduto.Value := baseProduto.Value;
   end;
 
-  memCarrinho.FieldByName('ID').AsInteger := Quantity;
-  // trocar para quantidade.
-
+  memCarrinho.FieldByName('quantidade').AsInteger := Quantity;
   memCarrinho.Post;
 end;
 
@@ -117,8 +116,7 @@ begin
 
   SearchBar.Controller := Controller;
   SearchBar.DataSource := dsBaseVigencia;
-  SearchBar.ConfigureFilterFields(['NOME','CNPJ']);
-
+  SearchBar.ConfigureFilterFields(['APRESENTACAO','GGREM']);
 
   dsBaseVigencia.DataSet := Controller.LoadData;
 

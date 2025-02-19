@@ -154,6 +154,8 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Common\uMasterDAO.pas"/>
+        <DCCReference Include="..\Common\Model\DAO\uDAOMockProduto.pas"/>
+        <DCCReference Include="..\Common\Model\Entities\uMockProduto.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

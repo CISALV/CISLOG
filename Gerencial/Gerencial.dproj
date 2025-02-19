@@ -198,6 +198,7 @@
             <Form>formViewMockProduto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\Common\Controller\uControllerMockProduto.pas"/>
         <None Include="Gerencial.todo"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

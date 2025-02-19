@@ -45,7 +45,7 @@ procedure TformViewProduto.CarregarProduto(ProdutoId: Integer);
 var
   Produto : TProduto;
 begin
-  Produto := (FController as IController<TProduto>).GetById(ProdutoID);
+  Produto := (FController as IController<TProduto>).ReturnEntity(ProdutoID);
   if Produto.Id > 0 then
   begin
     edId.Text := IntToStr(ProdutoID);
@@ -77,7 +77,7 @@ var
 begin
   inherited;
   Id := StrtoInt(edId.Text);
-  (FController as IController<TProduto>).RemoverEntidade(Id);   //this is ugly
+  (FController as IController<TProduto>).RemoveEntity(Id);   //this is ugly
   FController.LoadData;
 end;
 
@@ -119,7 +119,7 @@ var
 begin
     inherited;
   Produto := MakeObjectfromFields;
-  (FController as IController<TProduto>).ProcessarEntidade(Produto);
+  (FController as IController<TProduto>).PersistEntity(Produto);
   FController.LoadData;
 
 end;

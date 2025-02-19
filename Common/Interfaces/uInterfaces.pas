@@ -12,7 +12,7 @@ type
 
     function ReturnEntity(EntityID: Integer): T;
     procedure PersistEntity(AEntity: T);
-    procedure UpdateEntity(AEntity: T);
+    //procedure UpdateEntity(AEntity: T);
     procedure RemoveEntity(EntityID: Integer);
   end;
 

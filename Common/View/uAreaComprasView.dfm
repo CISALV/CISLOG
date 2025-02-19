@@ -142,7 +142,7 @@ inherited formComprasView: TformComprasView
       Width = 181
       Height = 64
       Align = alLeft
-      DataField = 'NOME'
+      DataField = 'APRESENTACAO'
       DataSource = dsBaseVigencia
       TabOrder = 0
     end
@@ -174,8 +174,8 @@ inherited formComprasView: TformComprasView
     end
   end
   object dsBaseVigencia: TDataSource
-    Left = 456
-    Top = 424
+    Left = 496
+    Top = 416
   end
   object memCarrinho: TFDMemTable
     FetchOptions.AssignedValues = [evMode]
@@ -185,19 +185,21 @@ inherited formComprasView: TformComprasView
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 369
+    Left = 401
     Top = 418
-    object memCarrinhoId: TIntegerField
-      FieldName = 'Id'
+    object memCarrinhoquantidade: TIntegerField
+      FieldName = 'quantidade'
     end
-    object memCarrinhoNome: TStringField
-      FieldName = 'Nome'
-      Size = 50
+    object memCarrinhoApresentacao: TStringField
+      FieldName = 'Apresentacao'
+    end
+    object memCarrinhoid: TIntegerField
+      FieldName = 'id'
     end
   end
   object dsCarrinho: TDataSource
     DataSet = memCarrinho
-    Left = 312
-    Top = 424
+    Left = 320
+    Top = 416
   end
 end

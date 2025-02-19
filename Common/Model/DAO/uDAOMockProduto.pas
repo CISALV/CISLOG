@@ -6,9 +6,6 @@ uses FireDAC.Comp.Client,System.SysUtils,uMockProduto,uMasterDAO,uDataConService
 
 type
  TDAOMockProduto = class(TDAOMaster<TMockProduto>)
-    private
-
-
     public
     constructor Create;
     procedure SetupInsertParams(StoredProc: TFDStoredProc; AEntity: TMockProduto); override;

@@ -8,13 +8,14 @@ inherited formViewMockProduto: TformViewMockProduto
       StyleElements = [seFont, seClient, seBorder]
       inherited cardPesquisa: TCard
         StyleElements = [seFont, seClient, seBorder]
+        inherited dbgridPesquisa: TDBGrid
+          DataSource = DataSource1
+        end
         inherited SearchBar: TframeSearch
           inherited pnlSearch: TPanel
             StyleElements = [seFont, seClient, seBorder]
             inherited edSearch: TEdit
               StyleElements = [seFont, seClient, seBorder]
-              ExplicitLeft = 155
-              ExplicitHeight = 22
             end
             inherited cbFilter: TComboBox
               StyleElements = [seFont, seClient, seBorder]
@@ -81,7 +82,6 @@ inherited formViewMockProduto: TformViewMockProduto
             Align = alTop
             TabOrder = 1
             TextHint = 'UNIDADE DE FRACIONAMENTO'
-            ExplicitTop = 288
           end
           object edQuantidadeTotal: TEdit
             AlignWithMargins = True
@@ -96,7 +96,6 @@ inherited formViewMockProduto: TformViewMockProduto
             Align = alTop
             TabOrder = 2
             TextHint = 'QUANTIDADE INICIAL'
-            ExplicitTop = 196
           end
           object edDescricao: TEdit
             AlignWithMargins = True
@@ -139,7 +138,6 @@ inherited formViewMockProduto: TformViewMockProduto
             Align = alTop
             TabOrder = 5
             TextHint = 'VALOR'
-            ExplicitTop = 242
           end
           object edGGREM: TEdit
             AlignWithMargins = True
@@ -154,7 +152,6 @@ inherited formViewMockProduto: TformViewMockProduto
             Align = alTop
             TabOrder = 6
             TextHint = 'GGREM'
-            ExplicitTop = 334
           end
           object edCATMAT: TEdit
             AlignWithMargins = True
@@ -169,7 +166,6 @@ inherited formViewMockProduto: TformViewMockProduto
             Align = alTop
             TabOrder = 7
             TextHint = 'CATMAT'
-            ExplicitTop = 380
           end
           object edQuantidadeRestante: TEdit
             AlignWithMargins = True
@@ -198,8 +194,6 @@ inherited formViewMockProduto: TformViewMockProduto
             Align = alTop
             TabOrder = 9
             TextHint = 'QUANTIDADE MINIMA'
-            ExplicitLeft = 26
-            ExplicitTop = 242
           end
         end
         object TabSheet2: TTabSheet
@@ -214,5 +208,28 @@ inherited formViewMockProduto: TformViewMockProduto
         ExplicitTop = 484
       end
     end
+  end
+  object DataSource1: TDataSource
+    DataSet = FDQuery1
+    Left = 400
+    Top = 280
+  end
+  object FDQuery1: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      'SELECT * FROM MOCK_PRODUTO')
+    Left = 388
+    Top = 212
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=C:\database\CISALV-3-2-1.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'DriverID=FB')
+    Connected = True
+    Left = 380
+    Top = 140
   end
 end

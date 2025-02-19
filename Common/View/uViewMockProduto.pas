@@ -6,7 +6,12 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterCRUDView, Data.DB, Vcl.Mask,
   Vcl.StdCtrls, uframeOperationsBar, uMasterFrame, uframeSearch, Vcl.Grids,
-  Vcl.DBGrids, Vcl.WinXPanels, Vcl.ExtCtrls,uDAOMockProduto, Vcl.ComCtrls,uMockProduto;
+  Vcl.DBGrids, Vcl.WinXPanels, Vcl.ExtCtrls,uDAOMockProduto, Vcl.ComCtrls,uMockProduto,uInterfaces,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.UI.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Phys, FireDAC.Phys.FB, FireDAC.Phys.FBDef,
+  FireDAC.VCLUI.Wait, FireDAC.Comp.Client, FireDAC.Comp.DataSet;
 
 type
   TformViewMockProduto = class(TformMasterCRUDView)
@@ -23,7 +28,12 @@ type
     edQuantidadeRestante: TEdit;
     TabSheet2: TTabSheet;
     edQuantidadeMinima: TEdit;
+    DataSource1: TDataSource;
+    FDQuery1: TFDQuery;
+    FDConnection1: TFDConnection;
+    procedure FormShow(Sender: TObject);
   private
+    function CreateController: ISearchController; override;
     function MakeObjectFromFields : TMockProduto;
     procedure Save; override;
   public
@@ -37,7 +47,21 @@ implementation
 
 {$R *.dfm}
 
+uses uControllerMockProduto;
+
 { TformViewMockProduto }
+
+function TformViewMockProduto.CreateController: ISearchController;
+begin
+ Result := TControllerMockProduto.Create;
+end;
+
+procedure TformViewMockProduto.FormShow(Sender: TObject);
+begin
+  inherited;
+  Searchbar.ConfigureFilterFields(['APRESENTACAO','GGREM']);
+
+end;
 
 function TformViewMockProduto.MakeObjectFromFields: TMockProduto;
 var

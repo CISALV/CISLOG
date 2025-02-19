@@ -116,7 +116,7 @@ begin
      Result := TDataConService.GetInstance.GetQuery;
      Result.Close;
      Result.SQL.Clear;
-     Result.SQL.Add('SELECT id, nome, CNPJ FROM municipio WHERE ' + FilterField + ' containing :parametro');
+     Result.SQL.Add('SELECT * FROM municipio WHERE ' + FilterField + ' containing :parametro');
      Result.ParamByName('parametro').AsString := FilterValue;
      Result.Open;
 

@@ -29,7 +29,7 @@ type
     procedure FormShow(Sender: TObject);
 
     procedure dbgridPesquisaDblClick(Sender: TObject);
-    procedure CarregarMunicipio(MunicipioID: Integer);
+    procedure PopView(MunicipioID: Integer);
 
     procedure operationsBarspeedNovoClick(Sender: TObject);
     procedure operationsBarspeedCancelarClick(Sender: TObject);
@@ -93,10 +93,10 @@ begin
   inherited;
   Fields.ActivePage := tabPrincipal;
   MunicipioID := FDataSource.DataSet.FieldByName('id').AsInteger;
-  CarregarMunicipio(MunicipioID);
+  PopView(MunicipioID);
 end;
 
-procedure TformViewMunicipio.CarregarMunicipio(MunicipioID: Integer);
+procedure TformViewMunicipio.PopView(MunicipioID: Integer);
 var
   Municipio : TMunicipio;
 begin

@@ -84,9 +84,7 @@ inherited formMasterCRUDView: TformMasterCRUDView
             inherited edSearch: TEdit
               Width = 302
               StyleElements = [seFont, seClient, seBorder]
-              ExplicitLeft = 156
               ExplicitWidth = 302
-              ExplicitHeight = 33
             end
             inherited cbFilter: TComboBox
               StyleElements = [seFont, seClient, seBorder]

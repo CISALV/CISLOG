@@ -2,10 +2,13 @@ unit uControllerCompras;
 
 interface
 
-uses uInterfaces,Data.DB,uDAOMunicipio;
+uses uInterfaces,Data.DB,uDAOMunicipio,uDAOMockProduto;
 
 type
  TControllerCompras = class(TInterfacedObject,ISearchController)
+ private
+ FDAO: TDAOMockProduto;
+ public
   function FilterDataSet(const AFieldName, ASearchText: string) : TDataset;
   function LoadData: TDataset;
  end;
@@ -15,20 +18,17 @@ implementation
 
 { TControllerCompras }
 
+
 function TControllerCompras.FilterDataSet(const AFieldName, ASearchText: string): TDataset;
-var
- DAO : TDAOMunicipio;
 begin
- DAO := TDAOMunicipio.Create;
- Result := DAO.GetWhere(AFieldName, ASearchText);
+ FDAO := TDAOMockProduto.Create;
+ Result := FDAO.GetWhere(AFieldName, ASearchText);
 end;
 
 function TControllerCompras.LoadData: TDataset;
-var
-  DAO : TDAOMunicipio;
 begin
-  DAO := TDAOMunicipio.Create;
-  Result := DAO.GetAll;
+  FDAO := TDAOMockProduto.Create;
+  Result := FDAO.GetAll;
 end;
 
 
