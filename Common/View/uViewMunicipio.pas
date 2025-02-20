@@ -42,7 +42,7 @@ type
   private
     function MakeObjectfromFields: TMunicipio;
   protected
-    //function CreateController: ISearchController; override;
+    function CreateController: ISearchController; override;
   public
     { Public declarations }
   end;
@@ -63,7 +63,7 @@ begin
   SearchBar.ConfigureFilterFields(['NOME','CNPJ']);
 
   {Teste se isso funciona, será necessario implementar em todos os cruds}
-  FController := TControllerMunicipio.Create;
+  //FController := TControllerMunicipio.Create;
 
   dbGridPesquisa.Columns.Clear;
 
@@ -84,12 +84,12 @@ begin
 
 end;
 
-{
+
 function TformViewMunicipio.CreateController: ISearchController;
 begin
-  //Result := TControllerMunicipio.Create;
+  Result := TControllerMunicipio.Create;
 end;
-}
+
 
 procedure TformViewMunicipio.dbgridPesquisaDblClick(Sender: TObject);
 var
@@ -129,7 +129,7 @@ var
 begin
   inherited;
   Id := StrtoInt(edId.Text);
-  (FController as ICRUDController<TMunicipio>).RemoveEntity(Id);   //this is ugly
+  (FController as ICRUDController<TMunicipio>).RemoveEntity(Id);
   FController.LoadData;
 end;
 

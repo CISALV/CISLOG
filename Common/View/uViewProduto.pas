@@ -25,7 +25,7 @@ type
   private
     function MakeObjectfromFields: TProduto;
   protected
-   //function CreateController : ISearchController; override;
+   function CreateController : ISearchController; override;
    procedure CarregarProduto(ProdutoId: Integer);
 
   public
@@ -57,12 +57,12 @@ begin
   end
 end;
 
-{
+
 function TformViewProduto.CreateController: ISearchController;
 begin
 Result := TControllerProduto.Create;
 end;
-}
+
 
 procedure TformViewProduto.dbgridPesquisaDblClick(Sender: TObject);
 var

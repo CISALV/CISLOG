@@ -45,7 +45,7 @@ type
     FController: ISearchController;
     FDataSource: TDataSource;
 
-    //function CreateController: ISearchController; virtual; abstract;
+    function CreateController: ISearchController; virtual; abstract;
 
   public
 
