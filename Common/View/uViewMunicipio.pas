@@ -105,7 +105,7 @@ procedure TformViewMunicipio.PopView(MunicipioID: Integer);
 var
   Municipio : TMunicipio;
 begin
-  Municipio := FController.ReturnEntity(MunicipioID);
+  //Municipio := FController.ReturnEntity(MunicipioID);
   if Municipio.Id > 0 then
   begin
     edId.Text := IntToStr(MunicipioID);

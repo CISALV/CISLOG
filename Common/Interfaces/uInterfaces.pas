@@ -9,10 +9,10 @@ type
     ['{3322955C-5B9E-4495-ACCE-D260473497BF}']
     //function FilterDataSet(const AFieldName, ASearchText: string): TDataSet;
     function LoadData: TDataSet;
+    procedure RemoveEntity(EntityID: Integer);
 
     function ReturnEntity(EntityID: Integer): T;
     procedure PersistEntity(AEntity: T);
-    procedure RemoveEntity(EntityID: Integer);
   end;
 
   ISearchController = interface

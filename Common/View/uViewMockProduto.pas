@@ -30,7 +30,7 @@ type
     edQuantidadeMinima: TEdit;
     procedure FormShow(Sender: TObject);
   private
-    function CreateController: ISearchController; override;
+    //function CreateController: ISearchController; override;
     function MakeObjectFromFields : TMockProduto;
     procedure Save; override;
   public
@@ -47,12 +47,12 @@ implementation
 uses uControllerMockProduto;
 
 { TformViewMockProduto }
-
+{
 function TformViewMockProduto.CreateController: ISearchController;
 begin
  Result := TControllerMockProduto.Create;
 end;
-
+}
 procedure TformViewMockProduto.FormShow(Sender: TObject);
 begin
   inherited;

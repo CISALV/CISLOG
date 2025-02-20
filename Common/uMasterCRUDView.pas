@@ -16,7 +16,7 @@ uses
 
 type
 
-  TformMasterCRUDView = class(TformMaster)
+  TformMasterCRUDView<T> = class(TformMaster)
     panelFundo: TPanel;
     dbgridPesquisa: TDBGrid;
     operationsBar: TframeOperationsBar;
@@ -43,18 +43,17 @@ type
 
   protected
 
-    FController: ICRUDController<TObject>;
+    FController: ICRUDController<T>;
     FDataSource: TDataSource;
 
   public
-
     procedure Save; virtual; abstract;
     function ConfirmSave: Boolean; virtual;
     procedure Delete; virtual; abstract;
     function ConfirmDelete: Boolean; virtual;
     procedure LimparCampos;
 
-    property Controller: ICRUDController<TObject> read FController write SetController;
+    property Controller: ICRUDController<T> read FController write SetController;
   end;
 
 var

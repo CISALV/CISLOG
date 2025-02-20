@@ -29,7 +29,7 @@ implementation
 
 constructor TControllerMunicipio.Create(ADAO: IDAO<TMunicipio>);
 begin
-  FDAO := ADAO;
+  //FDAO := ADAO;
 end;
 
 destructor TControllerMunicipio.Destroy;
@@ -81,4 +81,4 @@ if (AMunicipio.Nome = '') or (AMunicipio.CNPJ = '') or (AMunicipio.Email= '') th
     FDAO.Update(AMunicipio);
 
 end;
-
+end.

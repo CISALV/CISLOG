@@ -11,7 +11,6 @@ type
     FProduto: TProduto;
   public
     constructor Create(ADAO: IDAO<TProduto>);
-    destructor Destroy; override;
 
     function ReturnEntity(ProdutoID: Integer): TProduto;
     procedure PersistEntity(AProduto: TProduto);
@@ -26,11 +25,6 @@ begin
   FDAO := ADAO;
 end;
 
-destructor TControllerProduto.Destroy;
-begin
-  //FDAO.Free;
-  inherited;
-end;
 
 function TControllerProduto.ReturnEntity(ProdutoID: Integer): TProduto;
 var
