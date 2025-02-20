@@ -39,13 +39,12 @@ type
     procedure SearchChange(Sender: TObject);
 
   private
+    procedure SetController(const Value: ICRUDController<TObject>);
 
   protected
 
-    FController: ISearchController;
+    FController: ICRUDController<TObject>;
     FDataSource: TDataSource;
-
-    //function CreateController: ISearchController; virtual; abstract;
 
   public
 
@@ -55,6 +54,7 @@ type
     function ConfirmDelete: Boolean; virtual;
     procedure LimparCampos;
 
+    property Controller: ICRUDController<TObject> read FController write SetController;
   end;
 
 var
@@ -94,11 +94,10 @@ end;
 procedure TformMasterCRUDView.FormShow(Sender: TObject);
 begin
   inherited;
-  FController := CreateController;
 
   FDataSource := TDataSource.Create(Self);
   try
-    FDataSource.DataSet := FController.LoadData;
+    FDataSource.DataSet := (FController as ISearchController).LoadData;
   except
     on E: Exception do
     begin
@@ -107,7 +106,7 @@ begin
   end;
 
   dbgridPesquisa.DataSource := FDataSource;
-  SearchBar.Controller := FController;
+  SearchBar.Controller := (FController as ISearchController);
   SearchBar.DataSource := FDataSource;
 
 end;
@@ -170,11 +169,17 @@ begin
   SearchBar.edSearchChange(Sender);
 
   if SearchBar.edSearch.Text = '' then
-    FController.LoadData
+    (FController as ISearchController).LoadData
   else
-    FDataSource.DataSet := FController.FilterDataSet
+    FDataSource.DataSet := (FController as ISearchController).FilterDataSet
       (SearchBar.cbFilter.Items.Text, SearchBar.edSearch.Text)
 
+end;
+
+procedure TformMasterCRUDView.SetController(
+  const Value: ICRUDController<TObject>);
+begin
+  FController := Value;
 end;
 
 end.

@@ -8,10 +8,9 @@ uses
 type
   TControllerProduto = class(TMasterCRUDController<TProduto>)
   private
-    FDAOProduto: TDAOProduto;
     FProduto: TProduto;
   public
-    constructor Create;
+    constructor Create(ADAO: IDAO<TProduto>);
     destructor Destroy; override;
 
     function ReturnEntity(ProdutoID: Integer): TProduto;
@@ -22,9 +21,9 @@ implementation
 
 { TControllerProduto }
 
-constructor TControllerProduto.Create;
+constructor TControllerProduto.Create(ADAO: IDAO<TProduto>);
 begin
-  FDAO := TDAOProduto.Create;
+  FDAO := ADAO;
 end;
 
 destructor TControllerProduto.Destroy;
@@ -37,7 +36,7 @@ function TControllerProduto.ReturnEntity(ProdutoID: Integer): TProduto;
 var
   Produto: TProduto;
 begin
-  Produto := FDAOProduto.GetByID(ProdutoID);
+  Produto := FDAO.GetByID(ProdutoID);
   if (Produto <> nil) and (Produto.Id > 0) then
     Result := Produto
   else
@@ -53,9 +52,9 @@ begin
   end;
 
   if AProduto.Id = 0 then
-    FDAOProduto.Insert(AProduto)
+    FDAO.Insert(AProduto)
   else
-    FDAOProduto.Update(AProduto);
+    FDAO.Update(AProduto);
 end;
 
 end.

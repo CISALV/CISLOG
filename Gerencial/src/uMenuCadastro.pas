@@ -35,7 +35,7 @@ implementation
 
 {$R *.dfm}
 
-uses uViewProduto;
+uses uViewProduto, uControllerProduto, uDAOProduto;
 
 procedure TformMenuCadastros.speedMockProdutoClick(Sender: TObject);
 begin
@@ -44,15 +44,29 @@ begin
 end;
 
 procedure TformMenuCadastros.speedMunicipioClick(Sender: TObject);
+var
+ ViewMunicipio : TFormViewMunicipio;
 begin
   inherited;
+  ViewMunicipio := TFormViewMunicipio.Create(panelFundo);
+  //ViewMunicipio.Controller := TControllerMunicipio.Create;
   TFormFactory.CreateAndShowForm(TformViewMunicipio,panelFundo);
+
 end;
 
 procedure TformMenuCadastros.speedProdutosClick(Sender: TObject);
+var
+ ViewProduto : TFormViewProduto;
+ DAOProduto : TDAOProduto;
+ ControllerProduto : TControllerProduto;
 begin
   inherited;
- TFormFactory.CreateAndShowForm(TFormViewProduto,panelFundo);
+  DAOProduto := TDAOProduto.Create;
+  ControllerProduto := TControllerProduto.Create(DAOProduto);
+  ViewProduto := TFormViewProduto.Create(panelFundo);
+  ViewProduto.Controller := ControllerProduto;
+
+ //TFormFactory.CreateAndShowForm(TFormViewProduto,panelFundo);
 end;
 
 end.

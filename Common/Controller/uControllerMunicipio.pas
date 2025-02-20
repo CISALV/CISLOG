@@ -7,10 +7,10 @@ uses uDAOMunicipio, FireDAC.Comp.Client, System.SysUtils, uMunicipio,Dialogs,uIn
 type
   TControllerMunicipio = class(TInterfacedObject, ICRUDController<TMunicipio>,ISearchController)
   private
-    FDAOMunicipio: TDAOMunicipio;
+    FDAO: TDAOMunicipio;
     FMunicipio: TMunicipio;
   public
-    constructor Create;
+    constructor Create(ADAO: IDAO<TMunicipio>);
     destructor Destroy; override;
 
     ////////
@@ -27,33 +27,33 @@ implementation
 
 { TMunicipioController }
 
-constructor TControllerMunicipio.Create;
+constructor TControllerMunicipio.Create(ADAO: IDAO<TMunicipio>);
 begin
-  FDAOMunicipio := TDAOMunicipio.Create;
+  FDAO := ADAO;
 end;
 
 destructor TControllerMunicipio.Destroy;
 begin
-  FDAOMunicipio.Free;
+  FDAO.Free;
   inherited;
 end;
 
 function TControllerMunicipio.FilterDataSet(const AFieldName,
   ASearchText: String): TDataSet;
 begin
- Result := FDAOMunicipio.GetWhere(AFieldName, ASearchText);
+ Result := FDAO.GetWhere(AFieldName, ASearchText);
 end;
 
 function TControllerMunicipio.LoadData: TDataSet;
 begin
-  Result := FDAOMunicipio.GetAll;
+  Result := FDAO.GetAll;
 end;
 
 function TControllerMunicipio.ReturnEntity(MunicipioID: Integer): TMunicipio;
 var
   Municipio: TMunicipio;
 begin
-  Municipio := FDAOMunicipio.GetByID(MunicipioID);
+  Municipio := FDAO.GetByID(MunicipioID);
 
     if Municipio.Id > 0 then
       Result := Municipio;
@@ -61,7 +61,7 @@ end;
 
 procedure TControllerMunicipio.RemoveEntity(MunicipioID: Integer);
 begin
-    FDAOMunicipio.Delete(MunicipioID);
+    FDAO.Delete(MunicipioID);
 end;
 
 procedure TControllerMunicipio.PersistEntity(AMunicipio: TMunicipio);
@@ -76,9 +76,9 @@ if (AMunicipio.Nome = '') or (AMunicipio.CNPJ = '') or (AMunicipio.Email= '') th
   end;
 
   if  AMunicipio.Id = 0 then
-    FDAOMunicipio.Insert(AMunicipio)
+    FDAO.Insert(AMunicipio)
   else
-    FDAOMunicipio.Update(AMunicipio);
+    FDAO.Update(AMunicipio);
 
 end;
 

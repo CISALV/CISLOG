@@ -63,7 +63,7 @@ begin
   SearchBar.ConfigureFilterFields(['NOME','CNPJ']);
 
   {Teste se isso funciona, será necessario implementar em todos os cruds}
-  FController := TControllerMunicipio.Create;
+  //FController := TControllerMunicipio.Create(TDAOMunicipio);
 
   dbGridPesquisa.Columns.Clear;
 
@@ -105,7 +105,7 @@ procedure TformViewMunicipio.PopView(MunicipioID: Integer);
 var
   Municipio : TMunicipio;
 begin
-  Municipio := (FController as ICRUDController<TMunicipio>).ReturnEntity(MunicipioID);
+  Municipio := FController.ReturnEntity(MunicipioID);
   if Municipio.Id > 0 then
   begin
     edId.Text := IntToStr(MunicipioID);

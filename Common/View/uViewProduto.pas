@@ -23,10 +23,11 @@ type
     procedure Save; override;
     procedure Delete; override;
   private
-    function MakeObjectfromFields: TProduto;
+
   protected
    //function CreateController : ISearchController; override;
-   procedure CarregarProduto(ProdutoId: Integer);
+   function WrapProduto: TProduto;
+   procedure UnwrapProduto(ProdutoId: Integer);
 
   public
     { Public declarations }
@@ -41,7 +42,7 @@ implementation
 
 uses uControllerProduto;
 
-procedure TformViewProduto.CarregarProduto(ProdutoId: Integer);
+procedure TformViewProduto.UnwrapProduto(ProdutoId: Integer);
 var
   Produto : TProduto;
 begin
@@ -70,7 +71,7 @@ ProdutoID : Integer;
 begin
   inherited;
   ProdutoID := FDataSource.DataSet.FieldByName('id').AsInteger;
-  CarregarProduto(ProdutoID);
+  UnwrapProduto(ProdutoID);
 end;
 
 procedure TformViewProduto.Delete;
@@ -79,7 +80,7 @@ var
 begin
   inherited;
   Id := StrtoInt(edId.Text);
-  (FController as ICRUDController<TProduto>).RemoveEntity(Id);
+  FController.RemoveEntity(Id);
   FController.LoadData;
 end;
 
@@ -89,12 +90,12 @@ begin
   //SearchBar.Controller := FController;
   //SearchBar.DataSource := FDataSource;
   SearchBar.ConfigureFilterFields(['APRESENTACAO','GGREM']);
-  FController := TControllerProduto.Create;
+  //FController := TControllerProduto.Create;
   dbGridPesquisa.Columns.Clear;
 
 end;
 
-function TformViewProduto.MakeObjectfromFields: TProduto;
+function TformViewProduto.WrapProduto: TProduto;
 var
   Produto : TProduto;
 begin
@@ -122,8 +123,8 @@ var
   Produto: TProduto;
 begin
     inherited;
-  Produto := MakeObjectfromFields;
-  (FController as ICRUDController<TProduto>).PersistEntity(Produto);
+  Produto := WrapProduto;
+  FController.PersistEntity(Produto);
   FController.LoadData;
 
 end;
