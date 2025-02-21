@@ -9,7 +9,7 @@ uses
   Data.DB, FireDAC.Comp.Client, FireDAC.Phys.FB, FireDAC.Phys.FBDef;
 
 type
-  TDataConService = class
+  TDataConService = class(TComponent)
   strict protected
     class var FInstance: TDataConService;
   private
@@ -20,26 +20,26 @@ type
     function GetConnection: TFDConnection;
     function ExecuteQuery(sql: String): TFDQuery;
     function GetQuery: TFDQuery;
-    constructor Create;
+    constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     class function GetInstance: TDataConService;
+    class procedure ReleaseInstance;
   end;
 
 implementation
 
 { TDataConService }
 
-constructor TDataConService.Create;
+constructor TDataConService.Create(AOwner: TComponent);
 begin
-  raise Exception.Create
-    ('Essa classe é um Singleton! Use o método GetInstance.');
+  raise Exception.Create('Essa classe é um Singleton! Use o método GetInstance.');
 end;
 
 constructor TDataConService.CreatePrivate;
 begin
-  inherited Create;
-  FConnection := TFDConnection.Create(nil);
-  FQuery := TFDQuery.Create(nil);
+  inherited Create(nil);
+  FConnection := TFDConnection.Create(Self);
+  FQuery := TFDQuery.Create(Self);
   try
     FConnection.DriverName := 'FB';
     FConnection.Params.Add('Server=192.168.0.223');
@@ -53,15 +53,18 @@ begin
     FQuery.Connection := FConnection;
   except
     on E: Exception do
-      raise Exception.Create('Falha ao Conectar com a base de dados: ' +
-        E.Message);
+    begin
+      FreeAndNil(FConnection);
+      FreeAndNil(FQuery);
+      raise Exception.Create('Falha ao Conectar com a base de dados: ' + E.Message);
+    end;
   end;
 end;
 
 destructor TDataConService.Destroy;
 begin
-  FConnection.Free;
   FQuery.Free;
+  FConnection.Free;
   inherited Destroy;
 end;
 
@@ -85,10 +88,21 @@ end;
 function TDataConService.ExecuteQuery(sql: String): TFDQuery;
 begin
   FQuery.Connection := FConnection;
-  FQuery.sql.Clear;
-  FQuery.sql.Add(sql);
+  FQuery.SQL.Clear;
+  FQuery.SQL.Add(sql);
   FQuery.Open;
   Result := FQuery;
 end;
+
+class procedure TDataConService.ReleaseInstance;
+begin
+  FreeAndNil(FInstance);
+end;
+
+initialization
+
+
+finalization
+  TDataConService.ReleaseInstance;
 
 end.

@@ -40,7 +40,7 @@ inherited formViewCiclo: TformViewCiclo
         Top = 1
         Width = 358
         Height = 522
-        ActivePage = TabSheet2
+        ActivePage = TabSheet1
         Align = alClient
         TabOrder = 2
         object TabSheet1: TTabSheet
@@ -96,19 +96,6 @@ inherited formViewCiclo: TformViewCiclo
             Align = alTop
             TabOrder = 2
             TextHint = 'TIPO'
-            ExplicitLeft = 5
-            ExplicitTop = 150
-          end
-        end
-        object TabSheet2: TTabSheet
-          Caption = 'TabSheet2'
-          ImageIndex = 1
-          object teste: TSpeedButton
-            Left = 126
-            Top = 64
-            Width = 112
-            Height = 73
-            OnClick = testeClick
           end
         end
       end

@@ -19,11 +19,11 @@ type
 
 implementation
 
-uses
-  uDataConService;
-
 constructor TDAOProduto.Create;
+var
+  FStoredProc : TFDStoredProc;
 begin
+  inherited;
   FStoredProcName := 'PROC_PRODUTO';
   FTableName := 'PRODUTO';
 end;

@@ -14,8 +14,8 @@ type
     constructor Create;
     destructor Destroy; override;
 
-    function ReturnEntity(ProdutoID: Integer): TProduto;
-    procedure PersistEntity(AProduto: TProduto);
+    function ReturnEntity(ProdutoID: Integer): TProduto; override;
+    procedure PersistEntity(AProduto: TProduto); override;
   end;
 
 implementation
@@ -53,9 +53,9 @@ begin
   end;
 
   if AProduto.Id = 0 then
-    FDAOProduto.Insert(AProduto)
+    FDAO.Insert(AProduto)
   else
-    FDAOProduto.Update(AProduto);
+    FDAO.Update(AProduto);
 end;
 
 end.

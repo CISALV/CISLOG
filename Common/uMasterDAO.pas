@@ -24,7 +24,7 @@ type
 
   public
     constructor Create;
-    destructor Destroy; override;
+
 
     function Insert(AEntity: T): Integer; virtual;
     function Update(AEntity: T): Integer; virtual;
@@ -45,12 +45,6 @@ begin
   FQuery := TDataConService.GetInstance.GetQuery;
 end;
 
-destructor TDAOMaster<T>.Destroy;
-begin
-  FConnection.Free;
-  FQuery.Free;
-  inherited;
-end;
 
 function TDAOMaster<T>.Insert(AEntity: T): Integer;
 var
@@ -60,7 +54,6 @@ begin
   try
     StoredProc.Connection := FConnection;
     StoredProc.StoredProcName := FStoredProcName;
-
     FConnection.TxOptions.AutoCommit := False;
     FConnection.StartTransaction;
     try

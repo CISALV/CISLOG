@@ -53,7 +53,6 @@ begin
     edCATMAT.Text := IntToStr(Produto.CATMAT);
     edApresentacao.Text := Produto.Apresentacao;
     edDescricao.Text := Produto.Descricao;
-
   end
 end;
 
@@ -86,8 +85,6 @@ end;
 procedure TformViewProduto.FormShow(Sender: TObject);
 begin
   inherited;
-  //SearchBar.Controller := FController;
-  //SearchBar.DataSource := FDataSource;
   SearchBar.ConfigureFilterFields(['APRESENTACAO','GGREM']);
   FController := TControllerProduto.Create;
   dbGridPesquisa.Columns.Clear;

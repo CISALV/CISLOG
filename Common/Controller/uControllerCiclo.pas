@@ -9,7 +9,7 @@ type TControllerCiclo = class(TMasterCRUDController<TCiclo>)
   public
   constructor Create;
   function ReturnEntity(AEntityId : Integer) : TCiclo;
-  procedure PersistEntity(AEntity : TCiclo);
+  procedure PersistEntity(AEntity : TCiclo); override;
 end;
 
 implementation
