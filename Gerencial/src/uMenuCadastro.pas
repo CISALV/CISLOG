@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterForm, Vcl.ComCtrls, Vcl.ToolWin,
   Vcl.ExtCtrls, Vcl.Buttons, Vcl.Menus,uViewMunicipio,
-  Vcl.StdCtrls, uMasterFrame,uFormFactory, Data.DB, Vcl.Grids, Vcl.DBGrids,uViewMockProduto;
+  Vcl.StdCtrls, uMasterFrame,uFormFactory, Data.DB, Vcl.Grids, Vcl.DBGrids,uViewMockProduto,
+  uViewCiclo;
 
 type
   TformMenuCadastros = class(TformMaster)
@@ -17,9 +18,11 @@ type
     speedUsuario: TSpeedButton;
     speedProdutos: TSpeedButton;
     speedMockProduto: TSpeedButton;
+    speedCiclo: TSpeedButton;
     procedure speedMunicipioClick(Sender: TObject);
     procedure speedProdutosClick(Sender: TObject);
     procedure speedMockProdutoClick(Sender: TObject);
+    procedure speedCicloClick(Sender: TObject);
     //procedure UsuarioClick(Sender: TObject);
 
   private
@@ -36,6 +39,12 @@ implementation
 {$R *.dfm}
 
 uses uViewProduto;
+
+procedure TformMenuCadastros.speedCicloClick(Sender: TObject);
+begin
+  inherited;
+ TFormFactory.CreateAndShowForm(TformViewCiclo,panelFundo);
+end;
 
 procedure TformMenuCadastros.speedMockProdutoClick(Sender: TObject);
 begin

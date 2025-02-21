@@ -16,7 +16,9 @@ type
     Image1: TImage;
     panelTaskbar: TPanel;
     Cadastro: TframeMenuButton;
+    Pedido: TframeMenuButton;
     procedure CadastrospeedClick(Sender: TObject);
+    procedure PedidospeedClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,6 +32,8 @@ implementation
 
 {$R *.dfm}
 
+uses uViewGerenciarPedido;
+
 procedure TformPrincipal.CadastrospeedClick(Sender: TObject);
 begin
   inherited;
@@ -37,5 +41,11 @@ begin
 end;
 
 
+
+procedure TformPrincipal.PedidospeedClick(Sender: TObject);
+begin
+  inherited;
+  TFormFactory.CreateAndShowForm(TformGerenciarPedido,panelContainer);
+end;
 
 end.

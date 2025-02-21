@@ -911,7 +911,38 @@ inherited formPrincipal: TformPrincipal
             Flat = True
             OnClick = CadastrospeedClick
             ExplicitLeft = 2
-            ExplicitTop = 6
+            ExplicitTop = -22
+            ExplicitWidth = 141
+            ExplicitHeight = 36
+          end
+        end
+      end
+      inline Pedido: TframeMenuButton
+        Left = 0
+        Top = 40
+        Width = 145
+        Height = 40
+        Align = alTop
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Roboto'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 1
+        ExplicitTop = 8
+        ExplicitWidth = 145
+        inherited panel: TPanel
+          Width = 145
+          StyleElements = [seFont, seClient, seBorder]
+          ExplicitWidth = 145
+          inherited speed: TSpeedButton
+            Width = 141
+            Caption = 'Pedido'
+            Flat = True
+            OnClick = PedidospeedClick
+            ExplicitLeft = 2
+            ExplicitTop = 26
             ExplicitWidth = 141
             ExplicitHeight = 36
           end

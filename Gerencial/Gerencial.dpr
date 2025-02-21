@@ -28,7 +28,13 @@ uses
   uMockProduto in '..\Common\Model\Entities\uMockProduto.pas',
   uDAOMockProduto in '..\Common\Model\DAO\uDAOMockProduto.pas',
   uViewMockProduto in '..\Common\View\uViewMockProduto.pas' {formViewMockProduto},
-  uControllerMockProduto in '..\Common\Controller\uControllerMockProduto.pas';
+  uControllerMockProduto in '..\Common\Controller\uControllerMockProduto.pas',
+  uViewGerenciarPedido in '..\Common\View\uViewGerenciarPedido.pas' {formGerenciarPedido},
+  uDAO in '..\Common\Model\DAO\uDAO.pas' {DataModule1: TDataModule},
+  uViewCiclo in '..\Common\View\uViewCiclo.pas' {formViewCiclo},
+  uControllerCiclo in '..\Common\Controller\uControllerCiclo.pas',
+  uCiclo in '..\Common\Model\Entities\uCiclo.pas',
+  uCicloDAO in '..\Common\Model\DAO\uCicloDAO.pas';
 
 {$R *.res}
 

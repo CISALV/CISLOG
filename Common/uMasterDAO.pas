@@ -26,9 +26,9 @@ type
     constructor Create;
     destructor Destroy; override;
 
-    function Insert(AEntity: T): Integer;
-    function Update(AEntity: T): Integer;
-    function Delete(AID: Integer): Integer;
+    function Insert(AEntity: T): Integer; virtual;
+    function Update(AEntity: T): Integer; virtual;
+    function Delete(AID: Integer): Integer; virtual;
 
     function GetByID(AID: Integer): T;
     function GetAll: TDataSet;

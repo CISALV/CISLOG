@@ -31,6 +31,7 @@ type
     property DataSource: TDataSource read FDataSource write SetDataSource;
 
     procedure ConfigureFilterFields(const AFields: TArray<string>);
+    procedure Clear;
   end;
 
 var
@@ -39,6 +40,11 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TframeSearch.Clear;
+begin
+ edSearch.Text := '';
+end;
 
 procedure TframeSearch.ConfigureFilterFields(const AFields: TArray<string>);
 begin

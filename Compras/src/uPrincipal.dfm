@@ -19,8 +19,8 @@ object formPrincipal: TformPrincipal
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 622
-    ExplicitHeight = 392
+    ExplicitWidth = 625
+    ExplicitHeight = 501
     object Image1: TImage
       Left = 0
       Top = 0
@@ -865,14 +865,11 @@ object formPrincipal: TformPrincipal
         5006D5D1EBF5F7038140C91F5E62BFFC4DF39E1F801CDF016AA822852C31B23B
         0000000E655849664D4D002A0000000800000000000000D25393000000004945
         4E44AE426082}
-      ExplicitLeft = -170
-      ExplicitTop = -176
-      ExplicitWidth = 794
-      ExplicitHeight = 617
+      ExplicitTop = 3
     end
     object speedCompra: TSpeedButton
-      Left = 8
-      Top = 14
+      Left = 24
+      Top = 24
       Width = 113
       Height = 49
       Caption = 'Compra'
@@ -889,6 +886,16 @@ object formPrincipal: TformPrincipal
     Color = clHighlight
     ParentBackground = False
     TabOrder = 1
-    ExplicitWidth = 622
+    ExplicitWidth = 625
+    object speedHome: TSpeedButton
+      AlignWithMargins = True
+      Left = 3
+      Top = 3
+      Width = 70
+      Height = 35
+      Align = alLeft
+      Caption = 'In'#237'cio'
+      OnClick = speedHomeClick
+    end
   end
 end

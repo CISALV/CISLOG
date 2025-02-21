@@ -3,9 +3,10 @@ unit uPrincipal;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons,uMasterForm,
-  Vcl.Imaging.pngimage;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons, uMasterForm,
+  Vcl.Imaging.pngimage, uAreaComprasView;
 
 type
   TformPrincipal = class(TformMaster)
@@ -13,9 +14,11 @@ type
     panelTopBar: TPanel;
     speedCompra: TSpeedButton;
     Image1: TImage;
+    speedHome: TSpeedButton;
     procedure speedCompraClick(Sender: TObject);
+    procedure speedHomeClick(Sender: TObject);
   private
-    { Private declarations }
+    Form: Tform;
   public
     { Public declarations }
   end;
@@ -27,13 +30,24 @@ implementation
 
 {$R *.dfm}
 
-uses uFormFactory, uAreaComprasView;
+uses uFormFactory;
 
 procedure TformPrincipal.speedCompraClick(Sender: TObject);
 begin
   inherited;
-  TFormFactory.CreateAndShowForm(TformComprasView,pnlFundo);
 
+  Form := TFormComprasView.Create(pnlFundo);
+  Form.Parent := pnlFundo;
+  Form.Align := AlClient;
+  Form.Show;
+
+end;
+
+procedure TformPrincipal.speedHomeClick(Sender: TObject);
+begin
+  inherited;
+  if Assigned(Form) then
+    Form.Close;
 end;
 
 end.

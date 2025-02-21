@@ -15,9 +15,16 @@ inherited frameSearch: TframeSearch
       Width = 481
       Height = 33
       Align = alClient
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clSlategray
+      Font.Height = -17
+      Font.Name = 'Roboto'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 0
+      TextHint = 'Pesquisar'
       OnChange = edSearchChange
-      ExplicitHeight = 22
+      ExplicitHeight = 28
     end
     object cbFilter: TComboBox
       AlignWithMargins = True

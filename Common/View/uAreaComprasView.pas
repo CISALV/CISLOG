@@ -13,35 +13,46 @@ uses
   Vcl.DBCtrls, Vcl.Buttons, uframeSearch, uControllerCompras;
 
 type
-  TformComprasView = class(TFormMaster)
+  TformComprasView = class(TformMaster)
     dbGridProdutos: TDBGrid;
-    Tabs: TCardPanel;
-    tabCompra: TCard;
-    tabCarrinho: TCard;
     dbGridCarrinho: TDBGrid;
-    Panel1: TPanel;
+    pnlFooter: TPanel;
     dsBaseVigencia: TDataSource;
-    DBMemo1: TDBMemo;
-    memCarrinho: TFDMemTable;
+    memCart: TFDMemTable;
     dsCarrinho: TDataSource;
-    speedCarrinho: TSpeedButton;
-    Panel2: TPanel;
+    pnlCartOptions: TPanel;
     speedVoltar: TSpeedButton;
     speedRemoverItem: TSpeedButton;
     SearchBar: TframeSearch;
     speedLimpar: TSpeedButton;
-    memCarrinhoquantidade: TIntegerField;
-    memCarrinhoApresentacao: TStringField;
-    memCarrinhoid: TIntegerField;
+    memCartquantidade: TIntegerField;
+    memCartApresentacao: TStringField;
+    memCartValor: TFloatField;
+    lblTotalValue: TLabel;
+    Label2: TLabel;
+    memoDescricao: TDBMemo;
+    pnlCart: TPanel;
+    Splitter1: TSplitter;
+    Panel1: TPanel;
+    pnlTotal: TPanel;
+    pnlTopCart: TPanel;
     procedure dbGridProdutosDblClick(Sender: TObject);
-    procedure speedCarrinhoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SearchBaredSearchChange(Sender: TObject);
     procedure speedVoltarClick(Sender: TObject);
     procedure speedLimparClick(Sender: TObject);
     procedure speedRemoverItemClick(Sender: TObject);
+    procedure UpdateTotal;
+    procedure FormShow(Sender: TObject);
+    procedure FormCanResize(Sender: TObject; var NewWidth, NewHeight: Integer;
+      var Resize: Boolean);
+
+    function ConfirmationDialog(const Msg: string): Boolean;
+
   private
    FQuery : TFDQuery;
+
+  procedure InsertProduct(Quantity: Integer);
   public
     { Public declarations }
   end;
@@ -56,21 +67,26 @@ implementation
 uses uDataConService;
 
 
+function TformComprasView.ConfirmationDialog(const Msg: string): Boolean;
+begin
+ Result := MessageDlg(msg,mtConfirmation, [mbYes, mbNo], 0) = mrYes;
+end;
+
 procedure TformComprasView.dbGridProdutosDblClick(Sender: TObject);
 var
-  i: Integer;
-  IdProduto: Integer;
-  baseProduto, cartProduto: TField;
+  IdProduto: string;
   QuantityStr: string;
   Quantity: Integer;
 begin
   inherited;
-  IdProduto := dsBaseVigencia.Dataset.FieldByName('id').AsInteger;
+  IdProduto := dsBaseVigencia.Dataset.FieldByName('Apresentacao').AsString;
+  Searchbar.Clear;
+
 
   //logica de negocios irá para o Service
-  memCarrinho.Open;
+  memCart.Open;
 
-  if memCarrinho.Locate('Id', IdProduto, []) then
+  if memCart.Locate('Apresentacao', IdProduto, []) then
   begin
     ShowMessage('Este Produto já está no carrinho!');
     Exit;
@@ -87,21 +103,38 @@ begin
     Exit;
   end;
 
-  Tabs.ActiveCard := tabCarrinho;
 
-  memCarrinho.Append;
+  memCart.Append;
+  InsertProduct(Quantity);
+end;
 
-  //transformar isso em função(inserirProduto?)
+
+procedure TformComprasView.FormCanResize(Sender: TObject; var NewWidth,
+  NewHeight: Integer; var Resize: Boolean);
+  var
+    Col : TColumn;
+  begin
+  inherited;
+
+end;
+
+procedure TformComprasView.InsertProduct(Quantity: Integer);
+var
+  i: Integer;
+  baseProduto: TField;
+  cartProduto: TField;
+begin
+
   for i := 0 to dsBaseVigencia.DataSet.FieldCount - 1 do
   begin
     baseProduto := dsBaseVigencia.Dataset.Fields[i];
-    cartProduto := memCarrinho.FindField(baseProduto.FieldName);
+    cartProduto := memCart.FindField(baseProduto.FieldName);
     if Assigned(cartProduto) then
       cartProduto.Value := baseProduto.Value;
   end;
-
-  memCarrinho.FieldByName('quantidade').AsInteger := Quantity;
-  memCarrinho.Post;
+  memCart.FieldByName('quantidade').AsInteger := Quantity;
+  memCart.Post;
+  UpdateTotal;
 end;
 
 procedure TformComprasView.FormCreate(Sender: TObject);
@@ -110,9 +143,8 @@ var
 begin
   inherited;
 
-  Controller := TControllerCompras.Create;
 
-  Tabs.ActiveCard := tabCompra;
+  Controller := TControllerCompras.Create;
 
   SearchBar.Controller := Controller;
   SearchBar.DataSource := dsBaseVigencia;
@@ -122,21 +154,54 @@ begin
 
 end;
 
+procedure TformComprasView.FormShow(Sender: TObject);
+var
+Col : TColumn;
+f : TFloatField;
+begin
+  inherited;
+    dbGridProdutos.Columns.Clear;
+    f := dsBaseVigencia.Dataset.FieldByName('Valor') as TFloatField;
+    f.DisplayFormat := 'R$#,##0.00';
+
+    memCartValor.DisplayFormat := 'R$#,##0.00';
+
+  Col := dbGridProdutos.Columns.Add;
+  Col.FieldName := 'Apresentacao';
+  Col.Title.Caption := 'Descrição';
+  Col.Width := Round(DbGridProdutos.ClientWidth * 0.4);
+
+  Col := dbGridProdutos.Columns.Add;
+  Col.FieldName := 'Valor';
+  Col.Title.Caption := 'Valor';
+  Col.Width := Round(DbGridProdutos.ClientWidth * 0.1);
+
+  Col := dbGridProdutos.Columns.Add;
+  Col.FieldName := 'Quantidade_restante';
+  Col.Title.Caption := 'Quantidade Disponível';
+  Col.Width := Round(DbGridProdutos.ClientWidth * 0.3);
+
+
+
+end;
+
 procedure TformComprasView.SearchBaredSearchChange(Sender: TObject);
 begin
   inherited;
   SearchBar.edSearchChange(Sender);
-  Tabs.ActiveCard := tabCompra;
 end;
 
 procedure TformComprasView.speedLimparClick(Sender: TObject);
 begin
   inherited;
-  memCarrinho.DisableControls;
+  memCart.DisableControls;
+  if ConfirmationDialog('Isto irá excluir todos os itens do pedido. Deseja Confirmar a Operação?') then
   try
-    memCarrinho.EmptyDataSet;
+    memCart.EmptyDataSet;
+    UpdateTotal;
   finally
-  memCarrinho.EnableControls;
+  memCart.EnableControls;
+
   end;
 end;
 
@@ -144,22 +209,35 @@ procedure TformComprasView.speedRemoverItemClick(Sender: TObject);
 begin
   inherited;
   { Controller > Service }
- if not memCarrinho.IsEmpty then
- memCarrinho.Delete;
+ if ConfirmationDialog('Isto irá remover o item selecionado. Deseja Confirmar a Operação?') and not memCart.IsEmpty then
+ memCart.Delete;
+ UpdateTotal;
 end;
 
-procedure TformComprasView.speedCarrinhoClick(Sender: TObject);
-begin
-  inherited;
-  { Controller > Service }
-  Tabs.ActiveCard := tabCarrinho;
-  SearchBar.edSearch.Text := '';
-
-end;
 procedure TformComprasView.speedVoltarClick(Sender: TObject);
 begin
   inherited;
- tabs.ActiveCard := tabCompra;
+ SearchBar.Clear;
+end;
+
+procedure TformComprasView.UpdateTotal;
+var
+Total : Double;
+begin
+ Total := 0;
+ memCart.DisableControls;
+ try
+  memCart.First;
+  while not memCart.Eof do
+  begin
+    Total := Total + (memCart.FieldByName('Valor').AsFloat *
+    memCart.FieldByName('quantidade').AsInteger);
+    memCart.Next;
+  end;
+ finally
+ memCart.EnableControls;
+ end;
+  lblTotalValue.Caption := FormatFloat('0.00', Total);
 end;
 
 end.

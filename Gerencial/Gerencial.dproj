@@ -199,6 +199,22 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Common\Controller\uControllerMockProduto.pas"/>
+        <DCCReference Include="..\Common\View\uViewGerenciarPedido.pas">
+            <Form>formGerenciarPedido</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Common\Model\DAO\uDAO.pas">
+            <Form>DataModule1</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\Common\View\uViewCiclo.pas">
+            <Form>formViewCiclo</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Common\Controller\uControllerCiclo.pas"/>
+        <DCCReference Include="..\Common\Model\Entities\uCiclo.pas"/>
+        <DCCReference Include="..\Common\Model\DAO\uCicloDAO.pas"/>
         <None Include="Gerencial.todo"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
