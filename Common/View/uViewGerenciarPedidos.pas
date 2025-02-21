@@ -1,4 +1,4 @@
-unit uViewGerenciarCiclo;
+unit uViewGerenciarPedidos;
 
 interface
 

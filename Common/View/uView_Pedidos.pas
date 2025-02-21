@@ -1,4 +1,4 @@
-unit uViewGerenciarPedido;
+unit uView_Pedidos;
 
 interface
 

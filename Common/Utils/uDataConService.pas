@@ -38,7 +38,11 @@ end;
 constructor TDataConService.CreatePrivate;
 begin
   inherited Create(nil);
-  FConnection := TFDConnection.Create(Self);
+  FQuery := TFDQuery.Create(nil);
+  //FQuery.Connection
+
+  {
+   FConnection := TFDConnection.Create(Self);
   FQuery := TFDQuery.Create(Self);
   try
     FConnection.DriverName := 'FB';
@@ -59,6 +63,7 @@ begin
       raise Exception.Create('Falha ao Conectar com a base de dados: ' + E.Message);
     end;
   end;
+}
 end;
 
 destructor TDataConService.Destroy;

@@ -199,7 +199,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Common\Controller\uControllerMockProduto.pas"/>
-        <DCCReference Include="..\Common\View\uViewGerenciarPedido.pas">
+        <DCCReference Include="..\Common\View\uView_Pedidos.pas">
             <Form>formGerenciarPedido</Form>
             <FormType>dfm</FormType>
         </DCCReference>
@@ -210,8 +210,18 @@
         <DCCReference Include="..\Common\Controller\uControllerCiclo.pas"/>
         <DCCReference Include="..\Common\Model\Entities\uCiclo.pas"/>
         <DCCReference Include="..\Common\Model\DAO\uCicloDAO.pas"/>
-        <DCCReference Include="..\Common\View\uViewGerenciarCiclo.pas">
-            <Form>formMaster1</Form>
+        <DCCReference Include="..\Common\View\uViewGerenciarPedidos.pas">
+            <Form>formViewGerenciarCiclo</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Common\Model\DAO\uDAOGerenciarPedidos.pas"/>
+        <DCCReference Include="..\Common\Utils\uDMConnection.pas">
+            <Form>DMConnection</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="src\teste.pas">
+            <Form>Form1</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <None Include="Gerencial.todo"/>

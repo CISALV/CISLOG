@@ -29,12 +29,15 @@ uses
   uDAOMockProduto in '..\Common\Model\DAO\uDAOMockProduto.pas',
   uViewMockProduto in '..\Common\View\uViewMockProduto.pas' {formViewMockProduto},
   uControllerMockProduto in '..\Common\Controller\uControllerMockProduto.pas',
-  uViewGerenciarPedido in '..\Common\View\uViewGerenciarPedido.pas' {formGerenciarPedido},
+  uView_Pedidos in '..\Common\View\uView_Pedidos.pas' {formGerenciarPedido},
   uViewCiclo in '..\Common\View\uViewCiclo.pas' {formViewCiclo},
   uControllerCiclo in '..\Common\Controller\uControllerCiclo.pas',
   uCiclo in '..\Common\Model\Entities\uCiclo.pas',
   uCicloDAO in '..\Common\Model\DAO\uCicloDAO.pas',
-  uViewGerenciarCiclo in '..\Common\View\uViewGerenciarCiclo.pas' {formMaster1};
+  uViewGerenciarPedidos in '..\Common\View\uViewGerenciarPedidos.pas' {formViewGerenciarCiclo},
+  uDAOGerenciarPedidos in '..\Common\Model\DAO\uDAOGerenciarPedidos.pas',
+  uDMConnection in '..\Common\Utils\uDMConnection.pas' {DMConnection: TDataModule},
+  teste in 'src\teste.pas' {Form1};
 
 {$R *.res}
 
@@ -42,6 +45,6 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TformPrincipal, formPrincipal);
+  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.

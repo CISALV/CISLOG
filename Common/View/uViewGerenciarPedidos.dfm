@@ -13,6 +13,8 @@ inherited formViewGerenciarCiclo: TformViewGerenciarCiclo
     ActivePage = tabGerenciar
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 699
+    ExplicitHeight = 581
     object tabGerenciar: TTabSheet
       Caption = 'Gerenciar'
       object Panel1: TPanel
