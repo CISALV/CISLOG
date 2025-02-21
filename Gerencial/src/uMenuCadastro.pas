@@ -43,7 +43,7 @@ uses uViewProduto;
 procedure TformMenuCadastros.speedCicloClick(Sender: TObject);
 begin
   inherited;
- TFormFactory.CreateAndShowForm(TformViewCiclo,panelFundo);
+  TFormFactory.CreateAndShowForm(TformViewCiclo,panelFundo);
 end;
 
 procedure TformMenuCadastros.speedMockProdutoClick(Sender: TObject);

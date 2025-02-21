@@ -930,7 +930,7 @@ inherited formPrincipal: TformPrincipal
         Font.Style = []
         ParentFont = False
         TabOrder = 1
-        ExplicitTop = 8
+        ExplicitTop = 40
         ExplicitWidth = 145
         inherited panel: TPanel
           Width = 145

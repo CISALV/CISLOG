@@ -30,11 +30,11 @@ uses
   uViewMockProduto in '..\Common\View\uViewMockProduto.pas' {formViewMockProduto},
   uControllerMockProduto in '..\Common\Controller\uControllerMockProduto.pas',
   uViewGerenciarPedido in '..\Common\View\uViewGerenciarPedido.pas' {formGerenciarPedido},
-  uDAO in '..\Common\Model\DAO\uDAO.pas' {DataModule1: TDataModule},
   uViewCiclo in '..\Common\View\uViewCiclo.pas' {formViewCiclo},
   uControllerCiclo in '..\Common\Controller\uControllerCiclo.pas',
   uCiclo in '..\Common\Model\Entities\uCiclo.pas',
-  uCicloDAO in '..\Common\Model\DAO\uCicloDAO.pas';
+  uCicloDAO in '..\Common\Model\DAO\uCicloDAO.pas',
+  uViewGerenciarCiclo in '..\Common\View\uViewGerenciarCiclo.pas' {formMaster1};
 
 {$R *.res}
 

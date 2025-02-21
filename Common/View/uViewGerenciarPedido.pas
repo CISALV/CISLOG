@@ -10,22 +10,17 @@ uses
   FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
   FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait, FireDAC.Comp.Client,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.Comp.DataSet,
-  FireDAC.DApt, Vcl.Mask, FireDAC.Phys.FB, FireDAC.Phys.FBDef, Vcl.DBCtrls;
+  FireDAC.DApt, Vcl.Mask, FireDAC.Phys.FB, FireDAC.Phys.FBDef, Vcl.DBCtrls,
+  uFormFactory, uViewCiclo, uViewGerenciarCiclo;
 
 type
   TformGerenciarPedido = class(TformMaster)
-    PageControl1: TPageControl;
-    tabGerenciar: TTabSheet;
-    DBGrid1: TDBGrid;
-    DBGrid2: TDBGrid;
-    frameSearch1: TframeSearch;
-    frameSearch2: TframeSearch;
-    Panel1: TPanel;
-    speedSelection: TSpeedButton;
-    speedHabilitar: TSpeedButton;
-    tabCriar: TTabSheet;
-    tabRelatorios: TTabSheet;
-    procedure FormCreate(Sender: TObject);
+    Panel2: TPanel;
+    speedCiclo: TSpeedButton;
+    pnlFundo: TPanel;
+    speedGerenciar: TSpeedButton;
+    procedure speedCicloClick(Sender: TObject);
+    procedure speedGerenciarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,23 +38,16 @@ implementation
 
 uses uDataConService;
 
-procedure TformGerenciarPedido.FormCreate(Sender: TObject);
-var
- Query: TFDQuery;
- DataSource: TDataSource;
+procedure TformGerenciarPedido.speedCicloClick(Sender: TObject);
 begin
   inherited;
-  Query := TDataConService.GetInstance.GetQuery;
-  Query.Close;
-  Query.SQL.Text := ('SELECT * FROM MUNICIPIO');
-  Query.Open;
-  DataSource := TDataSource.Create(nil);
-  DataSource.DataSet := Query;
+  TFormFactory.CreateAndShowForm(TformViewCiclo,pnlFundo);
+end;
 
-  //qryUsuario.Connection := TDataConService.GetInstance.GetConnection;
-
-  dbGrid1.DataSource := DataSource;
-  dbGrid1.Enabled := True;
+procedure TformGerenciarPedido.speedGerenciarClick(Sender: TObject);
+begin
+  inherited;
+  TFormFactory.CreateAndShowForm(TformViewGerenciarCiclo,pnlFundo);
 end;
 
 end.
