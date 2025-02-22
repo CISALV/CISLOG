@@ -13,6 +13,7 @@ type
     function ReturnEntity(EntityID: Integer): T;
     procedure PersistEntity(AEntity: T);
     procedure RemoveEntity(EntityID: Integer);
+    function IsNewEntity(AMunicipio: TMunicipio) : Boolean;
   end;
 
   ISearchController = interface

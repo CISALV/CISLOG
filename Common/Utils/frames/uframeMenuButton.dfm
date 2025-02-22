@@ -29,7 +29,6 @@ inherited frameMenuButton: TframeMenuButton
       ParentFont = False
       Transparent = False
       OnMouseDown = speedMouseDown
-      OnMouseUp = speedMouseUp
       ExplicitLeft = 88
       ExplicitTop = 80
       ExplicitWidth = 23

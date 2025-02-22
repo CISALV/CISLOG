@@ -17,6 +17,10 @@ type
     edApresentacao: TEdit;
     edGGREM: TEdit;
     edCATMAT: TEdit;
+    lbDescrição: TLabel;
+    lbApresentacao: TLabel;
+    lbGGREM: TLabel;
+    lbCATMAT: TLabel;
     procedure FormShow(Sender: TObject);
     procedure operationsBarspeedNovoClick(Sender: TObject);
     procedure dbgridPesquisaDblClick(Sender: TObject);

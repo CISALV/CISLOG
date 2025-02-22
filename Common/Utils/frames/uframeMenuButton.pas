@@ -10,12 +10,10 @@ type
   TframeMenuButton = class(TframeMaster)
     panel: TPanel;
     speed: TSpeedButton;
-    procedure speedMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
     procedure speedMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
   private
-    { Private declarations }
+    class var LastClicked: TframeMenuButton;
   public
     { Public declarations }
   end;
@@ -31,14 +29,18 @@ procedure TframeMenuButton.speedMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   inherited;
-   panel.BevelOuter := BvLowered;
-end;
 
-procedure TframeMenuButton.speedMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-begin
-  inherited;
-  panel.BevelOuter := BvRaised;
+
+  if Assigned(LastClicked) and (LastClicked <> Self) then
+  begin
+    LastClicked.panel.BevelOuter := BvRaised;
+    LastClicked.panel.Color := clWhite;
+  end;
+
+  panel.BevelOuter := BvLowered;
+  panel.Color := rgb(240, 240, 240);//rgb(0, 120, 215);
+  LastClicked := Self;
 end;
 
 end.
+

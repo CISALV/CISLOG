@@ -21,7 +21,7 @@ type
 
     function ReturnEntity(MunicipioID: Integer): TMunicipio;
     procedure PersistEntity(AMunicipio: TMunicipio);
-
+    function IsNewEntity(AMunicipio: TMunicipio) : Boolean;
   end;
 implementation
 
@@ -59,6 +59,13 @@ begin
       Result := Municipio;
 end;
 
+
+
+function TControllerMunicipio.IsNewEntity(AMunicipio: TMunicipio): Boolean;
+begin
+  Result := AMunicipio.Id = 0;
+end;
+
 procedure TControllerMunicipio.RemoveEntity(MunicipioID: Integer);
 begin
     FDAOMunicipio.Delete(MunicipioID);
@@ -69,16 +76,11 @@ var
   Municipio : TMunicipio;
 begin
 
-if (AMunicipio.Nome = '') or (AMunicipio.CNPJ = '') or (AMunicipio.Email= '') then
-  begin
-    ShowMessage('Todos os campos são necessários');
-    Exit;
-  end;
-
-  if  AMunicipio.Id = 0 then
+  if IsNewEntity(AMunicipio) then
     FDAOMunicipio.Insert(AMunicipio)
   else
     FDAOMunicipio.Update(AMunicipio);
+
 
 end;
 end.

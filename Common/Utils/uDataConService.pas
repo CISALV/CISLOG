@@ -39,17 +39,18 @@ constructor TDataConService.CreatePrivate;
 begin
   inherited Create(nil);
   FQuery := TFDQuery.Create(nil);
-  //FQuery.Connection
-
-  {
-   FConnection := TFDConnection.Create(Self);
+  FQuery.Connection;
+  FConnection := TFDConnection.Create(Self);
   FQuery := TFDQuery.Create(Self);
   try
     FConnection.DriverName := 'FB';
+    {
     FConnection.Params.Add('Server=192.168.0.223');
     FConnection.Params.Add('Port=3050');
     FConnection.Params.Add('Protocol=TCPIP');
     FConnection.Params.Add('Database=C:\database\CISALV-3-2-1.FDB');
+    }
+    FConnection.Params.Add('Database=c:\git\CISLOG\CISALV-3-2-1.FDB');
     FConnection.Params.Add('User_Name=SYSDBA');
     FConnection.Params.Add('Password=masterkey');
     FConnection.LoginPrompt := False;
@@ -63,7 +64,7 @@ begin
       raise Exception.Create('Falha ao Conectar com a base de dados: ' + E.Message);
     end;
   end;
-}
+
 end;
 
 destructor TDataConService.Destroy;

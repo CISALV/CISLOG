@@ -11,10 +11,10 @@ uses
   FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait, FireDAC.Comp.Client,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.Comp.DataSet,
   FireDAC.DApt, Vcl.Mask, FireDAC.Phys.FB, FireDAC.Phys.FBDef, Vcl.DBCtrls,
-  uFormFactory, uViewCiclo, uViewGerenciarCiclo;
+  uFormFactory, uViewCiclo, uViewGerenciarCiclos;
 
 type
-  TformGerenciarPedido = class(TformMaster)
+  Tform_Pedidos = class(TformMaster)
     Panel2: TPanel;
     speedCiclo: TSpeedButton;
     pnlFundo: TPanel;
@@ -28,7 +28,7 @@ type
   end;
 
 var
-  formGerenciarPedido: TformGerenciarPedido;
+  form_Pedidos: Tform_Pedidos;
 
 implementation
 
@@ -38,13 +38,13 @@ implementation
 
 uses uDataConService;
 
-procedure TformGerenciarPedido.speedCicloClick(Sender: TObject);
+procedure Tform_Pedidos.speedCicloClick(Sender: TObject);
 begin
   inherited;
   TFormFactory.CreateAndShowForm(TformViewCiclo,pnlFundo);
 end;
 
-procedure TformGerenciarPedido.speedGerenciarClick(Sender: TObject);
+procedure Tform_Pedidos.speedGerenciarClick(Sender: TObject);
 begin
   inherited;
   TFormFactory.CreateAndShowForm(TformViewGerenciarCiclo,pnlFundo);

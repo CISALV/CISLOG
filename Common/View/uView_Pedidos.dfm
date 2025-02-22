@@ -1,4 +1,4 @@
-inherited formGerenciarPedido: TformGerenciarPedido
+inherited form_Pedidos: Tform_Pedidos
   BorderStyle = bsNone
   ClientHeight = 589
   ClientWidth = 660

@@ -32,7 +32,7 @@ implementation
 
 {$R *.dfm}
 
-uses uViewGerenciarPedido;
+uses uView_Pedidos;
 
 procedure TformPrincipal.CadastrospeedClick(Sender: TObject);
 begin
@@ -45,7 +45,7 @@ end;
 procedure TformPrincipal.PedidospeedClick(Sender: TObject);
 begin
   inherited;
-  TFormFactory.CreateAndShowForm(TformGerenciarPedido,panelContainer);
+  TFormFactory.CreateAndShowForm(Tform_Pedidos,panelContainer);
 end;
 
 end.

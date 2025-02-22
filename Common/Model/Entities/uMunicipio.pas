@@ -45,6 +45,8 @@ implementation
 constructor TMunicipio.Create(AId: Integer; ANome, ACNPJ, AEmail: String;
   ATelefone, ARua, ANumero, ABairro, AComplemento: String);
 begin
+  inherited Create;
+
   Self.Fid := AId;
   Self.FNome := ANome;
   Self.FCNPJ := ACNPJ;

@@ -159,10 +159,11 @@ procedure TformMasterCRUDView.operationsBarspeedSalvarClick(Sender: TObject);
 begin
   inherited;
   if ConfirmSave then
-    operationsBar.SetButtonState(osIdle);
-  panelLateral.Visible := False;
-  Save;
+  begin
+    Save;
+  end;
 end;
+
 
 procedure TformMasterCRUDView.SearchChange(Sender: TObject);
 begin

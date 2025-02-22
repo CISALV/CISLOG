@@ -1,4 +1,4 @@
-inherited formViewProduto: TformViewProduto
+﻿inherited formViewProduto: TformViewProduto
   Caption = ''
   StyleElements = [seFont, seClient, seBorder]
   TextHeight = 18
@@ -13,6 +13,9 @@ inherited formViewProduto: TformViewProduto
             StyleElements = [seFont, seClient, seBorder]
             inherited edSearch: TEdit
               StyleElements = [seFont, seClient, seBorder]
+              ExplicitLeft = 154
+              ExplicitTop = 3
+              ExplicitWidth = 297
             end
             inherited cbFilter: TComboBox
               StyleElements = [seFont, seClient, seBorder]
@@ -46,14 +49,93 @@ inherited formViewProduto: TformViewProduto
         TabPosition = tpBottom
         object tabPrincipal: TTabSheet
           Caption = 'Principal'
+          object lbDescrição: TLabel
+            AlignWithMargins = True
+            Left = 10
+            Top = 203
+            Width = 330
+            Height = 15
+            Margins.Left = 10
+            Margins.Top = 0
+            Margins.Right = 10
+            Margins.Bottom = 0
+            Align = alTop
+            Caption = 'DESCRI'#199#195'O'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Roboto'
+            Font.Style = []
+            ParentFont = False
+            ExplicitWidth = 69
+          end
+          object lbApresentacao: TLabel
+            AlignWithMargins = True
+            Left = 10
+            Top = 41
+            Width = 330
+            Height = 15
+            Margins.Left = 10
+            Margins.Top = 0
+            Margins.Right = 10
+            Margins.Bottom = 0
+            Align = alTop
+            Caption = 'APRESENTA'#199#195'O'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Roboto'
+            Font.Style = []
+            ParentFont = False
+            ExplicitWidth = 96
+          end
+          object lbGGREM: TLabel
+            AlignWithMargins = True
+            Left = 10
+            Top = 95
+            Width = 330
+            Height = 15
+            Margins.Left = 10
+            Margins.Top = 0
+            Margins.Right = 10
+            Margins.Bottom = 0
+            Align = alTop
+            Caption = 'GGREM'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Roboto'
+            Font.Style = []
+            ParentFont = False
+            ExplicitWidth = 44
+          end
+          object lbCATMAT: TLabel
+            AlignWithMargins = True
+            Left = 10
+            Top = 149
+            Width = 330
+            Height = 15
+            Margins.Left = 10
+            Margins.Top = 0
+            Margins.Right = 10
+            Margins.Bottom = 0
+            Align = alTop
+            Caption = 'CATMAT'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Roboto'
+            Font.Style = []
+            ParentFont = False
+            ExplicitWidth = 51
+          end
           object edId: TEdit
             AlignWithMargins = True
             Left = 10
-            Top = 10
+            Top = 3
             Width = 330
             Height = 28
             Margins.Left = 10
-            Margins.Top = 10
             Margins.Right = 10
             Margins.Bottom = 10
             TabStop = False
@@ -69,62 +151,59 @@ inherited formViewProduto: TformViewProduto
             ReadOnly = True
             TabOrder = 4
             TextHint = 'ID'
+            ExplicitTop = 10
           end
           object edDescricao: TEdit
             AlignWithMargins = True
             Left = 10
-            Top = 196
+            Top = 221
             Width = 330
             Height = 26
             Margins.Left = 10
-            Margins.Top = 10
             Margins.Right = 10
             Margins.Bottom = 10
             Align = alTop
             TabOrder = 3
-            TextHint = 'DESCRI'#199#195'O'
+            ExplicitTop = 196
           end
           object edApresentacao: TEdit
             AlignWithMargins = True
             Left = 10
-            Top = 58
+            Top = 59
             Width = 330
             Height = 26
             Margins.Left = 10
-            Margins.Top = 10
             Margins.Right = 10
             Margins.Bottom = 10
             Align = alTop
             TabOrder = 0
-            TextHint = 'APRESENTA'#199#195'O'
+            ExplicitTop = 58
           end
           object edGGREM: TEdit
             AlignWithMargins = True
             Left = 10
-            Top = 104
+            Top = 113
             Width = 330
             Height = 26
             Margins.Left = 10
-            Margins.Top = 10
             Margins.Right = 10
             Margins.Bottom = 10
             Align = alTop
             TabOrder = 1
-            TextHint = 'GGREM'
+            ExplicitTop = 104
           end
           object edCATMAT: TEdit
             AlignWithMargins = True
             Left = 10
-            Top = 150
+            Top = 167
             Width = 330
             Height = 26
             Margins.Left = 10
-            Margins.Top = 10
             Margins.Right = 10
             Margins.Bottom = 10
             Align = alTop
             TabOrder = 2
-            TextHint = 'CATMAT'
+            ExplicitTop = 150
           end
         end
       end

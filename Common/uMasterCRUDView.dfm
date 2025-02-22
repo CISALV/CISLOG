@@ -77,17 +77,22 @@ inherited formMasterCRUDView: TformMasterCRUDView
           ParentFont = False
           TabOrder = 1
           ExplicitWidth = 461
+          ExplicitHeight = 56
           inherited pnlSearch: TPanel
             Width = 461
             StyleElements = [seFont, seClient, seBorder]
             ExplicitWidth = 461
             inherited edSearch: TEdit
-              Width = 302
+              Width = 297
               StyleElements = [seFont, seClient, seBorder]
-              ExplicitWidth = 302
+              ExplicitLeft = 154
+              ExplicitTop = 3
+              ExplicitWidth = 297
             end
             inherited cbFilter: TComboBox
               StyleElements = [seFont, seClient, seBorder]
+              ExplicitLeft = 3
+              ExplicitTop = 3
             end
           end
         end

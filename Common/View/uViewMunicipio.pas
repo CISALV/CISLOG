@@ -41,6 +41,7 @@ type
 
   private
     function MakeObjectfromFields: TMunicipio;
+    function ImportantFieldIsEmpty(AMunicipio: TMunicipio): Boolean;
   protected
     function CreateController: ISearchController; override;
   public
@@ -163,11 +164,23 @@ var
   Municipio: TMunicipio;
 begin
   Municipio := MakeObjectfromFields;
+
+  if ImportantFieldIsEmpty(Municipio) then
+  begin
+    ShowMessage('Todos os campos são necessários!');
+    Exit;
+  end;
+
   (FController as ICRUDController<TMunicipio>).PersistEntity(Municipio);
   FController.LoadData;
-
+  panelLateral.Visible := False;
+  operationsBar.SetButtonState(osIdle);
 end;
 
+function TformViewMunicipio.ImportantFieldIsEmpty(AMunicipio: TMunicipio): Boolean;
+begin
+Result := (edNome.Text = '') or (edCNPJ.Text = '') or (edEmail.Text = '')
+end;
 
 procedure TformViewMunicipio.edCNPJEnter(Sender: TObject);
 begin
