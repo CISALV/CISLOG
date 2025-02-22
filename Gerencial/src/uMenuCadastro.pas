@@ -9,6 +9,7 @@ uses
   Vcl.StdCtrls, uMasterFrame,uFormFactory, Data.DB, Vcl.Grids, Vcl.DBGrids,
   uViewCiclo,uViewMockProduto;
 
+
 type
   TformMenuCadastros = class(TformMaster)
     panelFundo: TPanel;
@@ -49,7 +50,7 @@ end;
 procedure TformMenuCadastros.speedMockProdutoClick(Sender: TObject);
 begin
   inherited;
-  TFormFactory.CreateAndShowForm(TformViewMockProduto,panelFundo);
+  //TFormFactory.CreateAndShowForm(TformViewMockProduto,panelFundo);
 end;
 
 procedure TformMenuCadastros.speedMunicipioClick(Sender: TObject);
