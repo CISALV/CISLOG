@@ -27,7 +27,6 @@ uses
   uControllerProduto in '..\Common\Controller\uControllerProduto.pas',
   uMockProduto in '..\Common\Model\Entities\uMockProduto.pas',
   uDAOMockProduto in '..\Common\Model\DAO\uDAOMockProduto.pas',
-  uViewMockProduto in '..\Common\View\uViewMockProduto.pas' {formViewMockProduto},
   uControllerMockProduto in '..\Common\Controller\uControllerMockProduto.pas',
   uView_Pedidos in '..\Common\View\uView_Pedidos.pas' {form_Pedidos},
   uViewCiclo in '..\Common\View\uViewCiclo.pas' {formViewCiclo},
@@ -36,7 +35,8 @@ uses
   uCicloDAO in '..\Common\Model\DAO\uCicloDAO.pas',
   uViewGerenciarCiclos in '..\Common\View\uViewGerenciarCiclos.pas' {formViewGerenciarCiclo},
   uDAOGerenciarPedidos in '..\Common\Model\DAO\uDAOGerenciarPedidos.pas',
-  uControllerHabilitacao in '..\Common\Controller\uControllerHabilitacao.pas';
+  uControllerHabilitacao in '..\Common\Controller\uControllerHabilitacao.pas',
+  uViewMockProduto in '..\Common\View\uViewMockProduto.pas' {formViewMockProduto};
 
 {$R *.res}
 
@@ -45,5 +45,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TformPrincipal, formPrincipal);
+  Application.CreateForm(TformViewMockProduto, formViewMockProduto);
   Application.Run;
 end.

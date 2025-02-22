@@ -131,17 +131,15 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Common\Controller\uControllerCompras.pas"/>
-        <DCCReference Include="..\Common\uMasterForm.pas">
+        <DCCReference Include="..\Common\Utils\uMasterForm.pas">
             <Form>formMaster</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Common\Model\Entities\uMunicipio.pas"/>
         <DCCReference Include="..\Common\Utils\uDataConService.pas"/>
         <DCCReference Include="..\Common\Model\DAO\uDAOMunicipio.pas"/>
         <DCCReference Include="..\Common\Utils\uFormFactory.pas"/>
-        <DCCReference Include="..\Common\uMasterFrame.pas">
+        <DCCReference Include="..\Common\Utils\frames\uMasterFrame.pas">
             <Form>frameMaster</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="src\uPrincipal.pas">
@@ -153,7 +151,7 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Common\uMasterDAO.pas"/>
+        <DCCReference Include="..\Common\Model\DAO\uMasterDAO.pas"/>
         <DCCReference Include="..\Common\Model\DAO\uDAOMockProduto.pas"/>
         <DCCReference Include="..\Common\Model\Entities\uMockProduto.pas"/>
         <BuildConfiguration Include="Base">

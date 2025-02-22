@@ -191,10 +191,6 @@
         <DCCReference Include="..\Common\Controller\uControllerProduto.pas"/>
         <DCCReference Include="..\Common\Model\Entities\uMockProduto.pas"/>
         <DCCReference Include="..\Common\Model\DAO\uDAOMockProduto.pas"/>
-        <DCCReference Include="..\Common\View\uViewMockProduto.pas">
-            <Form>formViewMockProduto</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\Common\Controller\uControllerMockProduto.pas"/>
         <DCCReference Include="..\Common\View\uView_Pedidos.pas">
             <Form>form_Pedidos</Form>
@@ -213,6 +209,10 @@
         </DCCReference>
         <DCCReference Include="..\Common\Model\DAO\uDAOGerenciarPedidos.pas"/>
         <DCCReference Include="..\Common\Controller\uControllerHabilitacao.pas"/>
+        <DCCReference Include="..\Common\View\uViewMockProduto.pas">
+            <Form>formViewMockProduto</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="Gerencial.todo"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
