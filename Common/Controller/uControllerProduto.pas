@@ -3,10 +3,10 @@ unit uControllerProduto;
 interface
 
 uses
-  uDAOProduto, System.SysUtils, uProduto, Dialogs, uInterfaces,uMasterController, Data.DB;
+  uDAOProduto, System.SysUtils, uProduto, Dialogs, uInterfaces,uBaseCRUDController, Data.DB;
 
 type
-  TControllerProduto = class(TMasterCRUDController<TProduto>)
+  TControllerProduto = class(TBaseCRUDController<TProduto>)
   private
     FDAOProduto: TDAOProduto;
     FProduto: TProduto;

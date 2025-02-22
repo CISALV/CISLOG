@@ -7,13 +7,11 @@ uses FireDAC.Comp.Client,uMunicipio,Data.DB;
 type
   ICRUDController<T> = interface
     ['{3322955C-5B9E-4495-ACCE-D260473497BF}']
-    //function FilterDataSet(const AFieldName, ASearchText: string): TDataSet;
-    //function LoadData: TDataSet;
 
     function ReturnEntity(EntityID: Integer): T;
     procedure PersistEntity(AEntity: T);
     procedure RemoveEntity(EntityID: Integer);
-    function IsNewEntity(AMunicipio: TMunicipio) : Boolean;
+    //function IsNewEntity(AMunicipio: TMunicipio) : Boolean;
   end;
 
   ISearchController = interface

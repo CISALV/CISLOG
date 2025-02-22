@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterForm, Data.DB, uMasterFrame,
-  uframeSearch, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls;
+  uframeSearch, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls,uInterfaces,
+  uControllerHabilitacao;
 
 type
   TformViewGerenciarCiclo = class(TformMaster)
@@ -19,9 +20,10 @@ type
     frameSearch1: TframeSearch;
     frameSearch2: TframeSearch;
   private
-    { Private declarations }
+    FController : ISearchController;
+    FDataSource : TDataSource;
   public
-    { Public declarations }
+    constructor Create;
   end;
 
 var
@@ -30,5 +32,26 @@ var
 implementation
 
 {$R *.dfm}
+
+{ TformViewGerenciarCiclo }
+
+constructor TformViewGerenciarCiclo.Create;
+begin
+  FController := TControllerHabilitacao.Create;
+
+  FDataSource := TDataSource.Create(Self);
+  try
+    FDataSource.DataSet := FController.LoadData;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Error: ' + E.Message);
+    end;
+  end;
+
+  DbGrid1.DataSource := FDataSource;
+  frameSearch1.Controller := FController;
+  frameSearch1.DataSource := FDataSource;
+end;
 
 end.

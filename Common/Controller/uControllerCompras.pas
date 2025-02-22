@@ -9,6 +9,8 @@ type
  private
  FDAO: TDAOMockProduto;
  public
+  constructor Create;
+  destructor Destroy;
   function FilterDataSet(const AFieldName, ASearchText: string) : TDataset;
   function LoadData: TDataset;
  end;
@@ -19,15 +21,23 @@ implementation
 { TControllerCompras }
 
 
+constructor TControllerCompras.Create;
+begin
+  FDAO := TDAOMockProduto.Create;
+end;
+
+destructor TControllerCompras.Destroy;
+begin
+ FDAO.Free;
+end;
+
 function TControllerCompras.FilterDataSet(const AFieldName, ASearchText: string): TDataset;
 begin
- FDAO := TDAOMockProduto.Create;
  Result := FDAO.GetWhere(AFieldName, ASearchText);
 end;
 
 function TControllerCompras.LoadData: TDataset;
 begin
-  FDAO := TDAOMockProduto.Create;
   Result := FDAO.GetAll;
 end;
 

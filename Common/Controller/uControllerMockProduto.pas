@@ -2,11 +2,11 @@ unit uControllerMockProduto;
 
 interface
 
-uses uMockProduto, uMasterController, uDAOMockProduto, Dialogs, uInterfaces,
+uses uMockProduto, uBaseCRUDController, uDAOMockProduto, Dialogs, uInterfaces,
   Data.DB;
 
 type
-  TControllerMockProduto = class(TMasterCRUDController<TMockProduto>)
+  TControllerMockProduto = class(TBaseCRUDController<TMockProduto>)
 
   public
     function ReturnEntity(EntityID: Integer): TMockProduto;
