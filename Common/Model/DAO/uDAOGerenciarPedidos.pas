@@ -31,13 +31,15 @@ function TDAOGerenciarPedidos.GetAll: TDataset;
 begin
  FQuery.Close;
  FQuery.SQL.Clear;
- FQuery.SQL.Add( 'SELECT P.ID,P.ATIVO, M.NOME AS MUNICIPIO_NOME,');
- FQuery.SQL.Add('C.NOME AS CICLO, C.TIPO AS TIPO')
-{
- FQuery.SQL.Add(FROM MOCK_PEDIDO P
-LEFT JOIN MUNICIPIO M ON M.ID = P.FK_MUNICIPIO_ID
-LEFT JOIN CICLO C ON C.ID = P.FK_CICLO_ID  -- Corrigido aqui!
- }
+ FQuery.SQL.Text :=
+  'SELECT P.ID, P.ATIVO, M.NOME AS MUNICIPIO_NOME, ' +
+  'C.NOME AS CICLO, C.TIPO AS TIPO ' +
+  'FROM MOCK_PEDIDO P ' +
+  'LEFT JOIN MUNICIPIO M ON M.ID = P.FK_MUNICIPIO_ID ' +
+  'LEFT JOIN CICLO C ON C.ID = P.FK_CICLO_ID';
+
+ FQuery.Open;
+ Result := FQuery;
 end;
 
 end.

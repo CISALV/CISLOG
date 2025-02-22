@@ -59,8 +59,6 @@ begin
       Result := Municipio;
 end;
 
-
-
 function TControllerMunicipio.IsNewEntity(AMunicipio: TMunicipio): Boolean;
 begin
   Result := AMunicipio.Id = 0;

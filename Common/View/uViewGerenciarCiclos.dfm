@@ -24,8 +24,6 @@
         Align = alRight
         Caption = 'Panel1'
         TabOrder = 0
-        ExplicitLeft = 537
-        ExplicitHeight = 379
         object speedHabilitar: TSpeedButton
           Left = 1
           Top = 41
@@ -84,16 +82,18 @@
         Font.Style = []
         ParentFont = False
         TabOrder = 3
-        ExplicitWidth = 693
+        ExplicitWidth = 709
         ExplicitHeight = 41
         inherited pnlSearch: TPanel
           Width = 709
           StyleElements = [seFont, seClient, seBorder]
-          ExplicitWidth = 693
+          ExplicitWidth = 709
           inherited edSearch: TEdit
             Width = 545
             StyleElements = [seFont, seClient, seBorder]
-            ExplicitWidth = 534
+            ExplicitLeft = 154
+            ExplicitTop = 3
+            ExplicitWidth = 545
           end
           inherited cbFilter: TComboBox
             Visible = False
@@ -115,16 +115,18 @@
         ParentFont = False
         TabOrder = 4
         ExplicitTop = 137
-        ExplicitWidth = 693
+        ExplicitWidth = 709
         ExplicitHeight = 40
         inherited pnlSearch: TPanel
           Width = 709
           StyleElements = [seFont, seClient, seBorder]
-          ExplicitWidth = 693
+          ExplicitWidth = 709
           inherited edSearch: TEdit
             Width = 545
             StyleElements = [seFont, seClient, seBorder]
-            ExplicitWidth = 534
+            ExplicitLeft = 154
+            ExplicitTop = 3
+            ExplicitWidth = 545
           end
           inherited cbFilter: TComboBox
             StyleElements = [seFont, seClient, seBorder]

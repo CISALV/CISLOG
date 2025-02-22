@@ -2,9 +2,9 @@ unit uControllerCiclo;
 
 interface
 
-uses uCiclo, uMasterController, uCicloDAO,Dialogs;
+uses uCiclo, uBaseCRUDController, uCicloDAO,Dialogs;
 
-type TControllerCiclo = class(TMasterCRUDController<TCiclo>)
+type TControllerCiclo = class(TBaseCRUDController<TCiclo>)
 
   public
   constructor Create;
