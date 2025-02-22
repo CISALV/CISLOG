@@ -2,17 +2,16 @@ unit uControllerCompras;
 
 interface
 
-uses uInterfaces,Data.DB,uDAOMunicipio,uDAOMockProduto;
+uses uInterfaces,Data.DB,uDAOMunicipio,uDAOMockProduto,uMockProduto;
 
 type
- TControllerCompras = class(TInterfacedObject,ISearchController)
+ TControllerCompras= class(TInterfacedObject,ISearchController)
  private
  FDAO: TDAOMockProduto;
  public
   constructor Create;
-  destructor Destroy;
-  function FilterDataSet(const AFieldName, ASearchText: string) : TDataset;
-  function LoadData: TDataset;
+  function GetFiltered(const AFieldName, ASearchText: string) : TDataset;
+  function GetAll: TDataset;
  end;
 
 implementation
@@ -26,17 +25,13 @@ begin
   FDAO := TDAOMockProduto.Create;
 end;
 
-destructor TControllerCompras.Destroy;
-begin
- FDAO.Free;
-end;
 
-function TControllerCompras.FilterDataSet(const AFieldName, ASearchText: string): TDataset;
+function TControllerCompras.GetFiltered(const AFieldName, ASearchText: string): TDataset;
 begin
  Result := FDAO.GetWhere(AFieldName, ASearchText);
 end;
 
-function TControllerCompras.LoadData: TDataset;
+function TControllerCompras.GetAll: TDataset;
 begin
   Result := FDAO.GetAll;
 end;

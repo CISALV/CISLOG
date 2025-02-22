@@ -106,7 +106,7 @@ procedure TformViewMunicipio.PopView(MunicipioID: Integer);
 var
   Municipio : TMunicipio;
 begin
-  Municipio := (FController as ICRUDController<TMunicipio>).ReturnEntity(MunicipioID);
+  Municipio := (FController as ICRUDController<TMunicipio>).Get(MunicipioID);
   if Municipio.Id > 0 then
   begin
     edId.Text := IntToStr(MunicipioID);
@@ -121,7 +121,7 @@ procedure TformViewMunicipio.operationsBarspeedCancelarClick(Sender: TObject);
 begin
   inherited;
   Fields.ActivePage := tabPrincipal;
-  FController.LoadData;
+  FController.GetAll;
 end;
 
 procedure TformViewMunicipio.Delete;
@@ -130,8 +130,8 @@ var
 begin
   inherited;
   Id := StrtoInt(edId.Text);
-  (FController as ICRUDController<TMunicipio>).RemoveEntity(Id);
-  FController.LoadData;
+  (FController as ICRUDController<TMunicipio>).Delete(Id);
+  FController.GetAll;
 end;
 
 procedure TformViewMunicipio.operationsBarspeedNovoClick(Sender: TObject);
@@ -171,8 +171,8 @@ begin
     Exit;
   end;
 
-  (FController as ICRUDController<TMunicipio>).PersistEntity(Municipio);
-  FController.LoadData;
+  (FController as ICRUDController<TMunicipio>).Save(Municipio);
+  FController.GetAll;
   panelLateral.Visible := False;
   operationsBar.SetButtonState(osIdle);
 end;

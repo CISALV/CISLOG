@@ -9,8 +9,8 @@ type
   TControllerMockProduto = class(TBaseCRUDController<TMockProduto>)
 
   public
-    function ReturnEntity(EntityID: Integer): TMockProduto;
-    procedure PersistEntity(AEntity: TMockProduto);
+    function Get(EntityID: Integer): TMockProduto;
+    procedure Save(AEntity: TMockProduto);
     constructor Create;
 
   end;
@@ -25,7 +25,7 @@ begin
   FDAO := TDAOMockProduto.Create;
 end;
 
-procedure TControllerMockProduto.PersistEntity(AEntity: TMockProduto);
+procedure TControllerMockProduto.Save(AEntity: TMockProduto);
 begin
     if  AEntity.GGREM = 0 then
     FDAO.Insert(AEntity)
@@ -33,7 +33,7 @@ begin
     FDAO.Update(AEntity);
 end;
 
-function TControllerMockProduto.ReturnEntity(EntityID: Integer): TMockProduto;
+function TControllerMockProduto.Get(EntityID: Integer): TMockProduto;
 begin
   FDAO.GetByID(EntityID);
 end;

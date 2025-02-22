@@ -8,8 +8,8 @@ type TControllerCiclo = class(TBaseCRUDController<TCiclo>)
 
   public
   constructor Create;
-  function ReturnEntity(AEntityId : Integer) : TCiclo;
-  procedure PersistEntity(AEntity : TCiclo); override;
+  function Get(AEntityId : Integer) : TCiclo;
+  procedure Save(AEntity : TCiclo); override;
 end;
 
 implementation
@@ -21,7 +21,7 @@ begin
  FDAO := TDAOCiclo.Create;
 end;
 
-procedure TControllerCiclo.PersistEntity(AEntity: TCiclo);
+procedure TControllerCiclo.Save(AEntity: TCiclo);
 begin
 if (AEntity.Nome = '') or (AEntity.Tipo = '') then
   begin
@@ -35,7 +35,7 @@ if (AEntity.Nome = '') or (AEntity.Tipo = '') then
     FDAO.Update(AEntity);
 end;
 
-function TControllerCiclo.ReturnEntity(AEntityId: Integer): TCiclo;
+function TControllerCiclo.Get(AEntityId: Integer): TCiclo;
 var
   Ciclo: TCiclo;
 begin

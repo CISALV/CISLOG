@@ -14,13 +14,13 @@ type
     destructor Destroy; override;
 
     ////////
-    function FilterDataSet(const AFieldName, ASearchText: String): TDataSet;
-    function LoadData: TDataSet;
-    procedure RemoveEntity(MunicipioID: Integer);
+    function GetFiltered(const AFieldName, ASearchText: String): TDataSet;
+    function GetAll: TDataSet;
+    procedure Delete(MunicipioID: Integer);
     ////////
 
-    function ReturnEntity(MunicipioID: Integer): TMunicipio;
-    procedure PersistEntity(AMunicipio: TMunicipio);
+    function Get(MunicipioID: Integer): TMunicipio;
+    procedure Save(AMunicipio: TMunicipio);
     function IsNewEntity(AMunicipio: TMunicipio) : Boolean;
   end;
 implementation
@@ -38,18 +38,18 @@ begin
   inherited;
 end;
 
-function TControllerMunicipio.FilterDataSet(const AFieldName,
+function TControllerMunicipio.GetFiltered(const AFieldName,
   ASearchText: String): TDataSet;
 begin
  Result := FDAOMunicipio.GetWhere(AFieldName, ASearchText);
 end;
 
-function TControllerMunicipio.LoadData: TDataSet;
+function TControllerMunicipio.GetAll: TDataSet;
 begin
   Result := FDAOMunicipio.GetAll;
 end;
 
-function TControllerMunicipio.ReturnEntity(MunicipioID: Integer): TMunicipio;
+function TControllerMunicipio.Get(MunicipioID: Integer): TMunicipio;
 var
   Municipio: TMunicipio;
 begin
@@ -64,12 +64,12 @@ begin
   Result := AMunicipio.Id = 0;
 end;
 
-procedure TControllerMunicipio.RemoveEntity(MunicipioID: Integer);
+procedure TControllerMunicipio.Delete(MunicipioID: Integer);
 begin
     FDAOMunicipio.Delete(MunicipioID);
 end;
 
-procedure TControllerMunicipio.PersistEntity(AMunicipio: TMunicipio);
+procedure TControllerMunicipio.Save(AMunicipio: TMunicipio);
 var
   Municipio : TMunicipio;
 begin

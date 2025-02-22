@@ -49,7 +49,7 @@ procedure TformViewProduto.CarregarProduto(ProdutoId: Integer);
 var
   Produto : TProduto;
 begin
-  Produto := (FController as ICRUDController<TProduto>).ReturnEntity(ProdutoID);
+  Produto := (FController as ICRUDController<TProduto>).Get(ProdutoID);
   if Produto.Id > 0 then
   begin
     edId.Text := IntToStr(ProdutoID);
@@ -82,8 +82,8 @@ var
 begin
   inherited;
   Id := StrtoInt(edId.Text);
-  (FController as ICRUDController<TProduto>).RemoveEntity(Id);
-  FController.LoadData;
+  (FController as ICRUDController<TProduto>).Delete(Id);
+  FController.GetAll;
 end;
 
 procedure TformViewProduto.FormShow(Sender: TObject);
@@ -124,8 +124,8 @@ var
 begin
     inherited;
   Produto := MakeObjectfromFields;
-  (FController as ICRUDController<TProduto>).PersistEntity(Produto);
-  FController.LoadData;
+  (FController as ICRUDController<TProduto>).Save(Produto);
+  FController.GetAll;
 
 end;
 

@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons, uMasterForm,
-  Vcl.Imaging.pngimage, uAreaComprasView;
+  Vcl.Imaging.pngimage, uAreaComprasView, uControllerCompras, uDAOMockProduto,
+  uMockProduto, uInterfaces;
 
 type
   TformPrincipal = class(TformMaster)
@@ -33,9 +34,11 @@ implementation
 uses uFormFactory;
 
 procedure TformPrincipal.speedCompraClick(Sender: TObject);
+var
+  ControllerProduto : ISearchController;
 begin
   inherited;
-
+  //ControllerProduto := TControllerCompras<TMockProduto>.Create(TDAOMockProduto.Create);
   Form := TFormComprasView.Create(pnlFundo);
   Form.Parent := pnlFundo;
   Form.Align := AlClient;

@@ -13,9 +13,6 @@
             StyleElements = [seFont, seClient, seBorder]
             inherited edSearch: TEdit
               StyleElements = [seFont, seClient, seBorder]
-              ExplicitLeft = 154
-              ExplicitTop = 3
-              ExplicitWidth = 297
             end
             inherited cbFilter: TComboBox
               StyleElements = [seFont, seClient, seBorder]
@@ -53,7 +50,7 @@
             AlignWithMargins = True
             Left = 10
             Top = 203
-            Width = 330
+            Width = 69
             Height = 15
             Margins.Left = 10
             Margins.Top = 0
@@ -67,13 +64,12 @@
             Font.Name = 'Roboto'
             Font.Style = []
             ParentFont = False
-            ExplicitWidth = 69
           end
           object lbApresentacao: TLabel
             AlignWithMargins = True
             Left = 10
             Top = 41
-            Width = 330
+            Width = 96
             Height = 15
             Margins.Left = 10
             Margins.Top = 0
@@ -87,13 +83,12 @@
             Font.Name = 'Roboto'
             Font.Style = []
             ParentFont = False
-            ExplicitWidth = 96
           end
           object lbGGREM: TLabel
             AlignWithMargins = True
             Left = 10
             Top = 95
-            Width = 330
+            Width = 44
             Height = 15
             Margins.Left = 10
             Margins.Top = 0
@@ -107,13 +102,12 @@
             Font.Name = 'Roboto'
             Font.Style = []
             ParentFont = False
-            ExplicitWidth = 44
           end
           object lbCATMAT: TLabel
             AlignWithMargins = True
             Left = 10
             Top = 149
-            Width = 330
+            Width = 51
             Height = 15
             Margins.Left = 10
             Margins.Top = 0
@@ -127,7 +121,6 @@
             Font.Name = 'Roboto'
             Font.Style = []
             ParentFont = False
-            ExplicitWidth = 51
           end
           object edId: TEdit
             AlignWithMargins = True

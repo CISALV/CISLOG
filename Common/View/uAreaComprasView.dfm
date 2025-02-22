@@ -6,9 +6,6 @@ inherited formComprasView: TformComprasView
   OnCanResize = FormCanResize
   OnCreate = FormCreate
   OnShow = FormShow
-  ExplicitLeft = 3
-  ExplicitTop = 3
-  ExplicitWidth = 640
   ExplicitHeight = 631
   TextHeight = 18
   object Splitter1: TSplitter
@@ -60,23 +57,19 @@ inherited formComprasView: TformComprasView
         Left = 4
         Top = 4
         Width = 62
-        Height = 56
+        Height = 18
         Align = alLeft
         Alignment = taCenter
         Caption = 'Total: R$'
-        ExplicitHeight = 18
       end
       object lblTotalValue: TLabel
         AlignWithMargins = True
         Left = 72
         Top = 4
-        Width = 83
-        Height = 56
+        Width = 28
+        Height = 18
         Align = alLeft
         Caption = '0.00'
-        ExplicitLeft = 553
-        ExplicitTop = 2
-        ExplicitHeight = 64
       end
     end
   end

@@ -98,7 +98,7 @@ begin
 
   FDataSource := TDataSource.Create(Self);
   try
-    FDataSource.DataSet := FController.LoadData;
+    FDataSource.DataSet := FController.GetAll;
   except
     on E: Exception do
     begin
@@ -171,9 +171,9 @@ begin
   SearchBar.edSearchChange(Sender);
 
   if SearchBar.edSearch.Text = '' then
-    FController.LoadData
+    FController.GetAll
   else
-    FDataSource.DataSet := FController.FilterDataSet
+    FDataSource.DataSet := FController.GetFiltered
       (SearchBar.cbFilter.Items.Text, SearchBar.edSearch.Text)
 
 end;

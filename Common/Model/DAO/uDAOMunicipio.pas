@@ -3,10 +3,10 @@ unit uDAOMunicipio;
 interface
 
 uses
-  FireDAC.Comp.Client, uMunicipio, System.SysUtils,Dialogs,uMasterDAO;
+  FireDAC.Comp.Client, uMunicipio, System.SysUtils,Dialogs,uBaseDAO;
 
 type
-  TDAOMunicipio = class(TDAOMaster<TMunicipio>)
+  TDAOMunicipio = class(TBaseDAO<TMunicipio>)
   private
     FQuery: TFDStoredProc;
   public

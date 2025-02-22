@@ -91,8 +91,6 @@ inherited formMasterCRUDView: TformMasterCRUDView
             end
             inherited cbFilter: TComboBox
               StyleElements = [seFont, seClient, seBorder]
-              ExplicitLeft = 3
-              ExplicitTop = 3
             end
           end
         end

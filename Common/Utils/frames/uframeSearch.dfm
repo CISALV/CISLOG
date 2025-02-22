@@ -39,8 +39,6 @@ inherited frameSearch: TframeSearch
       Height = 22
       Align = alLeft
       TabOrder = 1
-      ExplicitLeft = 4
-      ExplicitTop = 4
     end
   end
 end

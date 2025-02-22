@@ -10,7 +10,7 @@ uses
   Data.SqlExpr, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  Vcl.DBCtrls, Vcl.Buttons, uframeSearch, uControllerCompras;
+  Vcl.DBCtrls, Vcl.Buttons, uframeSearch, uControllerCompras, uInterfaces;
 
 type
   TformComprasView = class(TformMaster)
@@ -51,10 +51,10 @@ type
 
   private
    FQuery : TFDQuery;
+   FController : ISearchController;
 
   procedure InsertProduct(Quantity: Integer);
   public
-    { Public declarations }
   end;
 
 var
@@ -71,6 +71,8 @@ function TformComprasView.ConfirmationDialog(const Msg: string): Boolean;
 begin
  Result := MessageDlg(msg,mtConfirmation, [mbYes, mbNo], 0) = mrYes;
 end;
+
+
 
 procedure TformComprasView.dbGridProdutosDblClick(Sender: TObject);
 var
@@ -138,19 +140,16 @@ begin
 end;
 
 procedure TformComprasView.FormCreate(Sender: TObject);
-var
-  Controller : TControllerCompras;
+
 begin
   inherited;
 
+  FController := TControllerCompras.Create;
 
-  Controller := TControllerCompras.Create;
-
-  SearchBar.Controller := Controller;
+  SearchBar.Controller := FController;
   SearchBar.DataSource := dsBaseVigencia;
   SearchBar.ConfigureFilterFields(['APRESENTACAO','GGREM']);
-
-  dsBaseVigencia.DataSet := Controller.LoadData;
+  dsBaseVigencia.DataSet := FController.GetAll;
 
 end;
 
@@ -180,7 +179,6 @@ begin
   Col.FieldName := 'Quantidade_restante';
   Col.Title.Caption := 'Quantidade Disponível';
   Col.Width := Round(DbGridProdutos.ClientWidth * 0.3);
-
 
 
 end;

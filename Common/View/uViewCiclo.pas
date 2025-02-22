@@ -57,8 +57,8 @@ var
  Ciclo : TCiclo;
 begin
   Ciclo := WrapObject;
-  (FController as ICRUDController<TCiclo>).PersistEntity(Ciclo);
-  FController.LoadData;
+  (FController as ICRUDController<TCiclo>).Save(Ciclo);
+  FController.GetAll;
 end;
 
 

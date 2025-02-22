@@ -12,27 +12,27 @@ type
     constructor Create; virtual; abstract;
     destructor Destroy; virtual; abstract;
 
-    function FilterDataSet(const AFieldName, ASearchText: string): TDataSet;
-    function LoadData :TDataSet; virtual;
-    procedure RemoveEntity(EntityID: Integer); virtual;
-    function ReturnEntity(EntityID: Integer): T; virtual; abstract;
-    procedure PersistEntity(AEntity: T); virtual; abstract;
+    function GetFiltered(const AFieldName, ASearchText: string): TDataSet;
+    function GetAll :TDataSet; virtual;
+    procedure Delete(EntityID: Integer); virtual;
+    function Get(EntityID: Integer): T; virtual; abstract;
+    procedure Save(AEntity: T); virtual; abstract;
 
   end;
 implementation
 
-function TBaseCRUDController<T>.FilterDataSet(const AFieldName,
+function TBaseCRUDController<T>.GetFiltered(const AFieldName,
   ASearchText: string): TDataSet;
 begin
  Result := FDAO.GetWhere(AFieldName,ASearchText);
 end;
 
-function TBaseCRUDController<T>.LoadData: TDataSet;
+function TBaseCRUDController<T>.GetAll: TDataSet;
 begin
  Result := FDAO.GetAll;
 end;
 
-procedure TBaseCRUDController<T>.RemoveEntity(EntityID: Integer);
+procedure TBaseCRUDController<T>.Delete(EntityID: Integer);
 begin
  FDAO.Delete(EntityID);
 end;

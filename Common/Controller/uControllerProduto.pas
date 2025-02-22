@@ -14,8 +14,8 @@ type
     constructor Create;
     destructor Destroy; override;
 
-    function ReturnEntity(ProdutoID: Integer): TProduto; override;
-    procedure PersistEntity(AProduto: TProduto); override;
+    function Get(ProdutoID: Integer): TProduto; override;
+    procedure Save(AProduto: TProduto); override;
   end;
 
 implementation
@@ -33,7 +33,7 @@ begin
   inherited;
 end;
 
-function TControllerProduto.ReturnEntity(ProdutoID: Integer): TProduto;
+function TControllerProduto.Get(ProdutoID: Integer): TProduto;
 var
   Produto: TProduto;
 begin
@@ -44,7 +44,7 @@ begin
     Result := nil;
 end;
 
-procedure TControllerProduto.PersistEntity(AProduto: TProduto);
+procedure TControllerProduto.Save(AProduto: TProduto);
 begin
   if (AProduto.apresentacao = '') then
   begin

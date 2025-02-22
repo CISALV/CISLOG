@@ -78,9 +78,9 @@ begin
     SelectedField := cbFilter.Items[cbFilter.ItemIndex];
 
   if Trim(edSearch.Text) = '' then
-    FDataSource.DataSet := FController.LoadData
+    FDataSource.DataSet := FController.GetAll
   else
-    FDataSource.DataSet := FController.FilterDataSet(SelectedField, edSearch.Text);
+    FDataSource.DataSet := FController.GetFiltered(SelectedField, edSearch.Text);
 end;
 
 procedure TframeSearch.SetController(const Value: ISearchController);

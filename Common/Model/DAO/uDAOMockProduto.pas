@@ -2,10 +2,11 @@ unit uDAOMockProduto;
 
 interface
 
-uses FireDAC.Comp.Client,System.SysUtils,uMockProduto,uMasterDAO,uDataConService;
+uses FireDAC.Comp.Client,System.SysUtils,uMockProduto,uBaseDAO,uDataConService,
+  uInterfaces;
 
 type
- TDAOMockProduto = class(TDAOMaster<TMockProduto>)
+ TDAOMockProduto = class(TBaseDAO<TMockProduto>)
     public
     constructor Create;
     procedure SetupInsertParams(StoredProc: TFDStoredProc; AEntity: TMockProduto); override;

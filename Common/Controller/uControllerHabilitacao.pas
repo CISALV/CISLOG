@@ -12,8 +12,8 @@ type
  constructor Create;
  destructor Destroy;
 
-  function FilterDataSet(const AFieldName, ASearchText: string) : TDataset;
-  function LoadData: TDataSet;
+  function GetFiltered(const AFieldName, ASearchText: string) : TDataset;
+  function GetAll: TDataSet;
  end;
 
 
@@ -22,7 +22,7 @@ implementation
 { TControllerHabilitacao }
 
 
-function TControllerHabilitacao.LoadData: TDataSet;
+function TControllerHabilitacao.GetAll: TDataSet;
 begin
   Result := FDAO.GetAll;
 end;
@@ -39,7 +39,7 @@ begin
 
 end;
 
-function TControllerHabilitacao.FilterDataSet(const AFieldName,
+function TControllerHabilitacao.GetFiltered(const AFieldName,
   ASearchText: string): TDataset;
 begin
 

@@ -41,7 +41,7 @@ begin
 
   FDataSource := TDataSource.Create(Self);
   try
-    FDataSource.DataSet := FController.LoadData;
+    FDataSource.DataSet := FController.GetAll;
   except
     on E: Exception do
     begin
