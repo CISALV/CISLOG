@@ -4,12 +4,12 @@ interface
 
 uses uCiclo, uBaseCRUDController, uCicloDAO,Dialogs;
 
-type TControllerCiclo = class(TBaseCRUDController<TCiclo>)
+type TControllerCiclo = class//(TBaseCRUDController<TCiclo>)
 
   public
   constructor Create;
-  function Get(AEntityId : Integer) : TCiclo;
-  procedure Save(AEntity : TCiclo); override;
+  //function Get(AEntityId : Integer) : TCiclo;
+  //procedure Save(AEntity : TCiclo); override;
 end;
 
 implementation
@@ -18,9 +18,9 @@ implementation
 
 constructor TControllerCiclo.Create;
 begin
- FDAO := TDAOCiclo.Create;
+ //FDAO := TDAOCiclo.Create;
 end;
-
+{
 procedure TControllerCiclo.Save(AEntity: TCiclo);
 begin
 if (AEntity.Nome = '') or (AEntity.Tipo = '') then
@@ -45,5 +45,7 @@ begin
   else
     Result := nil;
 end;
-
+}
 end.
+
+

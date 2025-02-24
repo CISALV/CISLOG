@@ -3,18 +3,19 @@ unit uControllerProduto;
 interface
 
 uses
-  uDAOProduto, System.SysUtils, uProduto, Dialogs, uInterfaces,uBaseCRUDController, Data.DB;
+  uDAOProduto, System.SysUtils, uProduto, Dialogs, uInterfaces,
+  uBaseCRUDController, Data.DB;
 
 type
-  TControllerProduto = class(TBaseCRUDController<TProduto>)
+  TControllerProduto = class//(TBaseCRUDController<TProduto>)
   private
-    FProduto: TProduto;
+    // FProduto: TProduto;
   public
     constructor Create;
     destructor Destroy; override;
 
-    function Get(ProdutoID: Integer): TProduto; override;
-    procedure Save(AProduto: TProduto); override;
+    //function Get(ProdutoID: Integer): TProduto; override;
+    //procedure Save(AProduto: TProduto); override;
   end;
 
 implementation
@@ -23,14 +24,14 @@ implementation
 
 constructor TControllerProduto.Create;
 begin
-  FDAO := TDAOProduto.Create;
+  //FDAO := TDAOProduto.Create;
 end;
 
 destructor TControllerProduto.Destroy;
 begin
   inherited;
 end;
-
+{
 function TControllerProduto.Get(ProdutoID: Integer): TProduto;
 var
   Produto: TProduto;
@@ -54,6 +55,6 @@ begin
   else
     FDAO.Update(AProduto);
 end;
+}
 
 end.
-

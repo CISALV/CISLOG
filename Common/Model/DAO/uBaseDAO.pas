@@ -7,7 +7,7 @@ uses
   uDataConService;
 
 type
-  TBaseDAO<T: class> = class abstract(TInterfacedObject, IDAO<T>)
+  TBaseDAO<T: class, IEntity> = class abstract(TInterfacedObject, IDAO<T>)
   protected
     FConnection: TFDConnection;
     FQuery: TFDQuery;
@@ -24,7 +24,6 @@ type
 
   public
     constructor Create;
-
 
     function Insert(AEntity: T): Integer; virtual;
     function Update(AEntity: T): Integer; virtual;
@@ -87,6 +86,7 @@ begin
 
     FConnection.StartTransaction;
     try
+      StoredProc.Prepare;
       StoredProc.ParamByName('modo').AsString := 'U';
       SetupUpdateParams(StoredProc, AEntity);
       StoredProc.ExecProc;
@@ -107,12 +107,13 @@ var
 begin
   StoredProc := TFDStoredProc.Create(nil);
   try
-    StoredProc.ParamByName('modo').AsString := 'D';
     StoredProc.Connection := FConnection;
     StoredProc.StoredProcName := FStoredProcName;
 
     FConnection.StartTransaction;
     try
+      StoredProc.Prepare;
+      StoredProc.ParamByName('modo').AsString := 'D';
       SetupDeleteParams(StoredProc, AID);
       StoredProc.ExecProc;
       FConnection.Commit;

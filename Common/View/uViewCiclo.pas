@@ -22,7 +22,7 @@ type
   public
     procedure Save; override;
     procedure Delete;
-    function CreateController: ISearchController; override;
+   // function CreateController: ISearchController; override;
     function WrapObject : TCiclo;
   end;
 
@@ -34,10 +34,10 @@ implementation
 {$R *.dfm}
 
 
-function TformViewCiclo.CreateController: ISearchController;
+{function TformViewCiclo.CreateController: ISearchController;
 begin
- Result := TControllerCiclo.Create;
-end;
+ //Result := TControllerCiclo.Create;
+ end;}
 
 procedure TformViewCiclo.dbgridPesquisaDblClick(Sender: TObject);
 var

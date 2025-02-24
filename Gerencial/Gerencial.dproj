@@ -161,11 +161,6 @@
         <DCCReference Include="..\Common\View\uMasterCRUDView.pas">
             <Form>formMasterCRUDView</Form>
         </DCCReference>
-        <DCCReference Include="..\Common\View\uViewMunicipio.pas">
-            <Form>formViewMunicipio</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="..\Common\Controller\uControllerMunicipio.pas"/>
         <DCCReference Include="..\Common\Interfaces\uInterfaces.pas"/>
         <DCCReference Include="..\Common\Model\Entities\uMunicipio.pas"/>
         <DCCReference Include="..\Common\Utils\frames\uframeSearch.pas">
@@ -184,14 +179,11 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Common\Model\DAO\uMasterDAO.pas"/>
         <DCCReference Include="..\Common\Model\Entities\uProduto.pas"/>
         <DCCReference Include="..\Common\Model\DAO\uDAOProduto.pas"/>
         <DCCReference Include="..\Common\Controller\uBaseCRUDController.pas"/>
-        <DCCReference Include="..\Common\Controller\uControllerProduto.pas"/>
         <DCCReference Include="..\Common\Model\Entities\uMockProduto.pas"/>
         <DCCReference Include="..\Common\Model\DAO\uDAOMockProduto.pas"/>
-        <DCCReference Include="..\Common\Controller\uControllerMockProduto.pas"/>
         <DCCReference Include="..\Common\View\uView_Pedidos.pas">
             <Form>form_Pedidos</Form>
             <FormType>dfm</FormType>
@@ -200,7 +192,6 @@
             <Form>formViewCiclo</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Common\Controller\uControllerCiclo.pas"/>
         <DCCReference Include="..\Common\Model\Entities\uCiclo.pas"/>
         <DCCReference Include="..\Common\Model\DAO\uCicloDAO.pas"/>
         <DCCReference Include="..\Common\View\uViewGerenciarCiclos.pas">
@@ -213,6 +204,15 @@
             <Form>formViewMockProduto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\Common\Model\DAO\uBaseDAO.pas"/>
+        <DCCReference Include="..\Common\Controller\uControllerCiclo.pas"/>
+        <DCCReference Include="..\Common\Controller\uControllerMunicipio.pas"/>
+        <DCCReference Include="..\Common\View\uViewMunicipio.pas">
+            <Form>formViewMunicipio</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Common\Controller\uControllerProduto.pas"/>
+        <DCCReference Include="..\Common\Controller\uControllerMockProduto.pas"/>
         <None Include="Gerencial.todo"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

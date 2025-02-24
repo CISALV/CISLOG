@@ -6,8 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterForm, Vcl.ComCtrls, Vcl.ToolWin,
   Vcl.ExtCtrls, Vcl.Buttons, Vcl.Menus,uViewMunicipio,
-  Vcl.StdCtrls, uMasterFrame,uFormFactory, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  uViewCiclo,uViewMockProduto;
+  Vcl.StdCtrls, uMasterFrame,uFormFactory, Data.DB, Vcl.Grids, Vcl.DBGrids
+  ,uViewCiclo,uViewMockProduto, uInterfaces;
 
 
 type
@@ -27,7 +27,7 @@ type
     //procedure UsuarioClick(Sender: TObject);
 
   private
-    { Private declarations }
+    Controller : ISearchController;
   public
     { Public declarations }
   end;
@@ -39,7 +39,7 @@ implementation
 
 {$R *.dfm}
 
-uses uViewProduto;
+uses uBaseCRUDController, uDAOProduto,uProduto, uViewProduto;
 
 procedure TformMenuCadastros.speedCicloClick(Sender: TObject);
 begin
@@ -50,7 +50,7 @@ end;
 procedure TformMenuCadastros.speedMockProdutoClick(Sender: TObject);
 begin
   inherited;
-  //TFormFactory.CreateAndShowForm(TformViewMockProduto,panelFundo);
+//TFormFactory.CreateAndShowForm(TformViewMockProduto,panelFundo);
 end;
 
 procedure TformMenuCadastros.speedMunicipioClick(Sender: TObject);
@@ -59,10 +59,19 @@ begin
   TFormFactory.CreateAndShowForm(TformViewMunicipio,panelFundo);
 end;
 
+
 procedure TformMenuCadastros.speedProdutosClick(Sender: TObject);
+var
+ Form : TFormViewProduto;
 begin
   inherited;
- TFormFactory.CreateAndShowForm(TFormViewProduto,panelFundo);
+  Controller := TBaseCRUDController<TProduto>.Create(TDAOProduto.Create);
+  Form := TFormViewProduto.Create(Self,Controller);
+
+  Form.Parent := panelFundo;
+  Form.Align := AlClient;
+
+ //TFormFactory.CreateAndShowForm(TFormViewProduto,panelFundo);
 end;
 
 end.

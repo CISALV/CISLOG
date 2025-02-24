@@ -2,8 +2,10 @@ unit uMunicipio;
 
 interface
 
+uses uInterfaces;
+
 type
-  TMunicipio = class
+  TMunicipio = class(TInterfacedObject, IEntity)
   private
     Fid: Integer;
     FNome: String;
@@ -26,6 +28,7 @@ type
     procedure SetComplemento(const Value: String);
 
   public
+    function GetId : Integer;
     property Id: Integer read Fid write SetId;
     property Nome: String read FNome write SetNome;
     property CNPJ: String read FCNPJ write SetCNPJ;
@@ -91,6 +94,11 @@ end;
 procedure TMunicipio.SetNumero(const Value: String);
 begin
   FNumero := Value;
+end;
+
+function TMunicipio.GetId: Integer;
+begin
+ Result := FId;
 end;
 
 procedure TMunicipio.SetBairro(const Value: String);

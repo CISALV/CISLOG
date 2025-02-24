@@ -2,8 +2,10 @@ unit uProduto;
 
 interface
 
+uses uInterfaces;
+
 type
- TProduto = class
+ TProduto = class(TInterfacedObject,IEntity)
   private
     FGGREM: integer;
     FDescricao: string;
@@ -17,6 +19,7 @@ type
     procedure SetId(const Value: Integer);
 
  public
+  function GetID: Integer;
   property Id: Integer read FId write SetId;
   property Apresentacao: string read FApresentacao write SetApresentacao;
   property CATMAT: integer read FCATMAT write SetCATMAT;
@@ -37,6 +40,11 @@ begin
   Self.CATMAT := ACATMAT;
   Self.Apresentacao := AApresentacao;
   Self.Descricao := ADescricao;
+end;
+
+function TProduto.GetID: Integer;
+begin
+ Result := FId;
 end;
 
 procedure TProduto.SetApresentacao(const Value: string);

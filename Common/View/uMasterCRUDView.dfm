@@ -147,6 +147,7 @@ inherited formMasterCRUDView: TformMasterCRUDView
         end
         inherited speedExcluir: TSpeedButton
           Height = 57
+          OnClick = operationsBarspeedExcluirClick
           ExplicitHeight = 57
         end
       end

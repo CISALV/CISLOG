@@ -2,8 +2,10 @@ unit uMockProduto;
 
 interface
 
+uses uInterfaces;
+
 type
-  TMockProduto = class
+  TMockProduto = class(TInterfacedObject, IEntity)
   private
     FId: Integer;
     FApresentacao: String;
@@ -26,7 +28,7 @@ type
     procedure SetQuantidadeMinima(const Value: Double);
 
   public
-
+    function GetId : Integer;
     constructor Create(AId: Integer; AApresentacao: String;
   AQuantidadeTotal, ACatMat, AGGrem: Integer;
   AValor: Double; AQuantidadeRestante: Integer = 0; AQuantidadeMinima : Double = 0; AUnidadeFracionamento: Integer = 0);
@@ -62,6 +64,11 @@ end;
 procedure TMockProduto.SetId(const Value: Integer);
 begin
   FId := Value;
+end;
+
+function TMockProduto.GetId: Integer;
+begin
+ Result := FId;
 end;
 
 procedure TMockProduto.SetApresentacao(const Value: String);

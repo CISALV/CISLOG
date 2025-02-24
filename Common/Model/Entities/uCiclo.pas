@@ -2,8 +2,10 @@ unit uCiclo;
 
 interface
 
+uses uInterfaces;
+
 type
-  TCiclo = class
+  TCiclo = class(TInterfacedObject, IEntity)
     private
     FId: Integer;
     FNome: String;
@@ -13,6 +15,7 @@ type
     procedure SetTipo(const Value: String);
 
     public
+    function GetId : Integer;
     property Id: Integer read FId write SetId;
     property Nome: String read FNome write SetNome;
     property Tipo: String read FTipo write SetTipo;
@@ -28,6 +31,11 @@ begin
  Self.Id := AId;
  Self.Nome := ANome;
  Self.Tipo := ATipo;
+end;
+
+function TCiclo.GetId: Integer;
+begin
+ Result := FId;
 end;
 
 procedure TCiclo.SetId(const Value: Integer);

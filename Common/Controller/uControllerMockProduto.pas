@@ -6,19 +6,18 @@ uses uMockProduto, uBaseCRUDController, uDAOMockProduto, Dialogs, uInterfaces,
   Data.DB;
 
 type
-  TControllerMockProduto = class(TBaseCRUDController<TMockProduto>)
+  TControllerMockProduto = class//(TBaseCRUDController<TMockProduto>)
 
   public
-    function Get(EntityID: Integer): TMockProduto;
-    procedure Save(AEntity: TMockProduto);
-    constructor Create;
-
+    //function Get(EntityID: Integer): TMockProduto;
+    //procedure Save(AEntity: TMockProduto);
+    //constructor Create;
   end;
 
 implementation
 
 { TControllerMockProduto }
-
+{
 constructor TControllerMockProduto.Create;
 begin
   inherited;
@@ -37,5 +36,6 @@ function TControllerMockProduto.Get(EntityID: Integer): TMockProduto;
 begin
   FDAO.GetByID(EntityID);
 end;
-
+}
 end.
+

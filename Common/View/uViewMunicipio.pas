@@ -14,7 +14,8 @@ uses
   FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   uDataConService, uFormFactory,
-  uControllerMunicipio, uInterfaces,uMunicipio, uframeSearch;
+  uControllerMunicipio, uInterfaces,uMunicipio, uframeSearch,
+  uBaseCRUDController;
 
 type
   TformViewMunicipio = class(TformMasterCRUDView)
@@ -29,18 +30,18 @@ type
     procedure PopView(MunicipioID: Integer); override;
 
     procedure operationsBarspeedNovoClick(Sender: TObject);
-    //procedure operationsBarspeedCancelarClick(Sender: TObject);
     procedure Save; override;
     procedure Delete; override;
 
     procedure edCNPJEnter(Sender: TObject);
     procedure edCNPJExit(Sender: TObject);
 
+
   private
     function MakeObjectfromFields: TMunicipio;
     function ImportantFieldIsEmpty(AMunicipio: TMunicipio): Boolean;
   protected
-    function CreateController: ISearchController; override;
+   // function CreateController: ISearchController; override;
   public
     { Public declarations }
   end;
@@ -79,19 +80,19 @@ begin
 
 end;
 
-
+ {
 function TformViewMunicipio.CreateController: ISearchController;
 begin
-  Result := TControllerMunicipio.Create;
+  //Result := TControllerMunicipio.Create;
 end;
-
+}
 procedure TformViewMunicipio.PopView(MunicipioID: Integer);
 var
   Municipio : TMunicipio;
 begin
   if MunicipioID > 0 then
   begin
-  Municipio := (FController as ICRUDController<TMunicipio>).Get(MunicipioID);
+  //Municipio := (FController as ICRUDController<TMunicipio>).Get(MunicipioID);
     edId.Text := IntToStr(MunicipioID);
     edNome.Text := Municipio.Nome;
     edCNPJ.Text := Municipio.CNPJ;
@@ -109,6 +110,7 @@ begin
   (FController as ICRUDController<TMunicipio>).Delete(Id);
   FController.GetAll;
 end;
+
 
 procedure TformViewMunicipio.operationsBarspeedNovoClick(Sender: TObject);
 
@@ -170,6 +172,5 @@ begin
   if edCNPJ.Text = '' then
     edCNPJ.EditMask := '';
 end;
-
 
 end.

@@ -166,9 +166,6 @@ inherited formViewMunicipio: TformViewMunicipio
           Left = 721
           ExplicitLeft = 721
         end
-        inherited speedExcluir: TSpeedButton
-          OnClick = operationsBarspeedExcluirCick
-        end
       end
     end
   end

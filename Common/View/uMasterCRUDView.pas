@@ -30,7 +30,7 @@ type
     tabhidden: TTabSheet;
 
     procedure operationsBarspeedSalvarClick(Sender: TObject);
-    procedure operationsBarspeedExcluirCick(Sender: TObject);
+    procedure operationsBarspeedExcluirClick(Sender: TObject);
     procedure operationsBarspeedCancelarClick(Sender: TObject);
     procedure operationsBarspeedNovoClick(Sender: TObject);
 
@@ -44,14 +44,13 @@ type
   private
 
   protected
-
     FController: ISearchController;
     FDataSource: TDataSource;
 
-    function CreateController: ISearchController; virtual; abstract;
+    //function CreateController: ISearchController; virtual; abstract;
 
   public
-
+    constructor Create(AOwner: TComponent; AController: ISearchController);
     procedure Save; virtual; abstract;
     function ConfirmSave: Boolean; virtual;
     procedure Delete; virtual; abstract;
@@ -79,6 +78,12 @@ begin
     [mbYes, mbNo], 0) = mrYes;
 end;
 
+constructor TformMasterCRUDView.Create(AOwner: TComponent;
+  AController: ISearchController);
+begin
+ FController := AController;
+end;
+
 procedure TformMasterCRUDView.dbgridPesquisaDblClick(Sender: TObject);
 var
  EntityId : Integer;
@@ -91,6 +96,7 @@ begin
   PopView(EntityId);
 end;
 
+
 procedure TformMasterCRUDView.FormDestroy(Sender: TObject);
 begin
   inherited;
@@ -102,7 +108,7 @@ procedure TformMasterCRUDView.FormShow(Sender: TObject);
 begin
   inherited;
 
-  FController := CreateController;
+  //FController := CreateController;
 
   FDataSource := TDataSource.Create(Self);
   try
@@ -147,13 +153,15 @@ begin
 
 end;
 
-procedure TformMasterCRUDView.operationsBarspeedExcluirCick(Sender: TObject);
+procedure TformMasterCRUDView.operationsBarspeedExcluirClick(Sender: TObject);
 begin
   inherited;
   if ConfirmDelete then
-    operationsBar.SetButtonState(osIdle);
+  begin
+  operationsBar.SetButtonState(osIdle);
   panelLateral.Visible := False;
   Delete;
+  end;
 end;
 
 procedure TformMasterCRUDView.operationsBarspeedNovoClick(Sender: TObject);

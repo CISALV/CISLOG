@@ -34,6 +34,7 @@ end;
 procedure TDAOProduto.SetupInsertParams(StoredProc: TFDStoredProc;
   AEntity: TProduto);
 begin
+  StoredProc.ParamByName('id_e').AsInteger := AEntity.Id;
   StoredProc.ParamByName('descricao_e').AsString    := AEntity.Descricao;
   StoredProc.ParamByName('apresentacao_e').AsString := AEntity.Apresentacao;
   StoredProc.ParamByName('catmat_e').AsInteger      := AEntity.CATMAT;
@@ -43,6 +44,7 @@ end;
 procedure TDAOProduto.SetupUpdateParams(StoredProc: TFDStoredProc;
   AEntity: TProduto);
 begin
+  StoredProc.ParamByName('id_e').AsInteger := AEntity.Id;
   StoredProc.ParamByName('descricao_e').AsString    := AEntity.Descricao;
   StoredProc.ParamByName('apresentacao_e').AsString := AEntity.Apresentacao;
   StoredProc.ParamByName('catmat_e').AsInteger      := AEntity.CATMAT;
@@ -68,8 +70,8 @@ Result := TProduto.Create(
       Query.FieldByName('id').AsInteger,
       Query.FieldByName('ggrem').AsInteger,
       Query.FieldByName('catmat').AsInteger,
-      Query.FieldByName('apresentacao').AsString,
-      Query.FieldByName('descricao').AsString
+      Query.FieldByName('Apresentacao').AsString,
+      Query.FieldByName('Descricao').AsString
     );
 end;
 

@@ -2,9 +2,16 @@ unit uInterfaces;
 
 interface
 
-uses FireDAC.Comp.Client,uMunicipio,Data.DB;
+uses FireDAC.Comp.Client,Data.DB;
 
 type
+
+  IEntity = interface
+  ['{B349AF0D-6130-451C-A3EC-09D31AFA1A6B}']
+  function GetID: Integer;
+  end;
+
+
   ICRUDController<T> = interface
     ['{3322955C-5B9E-4495-ACCE-D260473497BF}']
 
@@ -25,7 +32,7 @@ type
   end;
 
 
-  IDAO<T: class> = interface
+  IDAO<T: IEntity> = interface
     ['{DA7CA435-8F5C-4143-806A-2D4F0D301D21}']
 
     function Insert(AEntity: T): Integer;

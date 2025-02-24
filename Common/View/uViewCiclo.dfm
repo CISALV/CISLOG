@@ -32,8 +32,7 @@ inherited formViewCiclo: TformViewCiclo
       inherited Fields: TPageControl
         ActivePage = TabSheet1
         inherited tabhidden: TTabSheet
-          ExplicitTop = 29
-          ExplicitHeight = 489
+          ExplicitHeight = 474
           inherited Edit1: TEdit
             StyleElements = [seFont, seClient, seBorder]
           end

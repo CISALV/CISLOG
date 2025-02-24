@@ -3,10 +3,12 @@ unit uViewProduto;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uMasterCRUDView, Data.DB, Vcl.Mask,
   Vcl.StdCtrls, uframeOperationsBar, uMasterFrame, uframeSearch, Vcl.Grids,
-  Vcl.DBGrids, Vcl.WinXPanels, Vcl.ExtCtrls, Vcl.ComCtrls, uframePages,uInterfaces,uProduto;
+  Vcl.DBGrids, Vcl.WinXPanels, Vcl.ExtCtrls, Vcl.ComCtrls, uframePages,
+  uInterfaces, uProduto, uBaseCRUDController, uControllerProduto, uDAOProduto;
 
 type
   TformViewProduto = class(TformMasterCRUDView)
@@ -22,16 +24,17 @@ type
     lbCATMAT: TLabel;
     procedure FormShow(Sender: TObject);
     procedure operationsBarspeedNovoClick(Sender: TObject);
-    procedure Save; override;
-    procedure Delete; override;
+
   private
-    function WrapObject: TProduto;
+    function WrapObject: IEntity;
   protected
-   function CreateController : ISearchController; override;
-   procedure PopView(ProdutoId: Integer); override;
+    //function CreateController: ISearchController; override;
+    procedure PopView(ProdutoId: Integer); override;
 
   public
-    { Public declarations }
+    constructor Create(AOwner: TComponent; AController: ISearchController);
+    procedure Save; override;
+    procedure Delete; override;
   end;
 
 var
@@ -41,15 +44,15 @@ implementation
 
 {$R *.dfm}
 
-uses uControllerProduto;
 
 procedure TformViewProduto.PopView(ProdutoId: Integer);
 var
-  Produto : TProduto;
+  Produto: TProduto;
 begin
   if ProdutoId > 0 then
-   begin
+  begin
     Produto := (FController as ICRUDController<TProduto>).Get(ProdutoId);
+    edId.Text := IntToStr(Produto.Id);
     edGGREM.Text := IntToStr(Produto.GGREM);
     edCATMAT.Text := IntToStr(Produto.CATMAT);
     edApresentacao.Text := Produto.Apresentacao;
@@ -57,62 +60,78 @@ begin
   end
 end;
 
-
-function TformViewProduto.CreateController: ISearchController;
+constructor TformViewProduto.Create(AOwner: TComponent;
+  AController: ISearchController);
 begin
-Result := TControllerProduto.Create;
+  inherited Create(AOwner, AController);
 end;
 
+{
+function TformViewProduto.CreateController: ISearchController;
+begin
 
+end;
+}
 procedure TformViewProduto.Delete;
 var
   Id: Integer;
 begin
   inherited;
-  Id := StrtoInt(edId.Text);
-  (FController as ICRUDController<TProduto>).Delete(Id);
-  FController.GetAll;
+  try
+    Id := StrToIntDef(edId.Text, 0);
+    if Id > 0 then
+    begin
+      (FController as ICRUDController<TProduto>).Delete(Id);
+      FController.GetAll;
+    end
+    else
+      ShowMessage('ID inválido para exclusão.');
+  except
+    on E: Exception do
+      ShowMessage('Erro ao excluir: ' + E.Message);
+  end;
 end;
 
 procedure TformViewProduto.FormShow(Sender: TObject);
+
 begin
   inherited;
-  SearchBar.ConfigureFilterFields(['APRESENTACAO','GGREM','CATMAT']);
+  SearchBar.ConfigureFilterFields(['APRESENTACAO', 'GGREM', 'CATMAT']);
+  end;
 
-end;
-
-function TformViewProduto.WrapObject: TProduto;
+function TformViewProduto.WrapObject: IEntity;
 var
-  Produto : TProduto;
+  Produto: IEntity;
 begin
-  FillChar(Result, SizeOf(TProduto), 0);
 
-  Produto := TProduto.Create(
-  StrToIntDef(edId.Text,0),
-  StrToIntDef(edGGREM.Text,0),
-  StrToIntDef(edCATMAT.Text,0),
-  edApresentacao.Text,
-  edDescricao.Text);
+    Produto := TProduto.Create(
+    StrToIntDef(edId.Text, 0),
+    StrToIntDef(edGGREM.Text, 0),
+    StrToIntDef(edCATMAT.Text, 0),
+    edApresentacao.Text,
+    edDescricao.Text);
 
   Result := Produto;
 end;
+
 procedure TformViewProduto.operationsBarspeedNovoClick(Sender: TObject);
 begin
   inherited;
-    Fields.ActivePage := tabPrincipal;
-    edApresentacao.SetFocus;
-    LimparCampos;
+  Fields.ActivePage := tabPrincipal;
+  edApresentacao.SetFocus;
+  LimparCampos;
 end;
 
 procedure TformViewProduto.Save;
 var
-  Produto: TProduto;
+  Produto: IEntity;
 begin
-    inherited;
+  inherited;
   Produto := WrapObject;
-  (FController as ICRUDController<TProduto>).Save(Produto);
+  (FController as ICRUDController<TProduto>).Save(Produto as TProduto);
   FController.GetAll;
-
+  panelLateral.Visible := False;
+  operationsBar.SetButtonState(osIdle);
 end;
 
 end.

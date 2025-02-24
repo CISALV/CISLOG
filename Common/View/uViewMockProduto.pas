@@ -28,9 +28,10 @@ type
     edQuantidadeMinima: TEdit;
     procedure FormShow(Sender: TObject);
   private
-    function CreateController: ISearchController; override;
-    function MakeObjectFromFields : TMockProduto;
+    //function CreateController: ISearchController; override;
+    function WrapObject : TMockProduto;
     procedure Save; override;
+    procedure Delete; override;
   public
 
   end;
@@ -43,10 +44,16 @@ implementation
 {$R *.dfm}
 
 { TformViewMockProduto }
-
+{
 function TformViewMockProduto.CreateController: ISearchController;
 begin
- Result := TControllerMockProduto.Create;
+ //Result := TBaseCRUDController<TMockProduto>.Create(
+end;
+}
+procedure TformViewMockProduto.Delete;
+begin
+  inherited;
+//
 end;
 
 procedure TformViewMockProduto.FormShow(Sender: TObject);
@@ -56,7 +63,7 @@ begin
 
 end;
 
-function TformViewMockProduto.MakeObjectFromFields: TMockProduto;
+function TformViewMockProduto.WrapObject: TMockProduto;
 var
   Produto: TMockProduto;
 begin
@@ -80,7 +87,7 @@ var
   Produto : TMockProduto;
   DAO : TDAOMockProduto;
 begin
-  Produto := MakeObjectFromFields;
+  Produto := WrapObject;
   DAO := TDAOMockProduto.Create;
 
   DAO.Insert(Produto);
