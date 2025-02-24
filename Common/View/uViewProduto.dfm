@@ -28,29 +28,24 @@
     end
     inherited panelLateral: TPanel
       StyleElements = [seFont, seClient, seBorder]
-      inherited Edit1: TEdit
-        StyleElements = [seFont, seClient, seBorder]
-      end
-      inherited MaskEdit1: TMaskEdit
-        StyleElements = [seFont, seClient, seBorder]
-      end
-      object Fields: TPageControl
-        Left = 1
-        Top = 1
-        Width = 358
-        Height = 522
+      inherited Fields: TPageControl
         ActivePage = tabPrincipal
-        Align = alClient
-        TabHeight = 40
-        TabOrder = 2
-        TabPosition = tpBottom
+        inherited tabhidden: TTabSheet
+          ExplicitHeight = 474
+          inherited Edit1: TEdit
+            StyleElements = [seFont, seClient, seBorder]
+          end
+          inherited MaskEdit1: TMaskEdit
+            StyleElements = [seFont, seClient, seBorder]
+          end
+        end
         object tabPrincipal: TTabSheet
           Caption = 'Principal'
           object lbDescrição: TLabel
             AlignWithMargins = True
             Left = 10
             Top = 203
-            Width = 69
+            Width = 330
             Height = 15
             Margins.Left = 10
             Margins.Top = 0
@@ -64,12 +59,13 @@
             Font.Name = 'Roboto'
             Font.Style = []
             ParentFont = False
+            ExplicitWidth = 69
           end
           object lbApresentacao: TLabel
             AlignWithMargins = True
             Left = 10
             Top = 41
-            Width = 96
+            Width = 330
             Height = 15
             Margins.Left = 10
             Margins.Top = 0
@@ -83,12 +79,13 @@
             Font.Name = 'Roboto'
             Font.Style = []
             ParentFont = False
+            ExplicitWidth = 96
           end
           object lbGGREM: TLabel
             AlignWithMargins = True
             Left = 10
             Top = 95
-            Width = 44
+            Width = 330
             Height = 15
             Margins.Left = 10
             Margins.Top = 0
@@ -102,12 +99,13 @@
             Font.Name = 'Roboto'
             Font.Style = []
             ParentFont = False
+            ExplicitWidth = 44
           end
           object lbCATMAT: TLabel
             AlignWithMargins = True
             Left = 10
             Top = 149
-            Width = 51
+            Width = 330
             Height = 15
             Margins.Left = 10
             Margins.Top = 0
@@ -121,6 +119,7 @@
             Font.Name = 'Roboto'
             Font.Style = []
             ParentFont = False
+            ExplicitWidth = 51
           end
           object edId: TEdit
             AlignWithMargins = True
@@ -144,7 +143,6 @@
             ReadOnly = True
             TabOrder = 4
             TextHint = 'ID'
-            ExplicitTop = 10
           end
           object edDescricao: TEdit
             AlignWithMargins = True
@@ -157,7 +155,6 @@
             Margins.Bottom = 10
             Align = alTop
             TabOrder = 3
-            ExplicitTop = 196
           end
           object edApresentacao: TEdit
             AlignWithMargins = True
@@ -170,7 +167,6 @@
             Margins.Bottom = 10
             Align = alTop
             TabOrder = 0
-            ExplicitTop = 58
           end
           object edGGREM: TEdit
             AlignWithMargins = True
@@ -183,7 +179,6 @@
             Margins.Bottom = 10
             Align = alTop
             TabOrder = 1
-            ExplicitTop = 104
           end
           object edCATMAT: TEdit
             AlignWithMargins = True
@@ -196,7 +191,6 @@
             Margins.Bottom = 10
             Align = alTop
             TabOrder = 2
-            ExplicitTop = 150
           end
         end
       end

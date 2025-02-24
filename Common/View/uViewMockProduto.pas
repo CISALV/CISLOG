@@ -15,7 +15,6 @@ uses
 
 type
   TformViewMockProduto = class(TformMasterCRUDView)
-    PageControl1: TPageControl;
     edId: TEdit;
     TabSheet1: TTabSheet;
     edUnidadeFracionamento: TEdit;
@@ -26,7 +25,6 @@ type
     edGGREM: TEdit;
     edCATMAT: TEdit;
     edQuantidadeRestante: TEdit;
-    TabSheet2: TTabSheet;
     edQuantidadeMinima: TEdit;
     procedure FormShow(Sender: TObject);
   private

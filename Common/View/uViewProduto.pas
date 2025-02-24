@@ -10,7 +10,6 @@ uses
 
 type
   TformViewProduto = class(TformMasterCRUDView)
-    Fields: TPageControl;
     tabPrincipal: TTabSheet;
     edId: TEdit;
     edDescricao: TEdit;
@@ -23,14 +22,13 @@ type
     lbCATMAT: TLabel;
     procedure FormShow(Sender: TObject);
     procedure operationsBarspeedNovoClick(Sender: TObject);
-    procedure dbgridPesquisaDblClick(Sender: TObject);
     procedure Save; override;
     procedure Delete; override;
   private
-    function MakeObjectfromFields: TProduto;
+    function WrapObject: TProduto;
   protected
    function CreateController : ISearchController; override;
-   procedure CarregarProduto(ProdutoId: Integer);
+   procedure PopView(ProdutoId: Integer); override;
 
   public
     { Public declarations }
@@ -45,14 +43,13 @@ implementation
 
 uses uControllerProduto;
 
-procedure TformViewProduto.CarregarProduto(ProdutoId: Integer);
+procedure TformViewProduto.PopView(ProdutoId: Integer);
 var
   Produto : TProduto;
 begin
-  Produto := (FController as ICRUDController<TProduto>).Get(ProdutoID);
-  if Produto.Id > 0 then
-  begin
-    edId.Text := IntToStr(ProdutoID);
+  if ProdutoId > 0 then
+   begin
+    Produto := (FController as ICRUDController<TProduto>).Get(ProdutoId);
     edGGREM.Text := IntToStr(Produto.GGREM);
     edCATMAT.Text := IntToStr(Produto.CATMAT);
     edApresentacao.Text := Produto.Apresentacao;
@@ -67,15 +64,6 @@ Result := TControllerProduto.Create;
 end;
 
 
-procedure TformViewProduto.dbgridPesquisaDblClick(Sender: TObject);
-var
-ProdutoID : Integer;
-begin
-  inherited;
-  ProdutoID := FDataSource.DataSet.FieldByName('id').AsInteger;
-  CarregarProduto(ProdutoID);
-end;
-
 procedure TformViewProduto.Delete;
 var
   Id: Integer;
@@ -89,13 +77,11 @@ end;
 procedure TformViewProduto.FormShow(Sender: TObject);
 begin
   inherited;
-  SearchBar.ConfigureFilterFields(['APRESENTACAO','GGREM']);
-  FController := TControllerProduto.Create;
-  dbGridPesquisa.Columns.Clear;
+  SearchBar.ConfigureFilterFields(['APRESENTACAO','GGREM','CATMAT']);
 
 end;
 
-function TformViewProduto.MakeObjectfromFields: TProduto;
+function TformViewProduto.WrapObject: TProduto;
 var
   Produto : TProduto;
 begin
@@ -123,7 +109,7 @@ var
   Produto: TProduto;
 begin
     inherited;
-  Produto := MakeObjectfromFields;
+  Produto := WrapObject;
   (FController as ICRUDController<TProduto>).Save(Produto);
   FController.GetAll;
 

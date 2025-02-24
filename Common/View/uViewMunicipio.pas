@@ -18,21 +18,18 @@ uses
 
 type
   TformViewMunicipio = class(TformMasterCRUDView)
-    Fields: TPageControl;
-    tabPrincipal: TTabSheet;
     edNome: TEdit;
     edId: TEdit;
     edEmail: TEdit;
     edCNPJ: TMaskEdit;
-    TabSheet1: TTabSheet;
+    tabPrincipal: TTabSheet;
 
     procedure FormShow(Sender: TObject);
 
-    procedure dbgridPesquisaDblClick(Sender: TObject);
-    procedure PopView(MunicipioID: Integer);
+    procedure PopView(MunicipioID: Integer); override;
 
     procedure operationsBarspeedNovoClick(Sender: TObject);
-    procedure operationsBarspeedCancelarClick(Sender: TObject);
+    //procedure operationsBarspeedCancelarClick(Sender: TObject);
     procedure Save; override;
     procedure Delete; override;
 
@@ -63,9 +60,6 @@ begin
 
   SearchBar.ConfigureFilterFields(['NOME','CNPJ']);
 
-  {Teste se isso funciona, será necessario implementar em todos os cruds}
-  //FController := TControllerMunicipio.Create;
-
   dbGridPesquisa.Columns.Clear;
 
   Col := dbGridPesquisa.Columns.Add;
@@ -91,24 +85,13 @@ begin
   Result := TControllerMunicipio.Create;
 end;
 
-
-procedure TformViewMunicipio.dbgridPesquisaDblClick(Sender: TObject);
-var
-  MunicipioID: Integer;
-begin
-  inherited;
-  Fields.ActivePage := tabPrincipal;
-  MunicipioID := FDataSource.DataSet.FieldByName('id').AsInteger;
-  PopView(MunicipioID);
-end;
-
 procedure TformViewMunicipio.PopView(MunicipioID: Integer);
 var
   Municipio : TMunicipio;
 begin
-  Municipio := (FController as ICRUDController<TMunicipio>).Get(MunicipioID);
-  if Municipio.Id > 0 then
+  if MunicipioID > 0 then
   begin
+  Municipio := (FController as ICRUDController<TMunicipio>).Get(MunicipioID);
     edId.Text := IntToStr(MunicipioID);
     edNome.Text := Municipio.Nome;
     edCNPJ.Text := Municipio.CNPJ;
@@ -116,13 +99,6 @@ begin
   end
 end;
 
-
-procedure TformViewMunicipio.operationsBarspeedCancelarClick(Sender: TObject);
-begin
-  inherited;
-  Fields.ActivePage := tabPrincipal;
-  FController.GetAll;
-end;
 
 procedure TformViewMunicipio.Delete;
 var

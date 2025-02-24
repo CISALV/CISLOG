@@ -8,7 +8,6 @@ uses
 type
   TControllerProduto = class(TBaseCRUDController<TProduto>)
   private
-    FDAOProduto: TDAOProduto;
     FProduto: TProduto;
   public
     constructor Create;
@@ -29,7 +28,6 @@ end;
 
 destructor TControllerProduto.Destroy;
 begin
-  //FDAO.Free;
   inherited;
 end;
 
@@ -37,11 +35,10 @@ function TControllerProduto.Get(ProdutoID: Integer): TProduto;
 var
   Produto: TProduto;
 begin
-  Produto := FDAOProduto.GetByID(ProdutoID);
-  if (Produto <> nil) and (Produto.Id > 0) then
-    Result := Produto
-  else
-    Result := nil;
+  Produto := FDAO.GetByID(ProdutoID);
+
+  if Produto.Id > 0 then
+    Result := Produto;
 end;
 
 procedure TControllerProduto.Save(AProduto: TProduto);

@@ -28,19 +28,9 @@ inherited formViewMockProduto: TformViewMockProduto
     end
     inherited panelLateral: TPanel
       StyleElements = [seFont, seClient, seBorder]
-      inherited MaskEdit1: TMaskEdit [0]
-        TabOrder = 0
-        StyleElements = [seFont, seClient, seBorder]
-      end
-      object PageControl1: TPageControl [1]
-        Left = 1
-        Top = 1
-        Width = 358
-        Height = 522
+      inherited Fields: TPageControl
         ActivePage = TabSheet1
-        Align = alClient
-        TabOrder = 1
-        object TabSheet1: TTabSheet
+        object TabSheet1: TTabSheet [0]
           Caption = 'TabSheet1'
           object edId: TEdit
             AlignWithMargins = True
@@ -193,16 +183,17 @@ inherited formViewMockProduto: TformViewMockProduto
             TextHint = 'QUANTIDADE MINIMA'
           end
         end
-        object TabSheet2: TTabSheet
-          Caption = 'TabSheet2'
-          ImageIndex = 1
+        inherited tabhidden: TTabSheet
+          ExplicitHeight = 474
+          inherited MaskEdit1: TMaskEdit [0]
+            StyleElements = [seFont, seClient, seBorder]
+          end
+          inherited Edit1: TEdit [1]
+            Top = 484
+            StyleElements = [seFont, seClient, seBorder]
+            ExplicitTop = 484
+          end
         end
-      end
-      inherited Edit1: TEdit [2]
-        Top = 484
-        TabOrder = 2
-        StyleElements = [seFont, seClient, seBorder]
-        ExplicitTop = 484
       end
     end
   end

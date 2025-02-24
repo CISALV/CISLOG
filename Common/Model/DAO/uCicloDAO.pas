@@ -2,11 +2,11 @@ unit uCicloDAO;
 
 interface
 
-uses uCiclo, uMasterDAO,FireDAC.Comp.Client,System.SysUtils, Vcl.Dialogs, Vcl.Forms,
+uses uCiclo, uBaseDAO,FireDAC.Comp.Client,System.SysUtils, Vcl.Dialogs, Vcl.Forms,
   uDataConService;
 
 type
- TDAOCiclo = class(TDAOMaster<TCiclo>)
+ TDAOCiclo = class(TBaseDAO<TCiclo>)
    public
    constructor Create;
    procedure SetupInsertParams(StoredProc: TFDStoredProc; AEntity: TCiclo); override;

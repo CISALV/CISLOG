@@ -20,7 +20,7 @@ type
       virtual; abstract;
     procedure SetupDeleteParams(StoredProc: TFDStoredProc; AID: Integer);
       virtual; abstract;
-    function CreateEntityFromQuery(Query: TFDQuery): T; virtual; abstract;
+    function GetObjectfromQuery(Query: TFDQuery): T; virtual; abstract;
 
   public
     constructor Create;
@@ -66,11 +66,9 @@ begin
     except
       on E: Exception do
       begin
-
-        ShowMessage('Error: ' + E.Message);
-
         FConnection.Rollback;
         Result := 0;
+        raise;
       end;
     end;
   finally
@@ -131,12 +129,17 @@ end;
 function TBaseDAO<T>.GetByID(AID: Integer): T;
 begin
 
+try
+    FQuery.Close;
+    FQuery.SQL.Clear;
     FQuery.SQL.Text := Format('SELECT * FROM %s WHERE ID = :ID', [FTableName]);
     FQuery.ParamByName('ID').AsInteger := AID;
     FQuery.Open;
-
+  except
+  raise;
+end;
     if not FQuery.IsEmpty then
-      Result := CreateEntityFromQuery(FQuery)
+      Result := GetObjectfromQuery(FQuery)
     else
       Result := nil;
 

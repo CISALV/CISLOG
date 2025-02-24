@@ -26,17 +26,20 @@ type
     Edit1: TEdit;
     MaskEdit1: TMaskEdit;
     SearchBar: TframeSearch;
+    Fields: TPageControl;
+    tabhidden: TTabSheet;
 
     procedure operationsBarspeedSalvarClick(Sender: TObject);
     procedure operationsBarspeedExcluirCick(Sender: TObject);
     procedure operationsBarspeedCancelarClick(Sender: TObject);
     procedure operationsBarspeedNovoClick(Sender: TObject);
 
-    procedure dbgridPesquisaDblClick(Sender: TObject);
+    procedure dbgridPesquisaDblClick(Sender: TObject); virtual;
 
     procedure FormShow(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure SearchChange(Sender: TObject);
+    procedure PopView(EntityId: Integer); virtual; abstract;
 
   private
 
@@ -77,11 +80,15 @@ begin
 end;
 
 procedure TformMasterCRUDView.dbgridPesquisaDblClick(Sender: TObject);
+var
+ EntityId : Integer;
 begin
   inherited;
   panelLateral.Visible := True;
   dbgridPesquisa.ReadOnly := True;
   operationsBar.SetButtonState(osEdit);
+  EntityId := FDataSource.DataSet.FieldByName('id').AsInteger;
+  PopView(EntityId);
 end;
 
 procedure TformMasterCRUDView.FormDestroy(Sender: TObject);
@@ -94,6 +101,7 @@ end;
 procedure TformMasterCRUDView.FormShow(Sender: TObject);
 begin
   inherited;
+
   FController := CreateController;
 
   FDataSource := TDataSource.Create(Self);
@@ -135,6 +143,7 @@ begin
   operationsBar.SetButtonState(osIdle);
   panelLateral.Visible := False;
   LimparCampos;
+  FController.GetAll;
 
 end;
 

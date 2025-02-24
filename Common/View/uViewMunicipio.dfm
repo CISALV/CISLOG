@@ -18,51 +18,22 @@ inherited formViewMunicipio: TformViewMunicipio
       StyleElements = [seFont, seClient, seBorder]
       ExplicitLeft = 603
       ExplicitHeight = 528
-      inherited Edit1: TEdit
-        Left = 296
-        Top = 410
-        Width = 50
-        StyleElements = [seFont, seClient, seBorder]
-        ExplicitLeft = 296
-        ExplicitTop = 410
-        ExplicitWidth = 50
-      end
-      inherited MaskEdit1: TMaskEdit
-        Left = 296
-        Top = 449
-        Width = 49
-        StyleElements = [seFont, seClient, seBorder]
-        ExplicitLeft = 296
-        ExplicitTop = 449
-        ExplicitWidth = 49
-      end
-      object Fields: TPageControl
-        Left = 1
-        Top = 1
-        Width = 358
+      inherited Fields: TPageControl
         Height = 526
         ActivePage = tabPrincipal
-        Align = alClient
-        TabHeight = 40
-        TabOrder = 2
-        TabPosition = tpBottom
+        ExplicitHeight = 526
+        inherited tabhidden: TTabSheet
+          ExplicitHeight = 478
+          inherited Edit1: TEdit
+            StyleElements = [seFont, seClient, seBorder]
+          end
+          inherited MaskEdit1: TMaskEdit
+            StyleElements = [seFont, seClient, seBorder]
+          end
+        end
         object tabPrincipal: TTabSheet
           Caption = 'Principal'
           ImageIndex = 1
-          object edNome: TEdit
-            AlignWithMargins = True
-            Left = 10
-            Top = 58
-            Width = 330
-            Height = 26
-            Margins.Left = 10
-            Margins.Top = 10
-            Margins.Right = 10
-            Margins.Bottom = 10
-            Align = alTop
-            TabOrder = 1
-            TextHint = 'NOME'
-          end
           object edId: TEdit
             AlignWithMargins = True
             Left = 10
@@ -87,7 +58,7 @@ inherited formViewMunicipio: TformViewMunicipio
             TabOrder = 0
             TextHint = 'ID'
           end
-          object edEmail: TEdit
+          object edCNPJ: TMaskEdit
             AlignWithMargins = True
             Left = 10
             Top = 150
@@ -98,10 +69,13 @@ inherited formViewMunicipio: TformViewMunicipio
             Margins.Right = 10
             Margins.Bottom = 10
             Align = alTop
-            TabOrder = 3
-            TextHint = 'E-MAIL'
+            TabOrder = 1
+            Text = ''
+            TextHint = 'CNPJ'
+            OnEnter = edCNPJEnter
+            OnExit = edCNPJExit
           end
-          object edCNPJ: TMaskEdit
+          object edEmail: TEdit
             AlignWithMargins = True
             Left = 10
             Top = 104
@@ -113,15 +87,22 @@ inherited formViewMunicipio: TformViewMunicipio
             Margins.Bottom = 10
             Align = alTop
             TabOrder = 2
-            Text = ''
-            TextHint = 'CNPJ'
-            OnEnter = edCNPJEnter
-            OnExit = edCNPJExit
+            TextHint = 'E-MAIL'
           end
-        end
-        object TabSheet1: TTabSheet
-          Caption = 'TabSheet1'
-          ImageIndex = 1
+          object edNome: TEdit
+            AlignWithMargins = True
+            Left = 10
+            Top = 58
+            Width = 330
+            Height = 26
+            Margins.Left = 10
+            Margins.Top = 10
+            Margins.Right = 10
+            Margins.Bottom = 10
+            Align = alTop
+            TabOrder = 3
+            TextHint = 'NOME'
+          end
         end
       end
     end
@@ -149,9 +130,9 @@ inherited formViewMunicipio: TformViewMunicipio
             StyleElements = [seFont, seClient, seBorder]
             ExplicitWidth = 596
             inherited edSearch: TEdit
-              Width = 437
+              Width = 432
               StyleElements = [seFont, seClient, seBorder]
-              ExplicitWidth = 437
+              ExplicitWidth = 432
             end
             inherited cbFilter: TComboBox
               StyleElements = [seFont, seClient, seBorder]

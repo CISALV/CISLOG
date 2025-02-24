@@ -29,20 +29,18 @@ inherited formViewCiclo: TformViewCiclo
     end
     inherited panelLateral: TPanel
       StyleElements = [seFont, seClient, seBorder]
-      inherited Edit1: TEdit
-        StyleElements = [seFont, seClient, seBorder]
-      end
-      inherited MaskEdit1: TMaskEdit
-        StyleElements = [seFont, seClient, seBorder]
-      end
-      object PageControl1: TPageControl
-        Left = 1
-        Top = 1
-        Width = 358
-        Height = 522
+      inherited Fields: TPageControl
         ActivePage = TabSheet1
-        Align = alClient
-        TabOrder = 2
+        inherited tabhidden: TTabSheet
+          ExplicitTop = 29
+          ExplicitHeight = 489
+          inherited Edit1: TEdit
+            StyleElements = [seFont, seClient, seBorder]
+          end
+          inherited MaskEdit1: TMaskEdit
+            StyleElements = [seFont, seClient, seBorder]
+          end
+        end
         object TabSheet1: TTabSheet
           Caption = 'TabSheet1'
           object edId: TEdit

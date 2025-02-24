@@ -13,10 +13,10 @@ type
   TformViewCiclo = class(TformMasterCRUDView)
     edNome: TEdit;
     edId: TEdit;
-    PageControl1: TPageControl;
     TabSheet1: TTabSheet;
     edTipo: TEdit;
     procedure FormCreate(Sender: TObject);
+    procedure dbgridPesquisaDblClick(Sender: TObject);
   private
 
   public
@@ -37,6 +37,15 @@ implementation
 function TformViewCiclo.CreateController: ISearchController;
 begin
  Result := TControllerCiclo.Create;
+end;
+
+procedure TformViewCiclo.dbgridPesquisaDblClick(Sender: TObject);
+var
+  CicloId : Integer;
+begin
+  inherited;
+   CicloId := FDataSource.DataSet.FieldByName('id').AsInteger;
+
 end;
 
 procedure TformViewCiclo.Delete;

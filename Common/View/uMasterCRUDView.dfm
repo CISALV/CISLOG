@@ -161,23 +161,37 @@ inherited formMasterCRUDView: TformMasterCRUDView
       DockSite = True
       TabOrder = 2
       Visible = False
-      object Edit1: TEdit
-        Left = 48
-        Top = 418
-        Width = 257
-        Height = 26
+      object Fields: TPageControl
+        Left = 1
+        Top = 1
+        Width = 358
+        Height = 522
+        Align = alClient
+        TabHeight = 40
         TabOrder = 0
-        Text = 'Edit1'
-        Visible = False
-      end
-      object MaskEdit1: TMaskEdit
-        Left = 48
-        Top = 457
-        Width = 257
-        Height = 26
-        TabOrder = 1
-        Text = 'MaskEdit1'
-        Visible = False
+        TabPosition = tpBottom
+        object tabhidden: TTabSheet
+          Caption = 'Hidden'
+          TabVisible = False
+          object Edit1: TEdit
+            Left = 48
+            Top = 378
+            Width = 257
+            Height = 26
+            TabOrder = 0
+            Text = 'Edit1'
+            Visible = False
+          end
+          object MaskEdit1: TMaskEdit
+            Left = 48
+            Top = 417
+            Width = 257
+            Height = 26
+            TabOrder = 1
+            Text = 'MaskEdit1'
+            Visible = False
+          end
+        end
       end
     end
   end
